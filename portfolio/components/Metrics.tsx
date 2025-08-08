@@ -35,9 +35,9 @@ export default function Metrics() {
       return () => clearInterval(timer);
     };
 
-    animateCounter(setModelsDeployed, metrics.modelsDeployed, 1500);
-    animateCounter(setAccuracyImprovement, metrics.accuracyImprovement, 1500);
-    animateCounter(setCostSavings, metrics.costSavings, 1500);
+    animateCounter(setModelsDeployed, 15, 1500);
+    animateCounter(setAccuracyImprovement, 30, 1500);
+    animateCounter(setCostSavings, 67, 1500);
     animateCounter(setPredictionsServed, 1200000, 2000);
   }, [isInView]);
 
@@ -51,7 +51,7 @@ export default function Metrics() {
     },
     {
       icon: <Clock className="w-8 h-8" />,
-      value: `${metrics.deploymentTime.from} → ${metrics.deploymentTime.to}`,
+      value: `Weeks → Hours`,
       label: "Deployment Time",
       description: "Reduced time to production",
       color: "from-purple-400 to-pink-400"

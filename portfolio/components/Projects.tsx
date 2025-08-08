@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { Github, ExternalLink, ArrowUpRight, Zap, TrendingUp } from "lucide-react";
 
 export default function Projects() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
     <section id="projects" className="py-20 px-4 relative overflow-hidden">
@@ -37,8 +35,6 @@ export default function Projects() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
               className="relative group"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
             >
               <div className="glassmorphism p-8 rounded-xl h-full transition-all duration-300 hover:shadow-2xl">
                 <div className="absolute inset-0 gradient-bg opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300" />

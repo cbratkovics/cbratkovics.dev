@@ -5,32 +5,35 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Christopher Bratkovics | Production ML Systems Engineer",
-  description: "AI/ML Engineer specializing in production-ready machine learning systems. Expert in MLOps, FastAPI, Docker, and scaling ML models from notebook to production.",
-  keywords: "ML Engineer, Machine Learning, MLOps, AI Engineer, Python, FastAPI, Docker, TensorFlow, PyTorch, Production ML",
-  authors: [{ name: "Christopher Bratkovics" }],
-  creator: "Christopher Bratkovics",
+  metadataBase: new URL('https://cbratkovics.dev'),
+  title: 'Christopher Bratkovics | AI/ML Engineer | Production ML Systems',
+  description: 'Data Scientist transitioning to AI Engineering. Building production ML systems with 93%+ accuracy, serving 1.2M+ predictions. Specializing in MLOps, FastAPI, and RAG systems.',
+  keywords: [
+    'Christopher Bratkovics', 'AI Engineer', 'ML Engineer', 'MLOps',
+    'FastAPI', 'Production ML', 'OUTFRONT Media', 'Data Scientist',
+    'RAG Systems', 'XGBoost', 'LightGBM'
+  ],
+  authors: [{ name: 'Christopher Bratkovics' }],
+  creator: 'Christopher Bratkovics',
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://cbratkovics.github.io",
-    title: "Christopher Bratkovics | Production ML Systems Engineer",
-    description: "Building AI That Ships: From Model to Production. Expert in MLOps, system design, and scaling ML solutions.",
-    siteName: "Christopher Bratkovics Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Christopher Bratkovics - ML Engineer Portfolio"
-      }
-    ]
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://cbratkovics.dev',
+    siteName: 'Christopher Bratkovics - AI/ML Engineer',
+    title: 'Christopher Bratkovics | Building Production ML Systems',
+    description: 'From Data Science to AI Engineering. 1.2M+ predictions served, 93%+ model accuracy.',
+    images: [{
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Christopher Bratkovics - AI/ML Engineer Portfolio'
+    }]
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Christopher Bratkovics | Production ML Systems Engineer",
-    description: "Building AI That Ships: From Model to Production",
-    images: ["/og-image.png"]
+    card: 'summary_large_image',
+    title: 'Christopher Bratkovics | AI/ML Engineer',
+    description: 'Building Production ML Systems That Ship',
+    images: ['/og-image.png']
   },
   robots: {
     index: true,
@@ -38,15 +41,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
     }
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png"
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png'
   }
 };
 

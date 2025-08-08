@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Home, User, Code, BarChart3, Mail, Menu, X } from "lucide-react";
 
@@ -9,13 +9,13 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
     { id: "skills", label: "Skills", icon: <User className="w-4 h-4" /> },
     { id: "projects", label: "Projects", icon: <Code className="w-4 h-4" /> },
     { id: "metrics", label: "Impact", icon: <BarChart3 className="w-4 h-4" /> },
     { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
-  ];
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +38,7 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

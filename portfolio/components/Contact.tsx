@@ -58,10 +58,10 @@ export default function Contact() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Let's Build Together
+            Let&apos;s Build Together
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Ready to transform your ML models into production-ready systems? Let's discuss how I can help.
+            Ready to transform your ML models into production-ready systems? Let&apos;s discuss how I can help.
           </p>
         </div>
 
@@ -178,7 +178,7 @@ export default function Contact() {
             <div className="glassmorphism-strong p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-white mb-4">Schedule a Call</h3>
               <p className="text-gray-400 mb-4">
-                Let's discuss your ML engineering needs and how I can help.
+                Let&apos;s discuss your ML engineering needs and how I can help.
               </p>
               <a
                 href="https://calendly.com/cbratkovics"

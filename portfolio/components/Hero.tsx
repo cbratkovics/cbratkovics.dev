@@ -83,7 +83,7 @@ export default function Hero() {
             <span className="gradient-text">Christopher Bratkovics</span>
           </h1>
           <h2 className="text-2xl md:text-4xl font-semibold text-gray-200 neon-glow">
-            Production ML Systems Engineer
+            Data Scientist → AI Engineer
           </h2>
         </motion.div>
 
@@ -93,7 +93,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
         >
-          Building AI That Ships: From Model to Production
+          Building Production ML Systems That Ship
         </motion.p>
 
         <motion.div

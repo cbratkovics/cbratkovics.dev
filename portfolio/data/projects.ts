@@ -23,56 +23,56 @@ export const projects: Project[] = [
   {
     id: "fantasy-football",
     title: "Fantasy Football AI Platform",
-    description: "Production-grade ML system with ensemble models for accurate fantasy football predictions",
+    description: "Production ML system with ensemble models achieving 93.1% accuracy",
     heroMetric: "93.1% Prediction Accuracy",
     metrics: [
       { label: "Model Accuracy", value: "93.1%" },
       { label: "API Latency", value: "<100ms" },
-      { label: "Cache Hit Rate", value: "85%" },
-      { label: "Weekly Predictions", value: "10,000+" }
+      { label: "Ensemble Weights", value: "XGB:0.4, LGBM:0.35, RF:0.25" },
+      { label: "Features", value: "50+" }
     ],
-    techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "Python"],
+    techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "SQLAlchemy"],
     features: [
-      "Ensemble model with XGBoost, LightGBM, and RandomForest",
-      "Feature store with 100+ engineered features",
-      "Redis caching for sub-100ms response times",
-      "Automated weekly model retraining pipeline",
-      "A/B testing framework for model comparison"
+      "Ensemble model with optimal weighted voting",
+      "Feature store with 50+ engineered features",
+      "Redis caching with intelligent TTL strategies",
+      "Microservices-ready monolith architecture",
+      "Docker optimization from 3.3GB to 1.5GB"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
-    architecture: "Microservices with event-driven updates"
+    architecture: "Event-driven microservices pattern"
   },
   {
     id: "nba-ml",
     title: "NBA ML Platform",
-    description: "Real-time sports analytics platform serving millions of predictions with MLOps dashboard",
+    description: "Production sports analytics serving 1.2M+ predictions with real-time MLOps",
     heroMetric: "1.2M+ Predictions Served",
     metrics: [
-      { label: "Model Accuracy", value: "94.2%" },
-      { label: "Predictions Served", value: "1.2M+" },
+      { label: "Accuracy (Points)", value: "R²: 0.942" },
       { label: "System Uptime", value: "99.99%" },
-      { label: "Data Pipeline", value: "Real-time" }
+      { label: "API Response", value: "P95: 87ms" },
+      { label: "ETL Pipeline", value: "169K+ records" }
     ],
-    techStack: ["TensorFlow", "FastAPI", "React", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+    techStack: ["XGBoost", "FastAPI", "React", "PostgreSQL", "Redis", "Railway", "GitHub Actions"],
     features: [
-      "Real-time MLOps dashboard with performance monitoring",
-      "Automated drift detection and model retraining",
-      "94.2% accuracy on game outcome predictions",
-      "Horizontal scaling with Kubernetes",
-      "Feature importance visualization with SHAP"
+      "Real-time MLOps dashboard with drift detection",
+      "A/B testing with Bayesian inference",
+      "Comprehensive feature engineering (40+ features)",
+      "Automated retraining pipeline with MLflow",
+      "SHAP-based model explainability"
     ],
-    githubUrl: "https://github.com/cbratkovics/nba-ml-platform",
+    githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
     liveUrl: "https://nba-predictions.demo.com",
     performance: {
       before: "5s prediction time",
       after: "80ms prediction time",
-      improvement: "98.4% reduction"
+      improvement: "98.4% faster"
     }
   },
   {
     id: "document-intelligence",
     title: "Document Intelligence RAG System",
-    description: "Enterprise RAG system with hybrid search and semantic caching for document Q&A",
+    description: "Enterprise RAG with hybrid search achieving 42% cache hit rate",
     heroMetric: "42% Cache Hit Rate",
     metrics: [
       { label: "Cache Hit Rate", value: "42%" },
@@ -80,85 +80,102 @@ export const projects: Project[] = [
       { label: "Docker Size", value: "402MB" },
       { label: "Accuracy", value: "89%" }
     ],
-    techStack: ["LangChain", "ChromaDB", "FastAPI", "Redis", "Docker", "AsyncIO", "Sentence Transformers"],
+    techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
     features: [
-      "Hybrid search combining semantic and keyword matching",
+      "Hybrid search (ChromaDB + BM25)",
       "Semantic caching reducing LLM calls by 42%",
-      "Async processing pipeline for document ingestion",
-      "Docker optimization from 3.3GB to 402MB",
-      "Multi-format support (PDF, DOCX, TXT, HTML)"
+      "Async Celery processing pipeline",
+      "Docker optimization: 3.3GB → 402MB",
+      "SSE streaming for real-time responses"
     ],
-    githubUrl: "https://github.com/cbratkovics/document-rag",
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
     performance: {
       before: "3.3GB Docker image",
       after: "402MB Docker image",
-      improvement: "88% size reduction"
+      improvement: "88% reduction"
     }
   },
   {
     id: "sql-genius",
-    title: "SQL Genius AI",
-    description: "Multi-tenant SaaS platform for natural language to SQL conversion with enterprise features",
-    heroMetric: "Multi-tenant SaaS Architecture",
+    title: "Multi-Tenant SQL Intelligence SaaS",
+    description: "Enterprise SaaS with natural language SQL generation and tenant isolation",
+    heroMetric: "Multi-tenant Architecture",
     metrics: [
       { label: "Query Accuracy", value: "91%" },
       { label: "RTO", value: "< 1 hour" },
       { label: "RPO", value: "< 5 minutes" },
       { label: "Tenant Isolation", value: "100%" }
     ],
-    techStack: ["OpenAI", "FastAPI", "PostgreSQL", "JWT", "Docker", "Redis", "SQLAlchemy"],
+    techStack: ["FastAPI", "PostgreSQL", "JWT", "Redis", "Docker", "Kubernetes", "SQLAlchemy"],
     features: [
-      "Multi-tenant architecture with complete data isolation",
-      "JWT-based authentication and authorization",
-      "Disaster recovery with automated backups",
-      "Query optimization and caching layer",
-      "Schema inference and validation"
+      "Database-per-tenant isolation strategy",
+      "JWT auth with RSA key rotation",
+      "Automated backup and disaster recovery",
+      "Cost tracking per tenant",
+      "Row-level security implementation"
     ],
-    githubUrl: "https://github.com/cbratkovics/sql-genius",
-    architecture: "Clean Architecture with Repository pattern"
+    githubUrl: "https://github.com/cbratkovics/sql-genius-ai"
   },
   {
     id: "ai-chatbot",
-    title: "AI Chatbot Platform",
-    description: "Production chatbot system with multi-model support and real-time communication",
+    title: "Production AI Chatbot Platform",
+    description: "Multi-model orchestration with 99.9% uptime and real-time WebSockets",
     heroMetric: "99.9% Uptime",
     metrics: [
       { label: "Uptime", value: "99.9%" },
-      { label: "Response Time", value: "< 200ms" },
-      { label: "Concurrent Users", value: "1000+" },
-      { label: "Models Supported", value: "5+" }
+      { label: "P95 Response", value: "<200ms" },
+      { label: "Concurrent Users", value: "100+" },
+      { label: "API Cost Reduction", value: "30%" }
     ],
-    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Docker"],
+    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
     features: [
-      "Multi-model orchestration (GPT-4, Claude, Llama)",
-      "WebSocket support for real-time communication",
-      "Semantic caching for response optimization",
-      "Rate limiting and quota management",
-      "Conversation history and analytics"
+      "Multi-model support (GPT-4, Claude, Llama)",
+      "WebSocket streaming with fallback logic",
+      "Semantic caching reducing costs by 30%",
+      "Distributed tracing with Jaeger",
+      "Saga pattern for distributed transactions"
     ],
-    githubUrl: "https://github.com/cbratkovics/ai-chatbot-platform",
+    githubUrl: "https://github.com/cbratkovics/ai-chatbot-system",
     performance: {
       before: "2s average response",
-      after: "200ms average response",
+      after: "200ms average",
       improvement: "90% faster"
     }
   }
 ];
 
 export const skills = {
-  "Machine Learning": ["XGBoost", "LightGBM", "TensorFlow", "PyTorch", "Scikit-learn", "SHAP"],
-  "Backend Engineering": ["FastAPI", "Django", "Flask", "AsyncIO", "Celery", "RabbitMQ"],
-  "Databases": ["PostgreSQL", "Redis", "MongoDB", "ChromaDB", "Pinecone", "SQLAlchemy"],
-  "MLOps": ["Docker", "Kubernetes", "CI/CD", "MLflow", "Weights & Biases", "A/B Testing"],
-  "AI/LLM": ["OpenAI", "Anthropic", "LangChain", "Hugging Face", "RAG", "Fine-tuning"],
-  "System Design": ["Microservices", "Event-driven", "Clean Architecture", "DDD", "REST", "GraphQL"]
+  "ML/AI Engineering": [
+    "XGBoost", "LightGBM", "TensorFlow", "PyTorch", 
+    "Scikit-learn", "SHAP", "Feature Engineering"
+  ],
+  "Backend & APIs": [
+    "FastAPI", "AsyncIO", "Redis", "PostgreSQL",
+    "SQLAlchemy", "Celery", "WebSockets"
+  ],
+  "MLOps & Infrastructure": [
+    "Docker", "CI/CD", "A/B Testing", "MLflow",
+    "Model Versioning", "Drift Detection", "Prometheus"
+  ],
+  "AI/LLM Systems": [
+    "LangChain", "ChromaDB", "OpenAI", "Anthropic",
+    "RAG Systems", "Semantic Search", "Vector DBs"
+  ],
+  "System Design": [
+    "Microservices", "Clean Architecture", "DDD",
+    "Event-driven", "Circuit Breakers", "Multi-tenant"
+  ],
+  "Cloud & DevOps": [
+    "AWS (EC2, S3, Lambda)", "Railway", "Kubernetes",
+    "GitHub Actions", "Terraform", "Monitoring"
+  ]
 };
 
 export const metrics = {
-  modelsDeployed: 15,
-  deploymentTime: { from: "Weeks", to: "Hours" },
-  accuracyImprovement: 30,
-  costSavings: 67,
-  predictionsServed: "1.2M+",
-  systemUptime: 99.99
+  predictionsServed: "1,200,000+",
+  avgLatency: "<100ms",
+  modelsInProduction: "15+",
+  systemUptime: "99.99%",
+  deploymentTime: "Hours",
+  costSavings: "67%"
 };

@@ -80,7 +80,7 @@ export default function Hero() {
           className="mb-6"
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            <span className="gradient-text">Christopher Bratkovics</span>
+            <span className="gradient-text">Christopher J. Bratkovics</span>
           </h1>
           <h2 className="text-2xl md:text-4xl font-semibold text-gray-200 neon-glow">
             Data Scientist → AI Engineer

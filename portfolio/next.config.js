@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     domains: ['cbratkovics.dev', 'github.com'],
     formats: ['image/avif', 'image/webp'],

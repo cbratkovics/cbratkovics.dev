@@ -36,12 +36,6 @@ export default function Contact() {
       icon: <Linkedin className="w-6 h-6" />,
       url: "https://linkedin.com/in/cbratkovics",
       color: "hover:from-blue-600 hover:to-blue-800"
-    },
-    {
-      name: "Email",
-      icon: <Mail className="w-6 h-6" />,
-      url: "mailto:cbratkovics@gmail.com",
-      color: "hover:from-red-600 hover:to-pink-600"
     }
   ];
 
@@ -161,27 +155,12 @@ export default function Contact() {
             </div>
 
             <div className="glassmorphism-strong p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-white mb-4">Download Resume</h3>
-              <p className="text-gray-400 mb-4">
-                Get a detailed overview of my experience, skills, and achievements.
-              </p>
-              <a
-                href="/resume.pdf"
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 glassmorphism rounded-lg hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-600 transition-all duration-300 text-gray-300 hover:text-white"
-              >
-                <FileDown className="w-5 h-5" />
-                Download PDF
-              </a>
-            </div>
-
-            <div className="glassmorphism-strong p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-white mb-4">Schedule a Call</h3>
               <p className="text-gray-400 mb-4">
                 Let&apos;s discuss your ML engineering needs and how I can help.
               </p>
               <a
-                href="https://calendly.com/cbratkovics"
+                href="https://calendly.com/cbratkovics/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 glassmorphism rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 text-gray-300 hover:text-white"

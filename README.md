@@ -8,7 +8,7 @@
 
 ## About Me
 
-I bridge advanced analytics and reliable engineering to transform experimental AI into production systems that deliver real business value. From deploying ML models and RAG architectures to building low-latency inference pipelines, I thrive at the intersection of cutting-edge AI capabilities and practical engineering constraints. My mission: ensure ML solutions are not just accurate in notebooks, but scalable, monitored, and impactful once deployed. The rapid evolution in generative AI energizes me—pushing boundaries while maintaining the discipline needed for production systems.
+I bridge advanced analytics and reliable engineering to transform experimental AI into production systems that deliver real business value. From deploying ML models and RAG architectures to building low-latency inference pipelines, I thrive at the intersection of cutting-edge AI capabilities and practical engineering constraints. My mission: ensure ML solutions are not just accurate in notebooks, but scalable, monitored, and impactful once deployed. The rapid evolution in generative AI energizes me, pushing boundaries while maintaining the discipline needed for production systems.
 
 ---
 

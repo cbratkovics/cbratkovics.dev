@@ -2,17 +2,16 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { metrics } from "@/data/projects";
 import { Rocket, Clock, TrendingUp, DollarSign } from "lucide-react";
 
 export default function Metrics() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   
-  const [modelsDeployed, setModelsDeployed] = useState(0);
-  const [accuracyImprovement, setAccuracyImprovement] = useState(0);
-  const [costSavings, setCostSavings] = useState(0);
-  const [predictionsServed, setPredictionsServed] = useState(0);
+  const [hoursSaved, setHoursSaved] = useState(0);
+  const [modelAccuracy, setModelAccuracy] = useState(0);
+  const [processingSpeed, setProcessingSpeed] = useState(0);
+  const [dataProcessed, setDataProcessed] = useState(0);
 
   useEffect(() => {
     if (!isInView) return;
@@ -35,40 +34,44 @@ export default function Metrics() {
       return () => clearInterval(timer);
     };
 
-    animateCounter(setModelsDeployed, 15, 1500);
-    animateCounter(setAccuracyImprovement, 30, 1500);
-    animateCounter(setCostSavings, 67, 1500);
-    animateCounter(setPredictionsServed, 1200000, 2000);
+    animateCounter(setHoursSaved, 20, 1500);
+    animateCounter(setModelAccuracy, 93, 1500);
+    animateCounter(setProcessingSpeed, 500, 1500);
+    animateCounter(setDataProcessed, 169, 2000);
   }, [isInView]);
 
   const impactMetrics = [
     {
-      icon: <Rocket className="w-8 h-8" />,
-      value: `${modelsDeployed}+`,
-      label: "Models Deployed",
-      description: "Production ML models",
-      color: "from-blue-400 to-cyan-400"
-    },
-    {
       icon: <Clock className="w-8 h-8" />,
-      value: `Weeks → Hours`,
-      label: "Deployment Time",
-      description: "Reduced time to production",
-      color: "from-purple-400 to-pink-400"
+      value: `${hoursSaved}+`,
+      label: "Weekly Hours Saved",
+      description: "Through Python ETL automation at OUTFRONT",
+      color: "from-blue-400 to-cyan-400",
+      source: "Resume verified"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      value: `${accuracyImprovement}%+`,
-      label: "Accuracy Improvement",
-      description: "Average model performance gain",
-      color: "from-green-400 to-emerald-400"
+      value: `${modelAccuracy}%`,
+      label: "Model Accuracy",
+      description: "Average across production models",
+      color: "from-purple-400 to-pink-400",
+      source: "GitHub: fantasy-football-ai"
+    },
+    {
+      icon: <Rocket className="w-8 h-8" />,
+      value: `${processingSpeed}`,
+      label: "Players/Second",
+      description: "Feature engineering pipeline speed",
+      color: "from-green-400 to-emerald-400",
+      source: "GitHub: fantasy-football-ai"
     },
     {
       icon: <DollarSign className="w-8 h-8" />,
-      value: `${costSavings}%`,
-      label: "Cost Savings",
-      description: "Through optimization",
-      color: "from-orange-400 to-red-400"
+      value: `${dataProcessed}K+`,
+      label: "Records Processed",
+      description: "NBA game records in ETL pipeline",
+      color: "from-orange-400 to-red-400",
+      source: "GitHub: nba-ai-ml"
     }
   ];
 
@@ -85,10 +88,10 @@ export default function Metrics() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Engineering Impact
+            Real Impact at OUTFRONT Media
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Measurable results from production ML systems and engineering excellence
+            Verifiable achievements from production ML systems and automation
           </p>
         </div>
 
@@ -114,6 +117,11 @@ export default function Metrics() {
               <div className="text-sm text-gray-400">
                 {metric.description}
               </div>
+              {metric.source && (
+                <div className="text-xs text-gray-500 mt-1">
+                  Source: {metric.source}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
@@ -128,21 +136,24 @@ export default function Metrics() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                {predictionsServed.toLocaleString()}+
+                5+
               </div>
-              <div className="text-gray-400">Total Predictions Served</div>
+              <div className="text-gray-400">Production Models</div>
+              <div className="text-xs text-gray-500 mt-1">At OUTFRONT & Projects</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                {metrics.systemUptime}%
+                &lt;150ms
               </div>
-              <div className="text-gray-400">Average System Uptime</div>
+              <div className="text-gray-400">Average API Latency</div>
+              <div className="text-xs text-gray-500 mt-1">FastAPI with Redis</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                24/7
+                54%
               </div>
-              <div className="text-gray-400">Monitoring & Support</div>
+              <div className="text-gray-400">Docker Size Reduction</div>
+              <div className="text-xs text-gray-500 mt-1">3.3GB → 1.5GB</div>
             </div>
           </div>
         </motion.div>
@@ -155,18 +166,18 @@ export default function Metrics() {
           className="mt-12 text-center"
         >
           <h3 className="text-2xl font-semibold mb-4 text-white">
-            Engineering Excellence
+            Demonstrated Engineering Practices
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               "Clean Architecture",
-              "Test-Driven Development",
-              "CI/CD Pipelines",
+              "Repository Pattern",
+              "CI/CD with GitHub Actions",
               "Performance Monitoring",
-              "A/B Testing",
-              "Feature Flags",
-              "Disaster Recovery",
-              "Auto-scaling"
+              "Redis Caching",
+              "Multi-tenant Design",
+              "JWT Authentication",
+              "Docker Optimization"
             ].map((practice, index) => (
               <motion.span
                 key={practice}

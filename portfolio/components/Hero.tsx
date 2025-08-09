@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { ChevronDown, Activity, Zap, TrendingUp, Server } from "lucide-react";
 
 export default function Hero() {
-  const [predictions, setPredictions] = useState(0);
-  const [latency, setLatency] = useState(0);
   const [models, setModels] = useState(0);
-  const [uptime, setUptime] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
+  const [latency, setLatency] = useState(0);
+  const [dockerOpt, setDockerOpt] = useState(0);
 
   useEffect(() => {
     const animateCounter = (setter: (value: number) => void, target: number, duration: number) => {
@@ -29,36 +29,40 @@ export default function Hero() {
       return () => clearInterval(timer);
     };
 
-    animateCounter(setPredictions, 1200000, 2000);
-    animateCounter(setLatency, 100, 1500);
-    animateCounter(setModels, 15, 1000);
-    animateCounter(setUptime, 99.99, 1800);
+    animateCounter(setModels, 5, 1000);
+    animateCounter(setAccuracy, 93, 1500);
+    animateCounter(setLatency, 150, 1500);
+    animateCounter(setDockerOpt, 54, 1800);
   }, []);
 
   const metrics = [
     {
+      icon: <TrendingUp className="w-5 h-5" />,
+      label: "Production Models",
+      value: models + "+",
+      color: "from-blue-400 to-cyan-400",
+      tooltip: "XGBoost, LightGBM, Neural Networks at OUTFRONT Media & personal projects"
+    },
+    {
       icon: <Activity className="w-5 h-5" />,
-      label: "Predictions Served",
-      value: predictions.toLocaleString() + "+",
-      color: "from-blue-400 to-cyan-400"
+      label: "Prediction Accuracy",
+      value: accuracy + "%",
+      color: "from-purple-400 to-pink-400",
+      tooltip: "93.1% accuracy on Fantasy Football AI ensemble model"
     },
     {
       icon: <Zap className="w-5 h-5" />,
       label: "Avg API Latency",
       value: `<${latency}ms`,
-      color: "from-purple-400 to-pink-400"
-    },
-    {
-      icon: <TrendingUp className="w-5 h-5" />,
-      label: "Models in Production",
-      value: models.toString(),
-      color: "from-green-400 to-emerald-400"
+      color: "from-green-400 to-emerald-400",
+      tooltip: "FastAPI with Redis caching achieving sub-150ms response times"
     },
     {
       icon: <Server className="w-5 h-5" />,
-      label: "System Uptime",
-      value: uptime.toFixed(2) + "%",
-      color: "from-orange-400 to-red-400"
+      label: "Docker Optimization",
+      value: dockerOpt + "%",
+      color: "from-orange-400 to-red-400",
+      tooltip: "Reduced container size from 3.3GB to 1.5GB through multi-stage builds"
     }
   ];
 
@@ -93,7 +97,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
         >
-          Building Production ML Systems That Ship
+          Building Production ML Systems That Ship | All Metrics Verifiable via GitHub
         </motion.p>
 
         <motion.div
@@ -113,10 +117,10 @@ export default function Hero() {
               <div className={`inline-flex p-2 rounded-lg bg-gradient-to-r ${metric.color} mb-2`}>
                 {metric.icon}
               </div>
-              <div className="text-2xl font-bold text-white mb-1">
+              <div className="text-2xl font-bold text-white mb-1" title={metric.tooltip}>
                 {metric.value}
               </div>
-              <div className="text-xs text-gray-400">
+              <div className="text-xs text-gray-400" title={metric.tooltip}>
                 {metric.label}
               </div>
             </motion.div>

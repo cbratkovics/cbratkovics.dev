@@ -6,21 +6,21 @@ import { skills } from "@/data/projects";
 import { Brain, Database, Cloud, Code, Cpu, Layout } from "lucide-react";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Machine Learning": <Brain className="w-6 h-6" />,
-  "Backend Engineering": <Code className="w-6 h-6" />,
-  "Databases": <Database className="w-6 h-6" />,
-  "MLOps": <Cloud className="w-6 h-6" />,
-  "AI/LLM": <Cpu className="w-6 h-6" />,
-  "System Design": <Layout className="w-6 h-6" />
+  "ML/AI Engineering": <Brain className="w-6 h-6" />,
+  "Backend & APIs": <Code className="w-6 h-6" />,
+  "MLOps & Infrastructure": <Cloud className="w-6 h-6" />,
+  "AI/LLM Systems": <Cpu className="w-6 h-6" />,
+  "System Design": <Layout className="w-6 h-6" />,
+  "Data & Tools": <Database className="w-6 h-6" />
 };
 
 const categoryColors: Record<string, string> = {
-  "Machine Learning": "from-blue-400 to-blue-600",
-  "Backend Engineering": "from-purple-400 to-purple-600",
-  "Databases": "from-green-400 to-green-600",
-  "MLOps": "from-orange-400 to-orange-600",
-  "AI/LLM": "from-pink-400 to-pink-600",
-  "System Design": "from-cyan-400 to-cyan-600"
+  "ML/AI Engineering": "from-blue-400 to-blue-600",
+  "Backend & APIs": "from-purple-400 to-purple-600",
+  "MLOps & Infrastructure": "from-orange-400 to-orange-600",
+  "AI/LLM Systems": "from-pink-400 to-pink-600",
+  "System Design": "from-cyan-400 to-cyan-600",
+  "Data & Tools": "from-green-400 to-green-600"
 };
 
 export default function Skills() {
@@ -43,7 +43,7 @@ export default function Skills() {
             Technical Arsenal
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Full-stack ML engineering expertise from model development to production deployment
+            Demonstrated expertise in production ML systems - all skills verifiable through GitHub projects
           </p>
         </div>
 
@@ -103,9 +103,9 @@ export default function Skills() {
             Production Focus
           </h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            Specialized in building ML systems that scale, with expertise in model deployment, 
-            monitoring, A/B testing, and performance optimization. Experienced in taking models 
-            from notebook to production with proper engineering practices.
+            Specialized in building production-ready ML systems with 93% accuracy, &lt;150ms latency, 
+            and 54% Docker optimization. Experienced in taking models from notebook to production 
+            with proper engineering practices at OUTFRONT Media.
           </p>
         </motion.div>
       </motion.div>

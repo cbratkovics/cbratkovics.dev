@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, FileDown, Send, Calendar } from "lucide-react";
+import { Github, Linkedin, Send, Calendar } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -134,6 +134,9 @@ export default function Contact() {
           >
             <div className="glassmorphism-strong p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-white mb-4">Quick Connect</h3>
+              <p className="text-gray-400 mb-4 text-sm">
+                View source code for all projects on GitHub - all metrics verifiable
+              </p>
               <div className="space-y-4">
                 {socialLinks.map((link) => (
                   <a
@@ -183,7 +186,7 @@ export default function Contact() {
             © 2024 Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            Turning ML models into production-ready systems.
+            All achievements documented and open-source | Metrics verifiable via GitHub
           </p>
         </motion.div>
       </motion.div>

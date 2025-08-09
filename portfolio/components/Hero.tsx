@@ -108,16 +108,15 @@ export default function Hero() {
           className="max-w-4xl mx-auto mb-12 mt-8"
         >
           <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 md:p-8">
-            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
-              I&apos;m a Data Scientist transitioning to AI Engineering, transforming ML research into 
-              <span className="text-cyan-400 font-semibold"> reliable production systems</span>. 
-              My work spans from statistical modeling to building 
-              <span className="text-purple-400 font-semibold"> scalable ML platforms</span> with 
-              modern engineering practices. Whether it&apos;s crafting low-latency inference pipelines, 
-              integrating AI into business workflows, or creating predictive tools that drive strategy—I 
-              ensure models are not just accurate in notebooks, but 
-              <span className="text-green-400 font-semibold"> impactful in production</span>. 
-              Each project below showcases this progression toward production-ready AI systems.
+            <p className="text-gray-300 leading-relaxed text-base md:text-lg"> 
+                I bridge advanced analytics and reliable engineering to transform experimental AI into 
+                <span className="text-cyan-400 font-semibold"> production systems</span> that deliver real business value. 
+                From deploying ML models and RAG architectures to building low-latency inference pipelines, I thrive at the intersection of 
+                <span className="text-purple-400 font-semibold"> cutting-edge AI capabilities</span> and 
+                <span className="text-green-400 font-semibold"> practical engineering constraints</span>. 
+                My mission: ensure ML solutions are not just accurate in notebooks, but scalable, monitored, and 
+                impactful once deployed. The rapid evolution in generative AI energizes me, pushing boundaries 
+                while maintaining the discipline needed for production systems.
             </p>
           </div>
         </motion.div>

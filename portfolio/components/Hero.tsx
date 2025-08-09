@@ -109,11 +109,11 @@ export default function Hero() {
         >
           <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 md:p-8">
             <p className="text-gray-300 leading-relaxed text-base md:text-lg">
-              I'm a Data Scientist transitioning to AI Engineering, transforming ML research into 
+              I&apos;m a Data Scientist transitioning to AI Engineering, transforming ML research into 
               <span className="text-cyan-400 font-semibold"> reliable production systems</span>. 
               My work spans from statistical modeling to building 
               <span className="text-purple-400 font-semibold"> scalable ML platforms</span> with 
-              modern engineering practices. Whether it's crafting low-latency inference pipelines, 
+              modern engineering practices. Whether it&apos;s crafting low-latency inference pipelines, 
               integrating AI into business workflows, or creating predictive tools that drive strategy—I 
               ensure models are not just accurate in notebooks, but 
               <span className="text-green-400 font-semibold"> impactful in production</span>. 

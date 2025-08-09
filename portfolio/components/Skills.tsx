@@ -105,7 +105,7 @@ export default function Skills() {
           <p className="text-gray-300 max-w-3xl mx-auto">
             Specialized in building production-ready ML systems with 93% accuracy, &lt;150ms latency, 
             and 54% Docker optimization. Experienced in taking models from notebook to production 
-            with proper engineering practices at OUTFRONT Media.
+            with proper engineering practices in production environments.
           </p>
         </motion.div>
       </motion.div>

@@ -41,7 +41,7 @@ export default function Hero() {
       label: "Production Models",
       value: models + "+",
       color: "from-blue-400 to-cyan-400",
-      tooltip: "XGBoost, LightGBM, Neural Networks at OUTFRONT Media & personal projects"
+      tooltip: "XGBoost, LightGBM, Neural Networks deployed in production environments"
     },
     {
       icon: <Activity className="w-5 h-5" />,

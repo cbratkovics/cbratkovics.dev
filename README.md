@@ -194,7 +194,7 @@ Throughout these projects, I've implemented:
 
 ## Professional Impact
 
-**At OUTFRONT Media (Current):**
+**Current Professional Role:**
 - Deployed ML models to production with monitoring and A/B testing
 - Built MLOps workflows for automated model training and deployment
 - Integrated Generative AI solutions into production systems

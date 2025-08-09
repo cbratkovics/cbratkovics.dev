@@ -183,7 +183,7 @@ export default function Contact() {
           className="mt-20 pt-8 border-t border-white/10 text-center"
         >
           <p className="text-gray-400">
-            © 2024 Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
+            © {new Date().getFullYear()} Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
           <p className="text-gray-500 text-sm mt-2">
             All achievements documented and open-source | Metrics verifiable via GitHub

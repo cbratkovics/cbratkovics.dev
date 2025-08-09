@@ -45,7 +45,7 @@ export default function Metrics() {
       icon: <Clock className="w-8 h-8" />,
       value: `${hoursSaved}+`,
       label: "Weekly Hours Saved",
-      description: "Through Python ETL automation at OUTFRONT",
+      description: "Through Python ETL automation in production",
       color: "from-blue-400 to-cyan-400",
       source: "Resume verified"
     },
@@ -88,7 +88,7 @@ export default function Metrics() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Real Impact at OUTFRONT Media
+            Real-World Production Impact
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Verifiable achievements from production ML systems and automation
@@ -139,7 +139,7 @@ export default function Metrics() {
                 5+
               </div>
               <div className="text-gray-400">Production Models</div>
-              <div className="text-xs text-gray-500 mt-1">At OUTFRONT & Projects</div>
+              <div className="text-xs text-gray-500 mt-1">Professional and personal projects</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">

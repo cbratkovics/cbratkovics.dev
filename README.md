@@ -38,6 +38,34 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 
 ---
 
+#### Multi-Tenant SaaS SQL Intelligence Platform
+*Enterprise platform with natural language SQL generation*
+
+**Architecture Highlights:**
+- Multi-tenant architecture with database-per-tenant isolation
+- JWT authentication with RSA key rotation
+- Cost tracking and usage monitoring per tenant
+- Natural language to SQL conversion with context awareness
+- Automated query optimization and caching
+
+**Engineering Decisions:**
+- Implemented tenant context injection via middleware
+- Used event sourcing for audit logging
+- Applied CQRS pattern for read/write separation
+- Structured with domain-driven design principles
+
+**Security & Performance:**
+- Input validation against SQL injection
+- Row-level security in PostgreSQL
+- Query result caching with Redis
+- <200ms average query generation time
+
+**Technical Stack:** FastAPI, PostgreSQL, JWT, Redis, Docker, SQLAlchemy
+
+[GitHub](https://github.com/cbratkovics/sql-genius-ai)
+
+---
+
 #### Multi-Tenant AI Chat Platform
 *Production chat system with 99.9% uptime and <200ms latency*
 
@@ -138,12 +166,19 @@ All metrics are verifiable through GitHub repositories and project documentation
 
 ## Professional Experience
 
-**Data Scientist** | Current Role
+**Data Scientist** | Current Role (April 2024 - Present)
 - Developed and deployed predictive models to production
 - Integrated ML solutions with engineering teams on MLOps workflows
 - Validated product initiatives through rigorous A/B testing
 - Enhanced workflows with Generative AI implementation
 - Saved 20+ hours weekly through Python ETL automation
+
+**Senior Data Analyst** | (April 2021 - April 2024)
+- Led data initiatives using advanced analytics and predictive modeling
+- Evaluated product performance through A/B testing and experimentation
+- Identified business opportunities analyzing large-scale datasets
+- Partnered with Product and Engineering teams for data integration
+- Built early-stage ML models that became production AI systems
 
 ---
 

@@ -95,10 +95,32 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+          className="text-lg md:text-xl text-gray-400 mb-4 max-w-3xl mx-auto"
         >
           Building Production ML Systems That Ship | All Metrics Verifiable via GitHub
         </motion.p>
+
+        {/* About Me Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="max-w-4xl mx-auto mb-12 mt-8"
+        >
+          <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 md:p-8">
+            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+              I'm a Data Scientist transitioning to AI Engineering, transforming ML research into 
+              <span className="text-cyan-400 font-semibold"> reliable production systems</span>. 
+              My work spans from statistical modeling to building 
+              <span className="text-purple-400 font-semibold"> scalable ML platforms</span> with 
+              modern engineering practices. Whether it's crafting low-latency inference pipelines, 
+              integrating AI into business workflows, or creating predictive tools that drive strategy—I 
+              ensure models are not just accurate in notebooks, but 
+              <span className="text-green-400 font-semibold"> impactful in production</span>. 
+              Each project below showcases this progression toward production-ready AI systems.
+            </p>
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

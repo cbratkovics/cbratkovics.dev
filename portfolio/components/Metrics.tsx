@@ -46,32 +46,28 @@ export default function Metrics() {
       value: `${hoursSaved}+`,
       label: "Weekly Hours Saved",
       description: "Through Python ETL automation in production",
-      color: "from-blue-400 to-cyan-400",
-      source: "Resume verified"
+      color: "from-blue-400 to-cyan-400"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
       value: `${modelAccuracy}%`,
       label: "Model Accuracy",
       description: "Average across production models",
-      color: "from-purple-400 to-pink-400",
-      source: "GitHub: fantasy-football-ai"
+      color: "from-purple-400 to-pink-400"
     },
     {
       icon: <Rocket className="w-8 h-8" />,
       value: `${processingSpeed}`,
       label: "Players/Second",
       description: "Feature engineering pipeline speed",
-      color: "from-green-400 to-emerald-400",
-      source: "GitHub: fantasy-football-ai"
+      color: "from-green-400 to-emerald-400"
     },
     {
       icon: <DollarSign className="w-8 h-8" />,
       value: `${dataProcessed}K+`,
       label: "Records Processed",
       description: "NBA game records in ETL pipeline",
-      color: "from-orange-400 to-red-400",
-      source: "GitHub: nba-ai-ml"
+      color: "from-orange-400 to-red-400"
     }
   ];
 
@@ -117,11 +113,6 @@ export default function Metrics() {
               <div className="text-sm text-gray-400">
                 {metric.description}
               </div>
-              {metric.source && (
-                <div className="text-xs text-gray-500 mt-1">
-                  Source: {metric.source}
-                </div>
-              )}
             </motion.div>
           ))}
         </div>

@@ -1,29 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Send, Calendar } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const mailtoLink = `mailto:cbratkovics@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}%0D%0A%0D%0AFrom: ${formData.email}`;
-    window.location.href = mailtoLink;
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   const socialLinks = [
     {
       name: "GitHub",
@@ -59,121 +39,38 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 glassmorphism rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
-                  placeholder="Your Name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 glassmorphism rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 glassmorphism rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <Send className="w-5 h-5" />
-                Send Message
-              </button>
-            </form>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <div className="glassmorphism-strong p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-white mb-4">Quick Connect</h3>
-              <p className="text-gray-400 mb-4 text-sm">
-                View source code for all projects on GitHub - all metrics verifiable
-              </p>
-              <div className="space-y-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target={link.name !== "Email" ? "_blank" : undefined}
-                    rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-                    className={`flex items-center gap-4 p-3 glassmorphism rounded-lg hover:bg-gradient-to-r ${link.color} transition-all duration-300 group`}
-                  >
-                    <div className="p-2 glassmorphism rounded-lg group-hover:scale-110 transition-transform">
-                      {link.icon}
-                    </div>
-                    <span className="text-gray-300 group-hover:text-white transition-colors">
-                      {link.name}
-                    </span>
-                  </a>
-                ))}
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
+          <div className="glassmorphism-strong p-6 rounded-xl max-w-md w-full">
+            <h3 className="text-xl font-semibold text-white mb-4">Quick Connect</h3>
+            <p className="text-gray-400 mb-4 text-sm">
+              View source code for all projects on GitHub - all metrics verifiable
+            </p>
+            <div className="space-y-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center gap-4 p-3 glassmorphism rounded-lg hover:bg-gradient-to-r ${link.color} transition-all duration-300 group`}
+                >
+                  <div className="p-2 glassmorphism rounded-lg group-hover:scale-110 transition-transform">
+                    {link.icon}
+                  </div>
+                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                    {link.name}
+                  </span>
+                </a>
+              ))}
             </div>
-
-            <div className="glassmorphism-strong p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-white mb-4">Schedule a Call</h3>
-              <p className="text-gray-400 mb-4">
-                Let&apos;s discuss your ML engineering needs and how I can help.
-              </p>
-              <a
-                href="https://calendly.com/cbratkovics/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 glassmorphism rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 text-gray-300 hover:text-white"
-              >
-                <Calendar className="w-5 h-5" />
-                Book a Meeting
-              </a>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

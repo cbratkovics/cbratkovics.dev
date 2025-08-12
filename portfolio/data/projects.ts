@@ -29,7 +29,7 @@ export const projects: Project[] = [
       { label: "Model Accuracy", value: "93.1%" },
       { label: "API Latency (Cached)", value: "<100ms" },
       { label: "Ensemble Weights", value: "XGB:0.4, LGBM:0.35, RF:0.25" },
-      { label: "Features Engineered", value: "50+" }
+      { label: "Features Engineered", value: "40+" }
     ],
     techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "SQLAlchemy"],
     features: [
@@ -37,7 +37,7 @@ export const projects: Project[] = [
       "Feature store with 40+ engineered features (verifiable in code)",
       "Redis caching achieving <100ms latency for cached requests",
       "Repository pattern supporting microservices migration",
-      "Docker optimization from 2.4GB to 1.2GB (54% reduction)"
+      "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     architecture: "Repository pattern with clean architecture"

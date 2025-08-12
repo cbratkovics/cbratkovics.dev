@@ -101,7 +101,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - Docker optimization from 3.3GB to 1.5GB (54% reduction)
 
 **Engineering Decisions:**
-- Implemented feature store with 50+ engineered features
+- Implemented feature store with 40+ engineered features
 - Used repository pattern for data access layer abstraction
 - Applied dependency injection for testable components
 - Structured as microservices-ready monolith for future scaling
@@ -139,10 +139,10 @@ All metrics are verifiable through GitHub repositories and project documentation
 
 - **93% Model Accuracy** - Ensemble methods across multiple projects
 - **<150ms API Latency** - FastAPI with Redis caching
-- **54% Docker Size Reduction** - Multi-stage optimization (3.3GB → 1.5GB)
+- **54% Docker Size Reduction** - Multi-stage optimization (2.6GB → 1.2GB)
 - **99.9% System Uptime** - Multi-tenant platform with failover
 - **169K+ Records Processed** - NBA ETL pipeline
-- **50+ Engineered Features** - Fantasy Football feature store
+- **40+ Engineered Features** - Fantasy Football feature store
 - **20+ Hours/Week Saved** - Python automation in production
 
 ---

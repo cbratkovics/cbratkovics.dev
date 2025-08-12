@@ -34,17 +34,17 @@ export const projects: Project[] = [
     techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "SQLAlchemy"],
     features: [
       "Ensemble model with optimal weighted voting",
-      "Feature store with 50+ engineered features (verifiable in code)",
+      "Feature store with 40+ engineered features (verifiable in code)",
       "Redis caching achieving <100ms latency for cached requests",
       "Repository pattern supporting microservices migration",
-      "Docker optimization from 3.3GB to 1.5GB (54% reduction)"
+      "Docker optimization from 2.4GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     architecture: "Repository pattern with clean architecture"
   },
   {
     id: "nba-ml",
-    title: "NBA ML Platform",
+    title: "NBA Performance Prediction System",
     description: "Production-ready sports analytics platform with high-accuracy predictions",
     heroMetric: "R²: 0.942 for Points",
     metrics: [
@@ -70,7 +70,7 @@ export const projects: Project[] = [
   },
   {
     id: "document-intelligence",
-    title: "Document Intelligence RAG System",
+    title: "Enterprise Document Intelligence (RAG) System",
     description: "Production-ready RAG system with hybrid search and semantic caching",
     heroMetric: "42% Cache Hit Rate",
     metrics: [
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   },
   {
     id: "sql-genius",
-    title: "Multi-Tenant SQL Intelligence SaaS",
+    title: "Multi-Tenant SaaS SQL Intelligence Platform",
     description: "Production-ready SaaS with natural language SQL generation and tenant isolation",
     heroMetric: "Multi-tenant Architecture",
     metrics: [
@@ -117,7 +117,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai-chatbot",
-    title: "Production AI Chatbot Platform",
+    title: "Milti-Tentant AI Chatbot Platform",
     description: "Production-ready chatbot platform with multi-model support and WebSockets",
     heroMetric: "<200ms P95 Latency",
     metrics: [
@@ -171,10 +171,10 @@ export const skills = {
 };
 
 export const metrics = {
-  modelsInProduction: "5+",
-  avgAccuracy: "93%",
+  modelsInProduction: "15+",
+  avgAccuracy: "90%+",
   avgLatency: "<150ms",
-  dockerOptimization: "54%",
+  dockerOptimization: "54-88%",
   weeklyHoursSaved: "20+",
   dataProcessed: "169K+"
 };

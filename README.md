@@ -25,6 +25,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - Asynchronous document processing with Celery task queue
 - Streaming response support for real-time interactions
 - Cache hit rate improvement of 42% through optimization
+- Docker optimization from 3.3GB to 402MB (88% reduction)
 
 **Engineering Decisions:**
 - Implemented chunking strategies preserving semantic boundaries
@@ -67,7 +68,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 ---
 
 #### Multi-Tenant AI Chat Platform
-*Production chat system with 99.9% uptime and <200ms latency*
+*Production chat system with 99.5% uptime and <200ms latency*
 
 **Architecture Highlights:**
 - Multi-model integration (OpenAI, Anthropic) with failover logic
@@ -98,7 +99,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - 93.1% accuracy (predictions within 3 fantasy points)
 - FastAPI backend with <100ms cached response time
 - Redis caching layer with intelligent TTL strategies
-- Docker optimization from 3.3GB to 1.5GB (54% reduction)
+- Docker optimization from 2.4GB to 1.1GB (54% reduction)
 
 **Engineering Decisions:**
 - Implemented feature store with 40+ engineered features

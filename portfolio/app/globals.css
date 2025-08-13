@@ -75,6 +75,10 @@
   );
   background-size: 200% 200%;
   animation: gradient-shift 10s ease infinite;
+  line-height: 1.3;
+  padding-bottom: 0.1em;
+  overflow: visible;
+  display: inline-block;
 }
 
 .neon-glow {
@@ -216,6 +220,16 @@ html {
 body {
   background: #0a0a0f;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+  overflow: visible;
+}
+
+.text-4xl, .text-5xl, .text-6xl, .text-7xl {
+  line-height: 1.25;
+  padding-bottom: 0.05em;
 }
 
 ::-webkit-scrollbar {

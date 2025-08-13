@@ -96,7 +96,7 @@ export const projects: Project[] = [
   },
   {
     id: "sql-genius",
-    title: "Multi-Tenant SaaS SQL Intelligence Platform",
+    title: "Multi-Tenant SQL Intelligence Platform",
     description: "Production-ready SaaS with natural language SQL generation and tenant isolation",
     heroMetric: "Multi-tenant Architecture",
     metrics: [

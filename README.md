@@ -39,7 +39,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 
 ---
 
-#### Multi-Tenant SaaS SQL Intelligence Platform
+#### Multi-Tenant SQL Intelligence Platform
 *Enterprise platform with natural language SQL generation*
 
 **Architecture Highlights:**

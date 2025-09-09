@@ -85,7 +85,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 
 **Technical Stack:** FastAPI, WebSockets, Redis, PostgreSQL, OpenAI/Anthropic APIs
 
-[GitHub](https://github.com/cbratkovics/ai-chatbot-system)
+[GitHub](https://github.com/cbratkovics/chatbot-ai-system)
 
 ---
 
@@ -206,6 +206,6 @@ All metrics are verifiable through GitHub repositories and project documentation
 
 I'm passionate about transforming ML research into production systems that deliver real business value. If you're looking for someone who can both build models and deploy them reliably at scale, let's talk.
 
-**Portfolio:** [cbratkovics.dev](https://cbratkovics.dev)  
-**LinkedIn:** [linkedin.com/in/cbratkovics](https://www.linkedin.com/in/cbratkovics/)  
+**Portfolio:** [cbratkovics.dev](https://cbratkovics.dev)
+**LinkedIn:** [linkedin.com/in/cbratkovics](https://www.linkedin.com/in/cbratkovics/)
 **GitHub:** [github.com/cbratkovics](https://github.com/cbratkovics)

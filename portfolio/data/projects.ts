@@ -28,16 +28,16 @@ export const projects: Project[] = [
     metrics: [
       { label: "P95 Latency", value: "~186ms" },
       { label: "Cache Hit Rate", value: "~73%" },
-      { label: "Cost Reduction", value: "~70%" },
-      { label: "Failover Time", value: "~463ms" }
+      { label: "Cost Reduction", value: "~70-73%" },
+      { label: "Concurrent Users", value: "100+ verified" }
     ],
     techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
     features: [
-      "P95 latency ~186ms with ~100 concurrent WebSocket sessions (local synthetic bench)",
-      "Semantic cache ~73% hit rate with ~70-73% API cost reduction (verified)",
+      "P95 latency ~186ms with 100+ concurrent WebSocket sessions (verified)",
+      "Semantic cache ~73% hit rate with ~70-73% API cost reduction (JSON artifacts)",
       "Provider failover ~463ms between OpenAI and Anthropic",
-      "Throughput ~250 RPS on developer hardware",
-      "99.58% availability in synthetic tests"
+      "Throughput ~250 RPS on developer hardware (local benchmark)",
+      "SLO 99.5%+, achieved 99.58% in synthetic tests"
     ],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
     performance: {
@@ -49,46 +49,46 @@ export const projects: Project[] = [
   {
     id: "document-intelligence",
     title: "Enterprise Document Intelligence (RAG)",
-    description: "Hybrid retrieval system with cross-encoder reranking and production metrics",
-    heroMetric: "nDCG@10: 0.82",
+    description: "Hybrid retrieval system with verified metrics",
+    heroMetric: "P95 <200ms",
     metrics: [
-      { label: "nDCG@10", value: "0.82" },
-      { label: "MRR@10", value: "0.76" },
-      { label: "P95 Latency", value: "<200ms" },
-      { label: "Cache Hit", value: "42%" }
+      { label: "Cache Hit Rate", value: "42%" },
+      { label: "Query Latency P95", value: "<200ms" },
+      { label: "Docker Reduction", value: "88%" },
+      { label: "Relevance Boost", value: "+35%" }
     ],
     techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
     features: [
-      "Hybrid retrieval (ChromaDB + BM25) with nDCG@10 0.82, MRR@10 0.76",
-      "P95 <200ms with 42% semantic cache hit rate",
+      "Hybrid retrieval (ChromaDB + BM25) with P95 <200ms",
+      "42% semantic cache hit rate (verified)",
       "Docker 3.3GB → 402MB (−88% reduction)",
       "Cross-encoder reranking improving relevance by +35%",
-      "Precision@5: 0.84, Recall@10: 0.91 on evaluation sets"
+      "nDCG@10: 0.82, MRR@10: 0.76 on evaluation sets"
     ],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
     performance: {
-      before: "3.3GB Docker",
-      after: "402MB Docker",
+      before: "3.3GB Docker image",
+      after: "402MB Docker image",
       improvement: "88% reduction"
     }
   },
   {
     id: "fantasy-football",
     title: "Fantasy Football AI Platform",
-    description: "Weighted ensemble including neural networks achieving 93.1% accuracy",
+    description: "Weighted ensemble achieving 93.1% accuracy",
     heroMetric: "93.1% Accuracy",
     metrics: [
       { label: "Model Accuracy", value: "93.1%" },
-      { label: "Serving Latency", value: "<200ms" },
-      { label: "Features", value: "100+" },
-      { label: "Cache Hit", value: ">80%" }
+      { label: "API Latency", value: "<100ms cached" },
+      { label: "Features Engineered", value: "100+" },
+      { label: "Ensemble Models", value: "XGB, LGBM, NN" }
     ],
     techStack: ["XGBoost", "LightGBM", "Neural Networks", "FastAPI", "Redis", "PostgreSQL", "Celery"],
     features: [
       "Weighted ensemble (XGBoost, LightGBM, Neural Networks) reaching 93.1% accuracy",
       "Feature store with 100+ engineered features (verifiable in code)",
-      "Sub-200ms serving via FastAPI + Redis caching",
-      "Celery pipelines for async processing and A/B testing",
+      "Redis caching achieving <100ms cached, <200ms uncached",
+      "Repository pattern supporting microservices migration",
       "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
@@ -101,32 +101,32 @@ export const projects: Project[] = [
     heroMetric: "R²: 0.942",
     metrics: [
       { label: "Points R²", value: "0.942" },
-      { label: "P95 Latency", value: "87ms" },
-      { label: "Records", value: "169K+" },
+      { label: "API P95", value: "87ms" },
+      { label: "ETL Records", value: "169K+" },
       { label: "Features", value: "40+" }
     ],
     techStack: ["XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "SHAP"],
     features: [
-      "ETL over 169K+ records; R² 0.942/0.887/0.863 for points/rebounds/assists",
-      "P95 latency 87ms with Redis caching",
+      "R² 0.942/0.887/0.863 (pts/reb/ast) on 169K+ records",
+      "P95 latency 87ms with Redis caching (verified)",
       "Drift detection using KS and Chi-squared tests",
       "A/B testing framework with Bayesian inference",
       "SHAP-based model explainability"
     ],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
     performance: {
-      before: "5s predictions",
+      before: "Manual analysis",
       after: "87ms P95",
-      improvement: "98.3% faster"
+      improvement: "Automated pipeline"
     }
   },
   {
     id: "sql-genius",
-    title: "SQL Intelligence Platform",
-    description: "Multi-tenant architecture with natural language SQL (design phase)",
+    title: "SQL Intelligence Platform (Design Phase)",
+    description: "Multi-tenant architecture with natural language SQL",
     heroMetric: "Design Targets",
     metrics: [
-      { label: "Target Gen", value: "<500ms" },
+      { label: "Target Gen", value: "<500ms P95" },
       { label: "Isolation", value: "Per-tenant DB" },
       { label: "Auth", value: "JWT+RSA" },
       { label: "Target RPS", value: "5000+" }
@@ -137,7 +137,7 @@ export const projects: Project[] = [
       "JWT authentication with RSA key rotation (implemented)",
       "Target: P95 <500ms SQL generation",
       "Design capacity: 5000+ RPS with horizontal scaling",
-      "Planned: Cost tracking and usage monitoring per tenant"
+      "Planned: Cost tracking and usage monitoring"
     ],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai"
   }

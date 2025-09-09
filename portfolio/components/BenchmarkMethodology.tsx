@@ -7,26 +7,26 @@ export default function BenchmarkMethodology() {
   const benchmarks = [
     {
       project: "Chat Platform",
-      method: "k6 WebSocket tests, 100 concurrent users",
-      metrics: "P50/P95/P99 latency, cache hit rate, cost reduction",
-      link: "https://github.com/cbratkovics/chatbot-ai-system#verified-performance-metrics"
+      method: "k6 WebSocket tests, 100+ concurrent (local synthetic)",
+      metrics: "P50/P95/P99 latency (~186ms P95), cache hit (~73%), cost reduction (~70%)",
+      link: "https://github.com/cbratkovics/chatbot-ai-system/tree/main/benchmarks/results"
     },
     {
       project: "RAG System",
-      method: "MS MARCO eval set, custom document corpus",
-      metrics: "nDCG@10, MRR@10, Precision@5, Recall@10",
+      method: "Custom eval sets, production metrics",
+      metrics: "P95 <200ms, 42% cache hit, Docker −88%",
       link: "https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics"
     },
     {
       project: "Fantasy AI",
-      method: "Historical season data, k-fold cross-validation",
-      metrics: "Accuracy, RMSE, feature importance",
-      link: "https://github.com/cbratkovics/fantasy-football-ai#performance-benchmarks--metrics"
+      method: "Historical data, k-fold cross-validation",
+      metrics: "93.1% accuracy, 100+ features, <100ms cached",
+      link: "https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics"
     },
     {
       project: "NBA Predictions",
       method: "169K+ game records, time-aware validation",
-      metrics: "R² scores, P95 latency, drift detection",
+      metrics: "R² 0.942 (points), P95 87ms",
       link: "https://github.com/cbratkovics/nba-ai-ml#model-performance"
     }
   ];
@@ -47,8 +47,8 @@ export default function BenchmarkMethodology() {
           </div>
           
           <p className="text-gray-400 mb-6">
-            All metrics are measured with reproducible scripts and test data. 
-            Results and JSON summaries are available in each repo&apos;s <code className="text-cyan-400">/benchmarks</code> folder.
+            Local synthetic benchmarks on developer hardware. We publish P50/P95/P99, 
+            cache hit rate, and cost deltas. See linked JSON artifacts for reproducibility.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

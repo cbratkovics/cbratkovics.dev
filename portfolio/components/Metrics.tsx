@@ -45,28 +45,28 @@ export default function Metrics() {
       icon: <Clock className="w-8 h-8" />,
       value: `${hoursSaved}+`,
       label: "Weekly Hours Saved",
-      description: "Through Python ETL automation in production",
+      description: "Through Python ETL automation (verified)",
       color: "from-blue-400 to-cyan-400"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      value: `${modelAccuracy}%`,
-      label: "Model Accuracy",
-      description: "Average across production models",
+      value: `${modelAccuracy}.1%`,
+      label: "Best Model Accuracy",
+      description: "Fantasy Football ensemble (verified)",
       color: "from-purple-400 to-pink-400"
     },
     {
       icon: <Rocket className="w-8 h-8" />,
       value: `${processingSpeed}`,
       label: "Players/Second",
-      description: "Feature engineering pipeline speed",
+      description: "Feature engineering pipeline",
       color: "from-green-400 to-emerald-400"
     },
     {
       icon: <DollarSign className="w-8 h-8" />,
       value: `${dataProcessed}K+`,
       label: "Records Processed",
-      description: "NBA game records in ETL pipeline",
+      description: "NBA ETL pipeline (verified)",
       color: "from-orange-400 to-red-400"
     }
   ];
@@ -127,24 +127,24 @@ export default function Metrics() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                5+
+                4
               </div>
-              <div className="text-gray-400">Production Models</div>
-              <div className="text-xs text-gray-500 mt-1">Professional and personal projects</div>
+              <div className="text-gray-400">Production Projects</div>
+              <div className="text-xs text-gray-500 mt-1">With verified benchmarks</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                &lt;150ms
+                ~186ms
               </div>
-              <div className="text-gray-400">Average API Latency</div>
-              <div className="text-xs text-gray-500 mt-1">FastAPI with Redis</div>
+              <div className="text-gray-400">P95 Latency</div>
+              <div className="text-xs text-gray-500 mt-1">Chat platform (synthetic)</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold gradient-text mb-2">
-                54%
+                88%
               </div>
-              <div className="text-gray-400">Docker Size Reduction</div>
-              <div className="text-xs text-gray-500 mt-1">3.3GB → 1.5GB</div>
+              <div className="text-gray-400">Docker Reduction (RAG)</div>
+              <div className="text-xs text-gray-500 mt-1">3.3GB → 402MB</div>
             </div>
           </div>
         </motion.div>

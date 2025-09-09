@@ -41,28 +41,28 @@ export default function Hero() {
       label: "Production Projects",
       value: models + "",
       color: "from-blue-400 to-cyan-400",
-      tooltip: "4 production ML systems with verified benchmarks on GitHub"
+      tooltip: "4 production ML systems with verified GitHub benchmarks"
     },
     {
       icon: <Activity className="w-5 h-5" />,
       label: "Best Model Accuracy",
       value: accuracy + ".1%",
       color: "from-purple-400 to-pink-400",
-      tooltip: "93.1% accuracy on Fantasy Football AI ensemble (verified)"
+      tooltip: "93.1% accuracy on Fantasy Football ensemble (verified)"
     },
     {
       icon: <Zap className="w-5 h-5" />,
       label: "P95 Latency",
       value: `~${latency}ms`,
       color: "from-green-400 to-emerald-400",
-      tooltip: "~186ms P95 on Chat platform (WebSocket streaming, local benchmark)"
+      tooltip: "~186ms P95 latency (Chat platform, local synthetic benchmark)"
     },
     {
       icon: <Server className="w-5 h-5" />,
-      label: "Docker Reduction",
+      label: "Docker Reduction (RAG)",
       value: dockerOpt + "%",
       color: "from-orange-400 to-red-400",
-      tooltip: "RAG: 3.3GB → 402MB (−88% reduction)"
+      tooltip: "RAG: 3.3GB → 402MB (−88% reduction, verified)"
     }
   ];
 

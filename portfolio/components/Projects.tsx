@@ -8,9 +8,9 @@ export default function Projects() {
   // Helper function to get benchmark anchors for each project
   const getBenchmarkAnchor = (projectId: string) => {
     const anchors: Record<string, string> = {
-      'ai-chatbot': '#verified-performance-metrics',
+      'ai-chatbot': '#verified-performance-metrics-local-synthetic-benchmarks',
       'document-intelligence': '#key-performance-metrics',
-      'fantasy-football': '#performance-benchmarks--metrics',
+      'fantasy-football': '#verified-production-metrics',
       'nba-ml': '#model-performance',
       'sql-genius': '#architecture'
     };

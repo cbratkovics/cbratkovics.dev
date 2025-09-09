@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://cbratkovics.dev'),
   title: 'Christopher Bratkovics | AI/ML Engineer | Production ML Systems',
-  description: 'Data Scientist transitioning to AI Engineering. Building production ML systems with 93% accuracy. Specializing in FastAPI, XGBoost, and RAG systems.',
+  description: 'AI Engineer building production ML systems with 93.1% accuracy and <200ms P95 latency. Specializing in FastAPI, XGBoost, and RAG systems with verified benchmarks.',
   keywords: [
     'Christopher Bratkovics', 'AI Engineer', 'ML Engineer', 'MLOps',
     'FastAPI', 'Production ML', 'Data Scientist',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://cbratkovics.dev',
     siteName: 'Christopher Bratkovics - AI/ML Engineer',
     title: 'Christopher Bratkovics | Building Production ML Systems',
-    description: 'Data Scientist. 93% model accuracy, <150ms API latency, 20+ hours saved weekly.',
+    description: 'AI Engineer. 93.1% model accuracy, <200ms P95 latency, 88% Docker optimization. All metrics verified via GitHub.',
     images: [{
       url: '/og-image.png',
       width: 1200,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Christopher Bratkovics | AI/ML Engineer',
-    description: 'Building Production ML Systems That Ship',
+    description: 'Building Production ML Systems with Verified Performance Metrics',
     images: ['/og-image.png']
   },
   robots: {

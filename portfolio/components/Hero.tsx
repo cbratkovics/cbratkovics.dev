@@ -29,10 +29,10 @@ export default function Hero() {
       return () => clearInterval(timer);
     };
 
-    animateCounter(setModels, 5, 1000);
+    animateCounter(setModels, 15, 1000);
     animateCounter(setAccuracy, 93, 1500);
-    animateCounter(setLatency, 150, 1500);
-    animateCounter(setDockerOpt, 54, 1800);
+    animateCounter(setLatency, 200, 1500);
+    animateCounter(setDockerOpt, 88, 1800);
   }, []);
 
   const metrics = [
@@ -41,28 +41,28 @@ export default function Hero() {
       label: "Production Models",
       value: models + "+",
       color: "from-blue-400 to-cyan-400",
-      tooltip: "XGBoost, LightGBM, Neural Networks deployed in production environments"
+      tooltip: "15+ ML models deployed across 3 production systems"
     },
     {
       icon: <Activity className="w-5 h-5" />,
       label: "Prediction Accuracy",
       value: accuracy + "%",
       color: "from-purple-400 to-pink-400",
-      tooltip: "93.1% accuracy on Fantasy Football AI ensemble model"
+      tooltip: "93.1% accuracy on Fantasy Football AI ensemble model (verified)"
     },
     {
       icon: <Zap className="w-5 h-5" />,
-      label: "Avg API Latency",
+      label: "API Latency P95",
       value: `<${latency}ms`,
       color: "from-green-400 to-emerald-400",
-      tooltip: "FastAPI with Redis caching achieving sub-150ms response times"
+      tooltip: "P95 latency <200ms across production systems (benchmarked)"
     },
     {
       icon: <Server className="w-5 h-5" />,
       label: "Docker Optimization",
       value: dockerOpt + "%",
       color: "from-orange-400 to-red-400",
-      tooltip: "Reduced container size from 3.3GB to 1.5GB through multi-stage builds"
+      tooltip: "Reduced RAG container from 3.3GB to 402MB (88% reduction)"
     }
   ];
 

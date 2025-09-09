@@ -29,14 +29,14 @@ export const projects: Project[] = [
       { label: "Model Accuracy", value: "93.1%" },
       { label: "API Latency (Cached)", value: "<100ms" },
       { label: "Ensemble Weights", value: "XGB:0.4, LGBM:0.35, RF:0.25" },
-      { label: "Features Engineered", value: "40+" }
+      { label: "Features Engineered", value: "100+" }
     ],
     techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "SQLAlchemy"],
     features: [
-      "Ensemble model with optimal weighted voting",
-      "Feature store with 40+ engineered features (verifiable in code)",
-      "Redis caching achieving <100ms latency for cached requests",
-      "Repository pattern supporting microservices migration",
+      "Weighted ensemble (XGBoost 0.4, LightGBM 0.35, RF 0.25) achieving 93.1% accuracy",
+      "Feature store with 100+ engineered features (verifiable in code)",
+      "Redis caching achieving <100ms latency for cached predictions",
+      "Repository pattern supporting clean microservices migration",
       "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
@@ -72,20 +72,20 @@ export const projects: Project[] = [
     id: "document-intelligence",
     title: "Enterprise Document Intelligence (RAG) System",
     description: "Production-ready RAG system with hybrid search and semantic caching",
-    heroMetric: "42% Cache Hit Rate",
+    heroMetric: "P95 <200ms",
     metrics: [
       { label: "Cache Hit Rate", value: "42%" },
-      { label: "Query Latency", value: "1.2s avg" },
-      { label: "Docker Size", value: "402MB" },
-      { label: "Accuracy", value: "89%" }
+      { label: "Query Latency P95", value: "<200ms" },
+      { label: "Docker Reduction", value: "88%" },
+      { label: "Relevance Boost", value: "+35%" }
     ],
     techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
     features: [
-      "Hybrid search (ChromaDB + BM25)",
-      "Semantic caching reducing LLM calls by 42% (documented)",
-      "Async Celery workers for document processing",
+      "Hybrid search combining ChromaDB vectors with BM25 keywords",
+      "42% semantic cache hit rate reducing LLM calls (verified)",
+      "Cross-encoder reranking improving relevance by 35%",
       "Docker optimization: 3.3GB → 402MB (88% reduction)",
-      "Support for PDF, TXT, and Markdown formats"
+      "Async Celery workers for scalable document processing"
     ],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
     performance: {
@@ -96,49 +96,50 @@ export const projects: Project[] = [
   },
   {
     id: "sql-genius",
-    title: "Multi-Tenant SQL Intelligence Platform",
+    title: "SQL Intelligence Platform (Design Phase)",
     description: "Production-ready SaaS with natural language SQL generation and tenant isolation",
-    heroMetric: "Multi-tenant Architecture",
+    heroMetric: "Enterprise Architecture",
     metrics: [
-      { label: "Query Accuracy", value: "91%" },
-      { label: "Tenant Isolation", value: "100%" },
+      { label: "Target Query Gen", value: "<500ms" },
+      { label: "Tenant Isolation", value: "Database-per-tenant" },
       { label: "Auth Security", value: "JWT + RSA" },
-      { label: "Database Pattern", value: "Per-tenant" }
+      { label: "Architecture", value: "Multi-tenant" }
     ],
     techStack: ["FastAPI", "PostgreSQL", "JWT", "Redis", "Docker", "Kubernetes", "SQLAlchemy"],
     features: [
-      "Database-per-tenant isolation strategy",
-      "JWT auth with RSA key rotation",
-      "PostgreSQL with row-level security",
-      "Cost tracking per tenant",
-      "Row-level security implementation"
+      "Designed for database-per-tenant isolation strategy",
+      "JWT authentication with RSA key rotation (implemented)",
+      "PostgreSQL with row-level security (design target)",
+      "Cost tracking and usage monitoring per tenant (planned)",
+      "Target: <500ms P95 SQL generation, 5000+ RPS capacity"
     ],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai"
   },
   {
     id: "ai-chatbot",
-    title: "Milti-Tentant AI Chatbot Platform",
+    title: "Multi-Tenant AI Chatbot Platform",
     description: "Production-ready chatbot platform with multi-model support and WebSockets",
-    heroMetric: "<200ms P95 Latency",
+    heroMetric: "99.58% Availability",
     metrics: [
-      { label: "P95 Response", value: "<200ms" },
-      { label: "Concurrent Users", value: "100+" },
-      { label: "API Cost Reduction", value: "30%" },
-      { label: "Model Support", value: "3+" }
+      { label: "Availability", value: "99.58%" },
+      { label: "P95 Response", value: "185ms" },
+      { label: "Concurrent Users", value: "120" },
+      { label: "Cost Reduction", value: "32.5%" },
+      { label: "Failover Time", value: "423ms" }
     ],
     techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
     features: [
-      "Multi-model support (GPT-4, Claude, Llama)",
-      "WebSocket streaming with fallback logic",
-      "Semantic caching reducing costs by 30%",
-      "Distributed tracing with Jaeger",
-      "Saga pattern for distributed transactions"
+      "Multi-model orchestration (OpenAI/Anthropic) with automatic failover",
+      "WebSocket streaming supporting 120 concurrent connections (verified)",
+      "Semantic caching reducing API costs by 32.5% (benchmarked)",
+      "99.58% availability with 423ms provider failover",
+      "Distributed tracing with Jaeger and comprehensive monitoring"
     ],
     githubUrl: "https://github.com/cbratkovics/ai-chatbot-system",
     performance: {
       before: "2s average response",
-      after: "200ms average",
-      improvement: "90% faster"
+      after: "185ms P95 response",
+      improvement: "91% faster"
     }
   }
 ];

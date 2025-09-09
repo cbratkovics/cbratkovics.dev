@@ -6,20 +6,20 @@ import { skills } from "@/data/projects";
 import { Brain, Database, Cloud, Code, Cpu, Layout } from "lucide-react";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "ML/AI Engineering": <Brain className="w-6 h-6" />,
+  "Core AI Engineering": <Cpu className="w-6 h-6" />,
+  "MLOps": <Cloud className="w-6 h-6" />,
+  "Systems": <Layout className="w-6 h-6" />,
+  "ML/AI Models": <Brain className="w-6 h-6" />,
   "Backend & APIs": <Code className="w-6 h-6" />,
-  "MLOps & Infrastructure": <Cloud className="w-6 h-6" />,
-  "AI/LLM Systems": <Cpu className="w-6 h-6" />,
-  "System Design": <Layout className="w-6 h-6" />,
   "Data & Tools": <Database className="w-6 h-6" />
 };
 
 const categoryColors: Record<string, string> = {
-  "ML/AI Engineering": "from-blue-400 to-blue-600",
+  "Core AI Engineering": "from-pink-400 to-pink-600",
+  "MLOps": "from-orange-400 to-orange-600",
+  "Systems": "from-cyan-400 to-cyan-600",
+  "ML/AI Models": "from-blue-400 to-blue-600",
   "Backend & APIs": "from-purple-400 to-purple-600",
-  "MLOps & Infrastructure": "from-orange-400 to-orange-600",
-  "AI/LLM Systems": "from-pink-400 to-pink-600",
-  "System Design": "from-cyan-400 to-cyan-600",
   "Data & Tools": "from-green-400 to-green-600"
 };
 
@@ -103,8 +103,8 @@ export default function Skills() {
             Production Focus
           </h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            Specialized in building production-ready ML systems with 93% accuracy, &lt;150ms latency, 
-            and 54% Docker optimization. Experienced in taking models from notebook to production 
+            Specialized in building production-ready ML systems with 93.1% accuracy, ~186ms P95 latency, 
+            and 88% Docker optimization. Experienced in taking models from notebook to production 
             with proper engineering practices in production environments.
           </p>
         </motion.div>

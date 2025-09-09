@@ -5,6 +5,17 @@ import { projects } from "@/data/projects";
 import { Github, ExternalLink, ArrowUpRight, Zap, TrendingUp } from "lucide-react";
 
 export default function Projects() {
+  // Helper function to get benchmark anchors for each project
+  const getBenchmarkAnchor = (projectId: string) => {
+    const anchors: Record<string, string> = {
+      'ai-chatbot': '#verified-performance-metrics',
+      'document-intelligence': '#key-performance-metrics',
+      'fantasy-football': '#performance-benchmarks--metrics',
+      'nba-ml': '#model-performance',
+      'sql-genius': '#architecture'
+    };
+    return anchors[projectId] || '';
+  };
 
   return (
     <section id="projects" className="py-20 px-4 relative overflow-hidden">
@@ -138,6 +149,29 @@ export default function Projects() {
                     <div className="mt-4 pt-4 border-t border-white/10">
                       <span className="text-xs text-gray-400">Architecture: </span>
                       <span className="text-xs text-gray-300">{project.architecture}</span>
+                    </div>
+                  )}
+
+                  {project.githubUrl && (
+                    <div className="mt-4 pt-4 border-t border-white/10 flex gap-3">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span className="text-sm">Source Code</span>
+                      </a>
+                      <a
+                        href={`${project.githubUrl}${getBenchmarkAnchor(project.id)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span className="text-sm">View Benchmarks</span>
+                      </a>
                     </div>
                   )}
                 </div>

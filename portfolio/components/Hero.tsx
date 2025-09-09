@@ -29,40 +29,40 @@ export default function Hero() {
       return () => clearInterval(timer);
     };
 
-    animateCounter(setModels, 15, 1000);
+    animateCounter(setModels, 4, 1000);
     animateCounter(setAccuracy, 93, 1500);
-    animateCounter(setLatency, 200, 1500);
+    animateCounter(setLatency, 186, 1500);
     animateCounter(setDockerOpt, 88, 1800);
   }, []);
 
   const metrics = [
     {
       icon: <TrendingUp className="w-5 h-5" />,
-      label: "Production Models",
-      value: models + "+",
+      label: "Production Projects",
+      value: models + "",
       color: "from-blue-400 to-cyan-400",
-      tooltip: "15+ ML models deployed across 3 production systems"
+      tooltip: "4 production ML systems with verified benchmarks on GitHub"
     },
     {
       icon: <Activity className="w-5 h-5" />,
-      label: "Prediction Accuracy",
-      value: accuracy + "%",
+      label: "Best Model Accuracy",
+      value: accuracy + ".1%",
       color: "from-purple-400 to-pink-400",
-      tooltip: "93.1% accuracy on Fantasy Football AI ensemble model (verified)"
+      tooltip: "93.1% accuracy on Fantasy Football AI ensemble (verified)"
     },
     {
       icon: <Zap className="w-5 h-5" />,
-      label: "API Latency P95",
-      value: `<${latency}ms`,
+      label: "P95 Latency",
+      value: `~${latency}ms`,
       color: "from-green-400 to-emerald-400",
-      tooltip: "P95 latency <200ms across production systems (benchmarked)"
+      tooltip: "~186ms P95 on Chat platform (WebSocket streaming, local benchmark)"
     },
     {
       icon: <Server className="w-5 h-5" />,
-      label: "Docker Optimization",
+      label: "Docker Reduction",
       value: dockerOpt + "%",
       color: "from-orange-400 to-red-400",
-      tooltip: "Reduced RAG container from 3.3GB to 402MB (88% reduction)"
+      tooltip: "RAG: 3.3GB → 402MB (−88% reduction)"
     }
   ];
 
@@ -97,7 +97,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-lg md:text-xl text-gray-400 mb-4 max-w-3xl mx-auto"
         >
-          Building Production ML Systems That Ship | All Metrics Verifiable via GitHub
+          I ship production LLM systems, RAG pipelines, and predictive models with verifiable benchmarks
         </motion.p>
 
         {/* About Me Section */}

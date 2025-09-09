@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import BenchmarkMethodology from "@/components/BenchmarkMethodology";
 import Metrics from "@/components/Metrics";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
@@ -24,6 +25,7 @@ export default function Home() {
         </div>
         <Skills />
         <Projects />
+        <BenchmarkMethodology />
         <Metrics />
         <Contact />
       </main>

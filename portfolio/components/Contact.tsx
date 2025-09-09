@@ -83,7 +83,7 @@ export default function Contact() {
             © {new Date().getFullYear()} Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            All metrics verified via automated benchmarks | View source code on GitHub
+            All metrics verified via automated benchmarks | Re-run instructions in GitHub repos
           </p>
         </motion.div>
       </motion.div>

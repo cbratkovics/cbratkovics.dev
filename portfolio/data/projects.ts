@@ -21,22 +21,74 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "ai-chatbot",
+    title: "Multi-Tenant AI Chat Platform",
+    description: "Production chat service with semantic caching achieving ~70% cost reduction",
+    heroMetric: "~73% Cache Hit Rate",
+    metrics: [
+      { label: "P95 Latency", value: "~186ms" },
+      { label: "Cache Hit Rate", value: "~73%" },
+      { label: "Cost Reduction", value: "~70%" },
+      { label: "Failover Time", value: "~463ms" }
+    ],
+    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
+    features: [
+      "P95 latency ~186ms with ~100 concurrent WebSocket sessions (local synthetic bench)",
+      "Semantic cache ~73% hit rate with ~70-73% API cost reduction (verified)",
+      "Provider failover ~463ms between OpenAI and Anthropic",
+      "Throughput ~250 RPS on developer hardware",
+      "99.58% availability in synthetic tests"
+    ],
+    githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
+    performance: {
+      before: "No caching",
+      after: "~73% cache hit",
+      improvement: "~70% cost reduction"
+    }
+  },
+  {
+    id: "document-intelligence",
+    title: "Enterprise Document Intelligence (RAG)",
+    description: "Hybrid retrieval system with cross-encoder reranking and production metrics",
+    heroMetric: "nDCG@10: 0.82",
+    metrics: [
+      { label: "nDCG@10", value: "0.82" },
+      { label: "MRR@10", value: "0.76" },
+      { label: "P95 Latency", value: "<200ms" },
+      { label: "Cache Hit", value: "42%" }
+    ],
+    techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
+    features: [
+      "Hybrid retrieval (ChromaDB + BM25) with nDCG@10 0.82, MRR@10 0.76",
+      "P95 <200ms with 42% semantic cache hit rate",
+      "Docker 3.3GB → 402MB (−88% reduction)",
+      "Cross-encoder reranking improving relevance by +35%",
+      "Precision@5: 0.84, Recall@10: 0.91 on evaluation sets"
+    ],
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
+    performance: {
+      before: "3.3GB Docker",
+      after: "402MB Docker",
+      improvement: "88% reduction"
+    }
+  },
+  {
     id: "fantasy-football",
     title: "Fantasy Football AI Platform",
-    description: "Production-ready ML system with ensemble models achieving 93.1% accuracy",
-    heroMetric: "93.1% Prediction Accuracy",
+    description: "Weighted ensemble including neural networks achieving 93.1% accuracy",
+    heroMetric: "93.1% Accuracy",
     metrics: [
       { label: "Model Accuracy", value: "93.1%" },
-      { label: "API Latency (Cached)", value: "<100ms" },
-      { label: "Ensemble Weights", value: "XGB:0.4, LGBM:0.35, RF:0.25" },
-      { label: "Features Engineered", value: "100+" }
+      { label: "Serving Latency", value: "<200ms" },
+      { label: "Features", value: "100+" },
+      { label: "Cache Hit", value: ">80%" }
     ],
-    techStack: ["XGBoost", "LightGBM", "FastAPI", "Redis", "PostgreSQL", "Docker", "SQLAlchemy"],
+    techStack: ["XGBoost", "LightGBM", "Neural Networks", "FastAPI", "Redis", "PostgreSQL", "Celery"],
     features: [
-      "Weighted ensemble (XGBoost 0.4, LightGBM 0.35, RF 0.25) achieving 93.1% accuracy",
+      "Weighted ensemble (XGBoost, LightGBM, Neural Networks) reaching 93.1% accuracy",
       "Feature store with 100+ engineered features (verifiable in code)",
-      "Redis caching achieving <100ms latency for cached predictions",
-      "Repository pattern supporting clean microservices migration",
+      "Sub-200ms serving via FastAPI + Redis caching",
+      "Celery pipelines for async processing and A/B testing",
       "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
@@ -45,129 +97,86 @@ export const projects: Project[] = [
   {
     id: "nba-ml",
     title: "NBA Performance Prediction System",
-    description: "Production-ready sports analytics platform with high-accuracy predictions",
-    heroMetric: "R²: 0.942 for Points",
+    description: "ETL pipeline processing 169K+ records with drift detection",
+    heroMetric: "R²: 0.942",
     metrics: [
-      { label: "Accuracy (Points)", value: "R²: 0.942" },
-      { label: "API Response", value: "P95: 87ms" },
-      { label: "ETL Pipeline", value: "169K+ records" },
-      { label: "Feature Count", value: "40+" }
+      { label: "Points R²", value: "0.942" },
+      { label: "P95 Latency", value: "87ms" },
+      { label: "Records", value: "169K+" },
+      { label: "Features", value: "40+" }
     ],
-    techStack: ["XGBoost", "FastAPI", "React", "PostgreSQL", "Redis", "Railway", "GitHub Actions"],
+    techStack: ["XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "SHAP"],
     features: [
-      "Comprehensive feature engineering (40+ features)",
-      "P95 latency of 87ms (documented in README)",
-      "ETL pipeline processing 169K+ NBA game records",
-      "SHAP-based model explainability",
-      "FastAPI backend with async processing"
+      "ETL over 169K+ records; R² 0.942/0.887/0.863 for points/rebounds/assists",
+      "P95 latency 87ms with Redis caching",
+      "Drift detection using KS and Chi-squared tests",
+      "A/B testing framework with Bayesian inference",
+      "SHAP-based model explainability"
     ],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
     performance: {
-      before: "5s prediction time",
-      after: "80ms prediction time",
-      improvement: "98.4% faster"
-    }
-  },
-  {
-    id: "document-intelligence",
-    title: "Enterprise Document Intelligence (RAG) System",
-    description: "Production-ready RAG system with hybrid search and semantic caching",
-    heroMetric: "P95 <200ms",
-    metrics: [
-      { label: "Cache Hit Rate", value: "42%" },
-      { label: "Query Latency P95", value: "<200ms" },
-      { label: "Docker Reduction", value: "88%" },
-      { label: "Relevance Boost", value: "+35%" }
-    ],
-    techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
-    features: [
-      "Hybrid search combining ChromaDB vectors with BM25 keywords",
-      "42% semantic cache hit rate reducing LLM calls (verified)",
-      "Cross-encoder reranking improving relevance by 35%",
-      "Docker optimization: 3.3GB → 402MB (88% reduction)",
-      "Async Celery workers for scalable document processing"
-    ],
-    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
-    performance: {
-      before: "3.3GB Docker image",
-      after: "402MB Docker image",
-      improvement: "88% reduction"
+      before: "5s predictions",
+      after: "87ms P95",
+      improvement: "98.3% faster"
     }
   },
   {
     id: "sql-genius",
-    title: "SQL Intelligence Platform (Design Phase)",
-    description: "Production-ready SaaS with natural language SQL generation and tenant isolation",
-    heroMetric: "Enterprise Architecture",
+    title: "SQL Intelligence Platform",
+    description: "Multi-tenant architecture with natural language SQL (design phase)",
+    heroMetric: "Design Targets",
     metrics: [
-      { label: "Target Query Gen", value: "<500ms" },
-      { label: "Tenant Isolation", value: "Database-per-tenant" },
-      { label: "Auth Security", value: "JWT + RSA" },
-      { label: "Architecture", value: "Multi-tenant" }
+      { label: "Target Gen", value: "<500ms" },
+      { label: "Isolation", value: "Per-tenant DB" },
+      { label: "Auth", value: "JWT+RSA" },
+      { label: "Target RPS", value: "5000+" }
     ],
-    techStack: ["FastAPI", "PostgreSQL", "JWT", "Redis", "Docker", "Kubernetes", "SQLAlchemy"],
+    techStack: ["FastAPI", "PostgreSQL", "JWT", "Redis", "Docker", "Kubernetes"],
     features: [
-      "Designed for database-per-tenant isolation strategy",
+      "Design target: Row-level security with database-per-tenant isolation",
       "JWT authentication with RSA key rotation (implemented)",
-      "PostgreSQL with row-level security (design target)",
-      "Cost tracking and usage monitoring per tenant (planned)",
-      "Target: <500ms P95 SQL generation, 5000+ RPS capacity"
+      "Target: P95 <500ms SQL generation",
+      "Design capacity: 5000+ RPS with horizontal scaling",
+      "Planned: Cost tracking and usage monitoring per tenant"
     ],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai"
-  },
-  {
-    id: "ai-chatbot",
-    title: "Multi-Tenant AI Chatbot Platform",
-    description: "Production-ready chatbot platform with multi-model support and WebSockets",
-    heroMetric: "99.58% Availability",
-    metrics: [
-      { label: "Availability", value: "99.58%" },
-      { label: "P95 Response", value: "185ms" },
-      { label: "Concurrent Users", value: "120" },
-      { label: "Cost Reduction", value: "32.5%" },
-      { label: "Failover Time", value: "423ms" }
-    ],
-    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
-    features: [
-      "Multi-model orchestration (OpenAI/Anthropic) with automatic failover",
-      "WebSocket streaming supporting 120 concurrent connections (verified)",
-      "Semantic caching reducing API costs by 32.5% (benchmarked)",
-      "99.58% availability with 423ms provider failover",
-      "Distributed tracing with Jaeger and comprehensive monitoring"
-    ],
-    githubUrl: "https://github.com/cbratkovics/ai-chatbot-system",
-    performance: {
-      before: "2s average response",
-      after: "185ms P95 response",
-      improvement: "91% faster"
-    }
   }
 ];
 
 export const skills = {
-  "ML/AI Engineering": [
-    "XGBoost", "LightGBM", "Random Forest",
-    "Scikit-learn", "SHAP", "Feature Engineering"
+  "Core AI Engineering": [
+    "LLM Orchestration (OpenAI/Anthropic)",
+    "RAG (ChromaDB + BM25)",
+    "Semantic Caching (~73% hit rate)",
+    "WebSocket Streaming",
+    "Failover Patterns"
+  ],
+  "MLOps": [
+    "FastAPI Serving",
+    "CI/CD (GitHub Actions)",
+    "Drift Detection (KS/Chi-squared)",
+    "MLflow/Monitoring",
+    "A/B Testing"
+  ],
+  "Systems": [
+    "Redis", "PostgreSQL",
+    "Docker/K8s",
+    "Prometheus/Grafana/Jaeger",
+    "JWT + RSA Auth"
+  ],
+  "ML/AI Models": [
+    "XGBoost", "LightGBM",
+    "Neural Networks",
+    "Feature Engineering",
+    "SHAP Explainability"
   ],
   "Backend & APIs": [
-    "FastAPI", "AsyncIO", "Redis", "PostgreSQL",
-    "SQLAlchemy", "Celery", "WebSockets"
-  ],
-  "MLOps & Infrastructure": [
-    "Docker", "CI/CD", "GitHub Actions",
-    "Model Versioning", "Performance Monitoring"
-  ],
-  "AI/LLM Systems": [
-    "LangChain", "ChromaDB", "OpenAI", "Anthropic",
-    "RAG Systems", "Semantic Search", "Vector DBs"
-  ],
-  "System Design": [
-    "Clean Architecture", "Repository Pattern",
-    "Multi-tenant", "JWT Auth", "Caching Strategies"
+    "FastAPI", "AsyncIO", "Celery",
+    "SQLAlchemy", "WebSockets"
   ],
   "Data & Tools": [
-    "Python", "SQL", "Git", "Railway",
-    "Jupyter", "Pandas", "NumPy"
+    "Python", "SQL", "Git",
+    "Pandas", "NumPy", "Jupyter"
   ]
 };
 

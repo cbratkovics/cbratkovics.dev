@@ -1,5 +1,4 @@
 import { ProvenanceChip } from "./ProvenanceChip";
-import { Badge } from "./badge";
 import type { Metric } from "@/types/metrics";
 
 interface MetricRowProps {

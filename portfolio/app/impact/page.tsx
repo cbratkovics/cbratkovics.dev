@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -85,21 +86,21 @@ export default function ImpactPage() {
               </p>
               <p>
                 For <strong className="text-cyan-400">publicly verifiable metrics</strong>, see the{" "}
-                <a href="/#projects" className="text-blue-400 hover:text-blue-300 underline">
+                <Link href="/#projects" className="text-blue-400 hover:text-blue-300 underline">
                   Projects section
-                </a>{" "}
+                </Link>{" "}
                 where all claims link to GitHub artifacts.
               </p>
             </div>
           </motion.div>
 
           <div className="mt-12 text-center">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
               ← Back to Portfolio
-            </a>
+            </Link>
           </div>
         </motion.div>
       </main>

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run fetch:metrics && npm run validate:content && next build",
+    "build": "npm run fetch:metrics && npm run validate:content && npm run export:bullets && npm run export:readme && next build",
     "build:only": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,6 +12,7 @@
     "fetch:metrics": "tsx scripts/fetchMetrics.ts",
     "validate:content": "tsx scripts/validateContent.ts",
     "export:bullets": "tsx scripts/exportBullets.ts",
+    "export:readme": "tsx scripts/exportReadmeMetrics.ts",
     "prebuild": "npm run fetch:metrics"
   },
   "dependencies": {

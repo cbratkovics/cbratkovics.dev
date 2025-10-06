@@ -163,6 +163,59 @@ function validateMetrics(): ValidationError[] {
     }
   }
 
+  // ADDITIONAL GUARDRAILS
+
+  // Fantasy accuracy must include definition
+  const fantasyProject = metrics.projects.find(p => p.title.toLowerCase().includes('fantasy'));
+  if (fantasyProject) {
+    const accuracyMetric = Object.values(fantasyProject.metrics).find(m => m.key === 'accuracy');
+    if (accuracyMetric && !accuracyMetric.note?.includes('±3')) {
+      errors.push({
+        severity: 'error',
+        message: `Fantasy Football accuracy metric must include "±3 fantasy points" definition in note field`
+      });
+    }
+  }
+
+  // Chat project must be labeled as synthetic
+  const chatProject = metrics.projects.find(p => p.title.toLowerCase().includes('chat'));
+  if (chatProject && chatProject.stage !== 'synthetic_benchmark') {
+    errors.push({
+      severity: 'error',
+      message: `Chat platform must have stage='synthetic_benchmark', found '${chatProject.stage}'`
+    });
+  }
+
+  // Validate no PII patterns (basic check)
+  const jsonStr = JSON.stringify(metrics);
+  const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  const phonePattern = /\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/;
+
+  if (emailPattern.test(jsonStr)) {
+    errors.push({
+      severity: 'error',
+      message: 'Potential email address found in metrics.json - remove all PII'
+    });
+  }
+
+  if (phonePattern.test(jsonStr)) {
+    errors.push({
+      severity: 'error',
+      message: 'Potential phone number found in metrics.json - remove all PII'
+    });
+  }
+
+  // Check for uptime claims without public status page
+  if (jsonStr.toLowerCase().includes('uptime') || /99\.[0-9]%/.test(jsonStr)) {
+    const hasStatusPageLink = jsonStr.includes('status.') || jsonStr.includes('uptime.io');
+    if (!hasStatusPageLink) {
+      errors.push({
+        severity: 'error',
+        message: 'Uptime claims found without public status page link - remove or add status dashboard URL'
+      });
+    }
+  }
+
   return errors;
 }
 

@@ -8,6 +8,7 @@ import BenchmarkMethodology from "@/components/BenchmarkMethodology";
 import Metrics from "@/components/Metrics";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
+import metricsData from "@/data/metrics.json";
 
 const Particles = dynamic(() => import("@/components/Particles"), {
   ssr: false,
@@ -21,10 +22,10 @@ export default function Home() {
       <Navigation />
       <main className="relative z-10">
         <div id="home">
-          <Hero />
+          <Hero metricsData={metricsData} />
         </div>
         <Skills />
-        <Projects />
+        <Projects metricsData={metricsData} />
         <BenchmarkMethodology />
         <Metrics />
         <Contact />

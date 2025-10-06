@@ -1,37 +1,38 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SITE } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cbratkovics.dev'),
-  title: 'Christopher Bratkovics | AI/ML Engineer | Production ML Systems',
-  description: 'AI Engineer building production ML systems. 93.1% model accuracy, ~186ms P95 latency (synthetic benchmarks), 88% Docker reduction (RAG). All metrics verifiable via GitHub.',
+  metadataBase: new URL(SITE.url),
+  title: SITE.title,
+  description: SITE.description,
   keywords: [
     'Christopher Bratkovics', 'AI Engineer', 'ML Engineer', 'MLOps',
     'FastAPI', 'Production ML', 'RAG Systems', 'LLM Orchestration',
     'XGBoost', 'LightGBM', 'Semantic Caching', 'WebSockets'
   ],
-  authors: [{ name: 'Christopher Bratkovics' }],
-  creator: 'Christopher Bratkovics',
+  authors: [{ name: SITE.author.name }],
+  creator: SITE.author.name,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://cbratkovics.dev',
-    siteName: 'Christopher Bratkovics - AI/ML Engineer',
-    title: 'Christopher Bratkovics | Building Production ML Systems',
-    description: 'AI Engineer. 93.1% accuracy (Fantasy), ~186ms P95 (Chat), 42% cache hit (RAG), ~70% cost reduction. Verified benchmarks on GitHub.',
+    url: SITE.url,
+    siteName: `${SITE.name} - AI/ML Engineer`,
+    title: SITE.title,
+    description: SITE.description,
     images: [{
       url: '/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'Christopher Bratkovics - AI/ML Engineer Portfolio'
+      alt: `${SITE.name} - AI/ML Engineer Portfolio`
     }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Christopher Bratkovics | AI/ML Engineer',
+    title: SITE.title,
     description: 'Building Production ML Systems with Verified Performance Metrics',
     images: ['/og-image.png']
   },
@@ -50,6 +51,10 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png'
+  },
+  // Add structured data for SEO
+  other: {
+    'sameAs': SITE.sameAs.join(',')
   }
 };
 

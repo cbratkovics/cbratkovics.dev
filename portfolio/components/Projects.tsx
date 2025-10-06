@@ -1,26 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { projects } from "@/data/projects";
-import { Github, ExternalLink, ArrowUpRight, Zap, TrendingUp } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { ProvenanceChip } from "./ui/ProvenanceChip";
+import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer";
+import { EvidenceList } from "./ui/EvidenceList";
+import type { SiteMetrics } from "@/types/metrics";
 
-export default function Projects() {
-  // Helper function to get benchmark anchors for each project
-  const getBenchmarkAnchor = (projectId: string) => {
-    const anchors: Record<string, string> = {
-      'ai-chatbot': '#verified-performance-metrics-local-synthetic-benchmarks',
-      'document-intelligence': '#key-performance-metrics',
-      'fantasy-football': '#verified-production-metrics',
-      'nba-ml': '#model-performance',
-      'sql-genius': '#architecture'
-    };
-    return anchors[projectId] || '';
-  };
+interface ProjectsProps {
+  metricsData: SiteMetrics;
+}
 
+const STAGE_CONFIG = {
+  production: { label: "🟢 PRODUCTION", color: "bg-green-500/20 text-green-400 border-green-500/50" },
+  synthetic_benchmark: { label: "🔵 SYNTHETIC", color: "bg-blue-500/20 text-blue-400 border-blue-500/50" },
+  prototype: { label: "🟡 PROTOTYPE", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/50" }
+};
+
+export default function Projects({ metricsData }: ProjectsProps) {
   return (
     <section id="projects" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-30" />
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -33,151 +35,144 @@ export default function Projects() {
             Production Systems
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            ML systems built for scale, performance, and reliability in production environments
+            ML systems built for scale, performance, and reliability — all metrics verifiable via GitHub
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="relative group"
-            >
-              <div className="glassmorphism p-8 rounded-xl h-full transition-all duration-300 hover:shadow-2xl">
-                <div className="absolute inset-0 gradient-bg opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300" />
-                
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold text-white group-hover:gradient-text transition-all duration-300">
-                      {project.title}
-                    </h3>
-                    <div className="flex gap-2">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 glassmorphism rounded-lg hover:scale-110 transition-transform"
-                        >
-                          <Github className="w-5 h-5 text-gray-300" />
-                        </a>
-                      )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 glassmorphism rounded-lg hover:scale-110 transition-transform"
-                        >
-                          <ExternalLink className="w-5 h-5 text-gray-300" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
+          {metricsData.projects.map((project, index) => {
+            const stageConfig = STAGE_CONFIG[project.stage] || STAGE_CONFIG.synthetic_benchmark;
+            const metricsList = Object.values(project.metrics);
 
-                  <div className="mb-4 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-lg inline-block">
-                    <span className="text-lg font-semibold text-white flex items-center gap-2">
-                      <Zap className="w-4 h-4" />
-                      {project.heroMetric}
-                    </span>
-                  </div>
+            return (
+              <motion.div
+                key={project.repo}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="relative group"
+              >
+                <div className="glassmorphism p-8 rounded-xl h-full transition-all duration-300 hover:shadow-2xl">
+                  <div className="absolute inset-0 gradient-bg opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300" />
 
-                  <p className="text-gray-300 mb-6">
-                    {project.description}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    {project.metrics.map((metric) => (
-                      <div key={metric.label} className="glassmorphism p-3 rounded-lg">
-                        <div className="text-xl font-bold text-white">
-                          {metric.value}
-                        </div>
-                        <div className="text-xs text-gray-400">
-                          {metric.label}
-                        </div>
+                  <div className="relative z-10">
+                    {/* Header */}
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white group-hover:gradient-text transition-all duration-300 mb-2">
+                          {project.title}
+                        </h3>
+                        <Badge className={`${stageConfig.color} border`}>
+                          {stageConfig.label}
+                        </Badge>
                       </div>
-                    ))}
-                  </div>
-
-                  {project.performance && (
-                    <div className="mb-6 p-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-lg">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-400">Performance</span>
-                        <TrendingUp className="w-4 h-4 text-green-400" />
-                      </div>
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="text-sm text-gray-300">{project.performance.before}</span>
-                        <ArrowUpRight className="w-4 h-4 text-green-400" />
-                        <span className="text-sm font-semibold text-green-400">
-                          {project.performance.after}
-                        </span>
-                      </div>
-                      <div className="text-xs text-green-400 mt-1">
-                        {project.performance.improvement}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-400 mb-2">Key Features</h4>
-                    <ul className="space-y-1">
-                      {project.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="text-sm text-gray-300 flex items-start">
-                          <span className="text-blue-400 mr-2">▸</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs rounded-full glassmorphism text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white transition-all duration-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {project.architecture && (
-                    <div className="mt-4 pt-4 border-t border-white/10">
-                      <span className="text-xs text-gray-400">Architecture: </span>
-                      <span className="text-xs text-gray-300">{project.architecture}</span>
-                    </div>
-                  )}
-
-                  {project.githubUrl && (
-                    <div className="mt-4 pt-4 border-t border-white/10 flex gap-3">
                       <a
-                        href={project.githubUrl}
+                        href={`https://github.com/${project.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                        className="p-2 glassmorphism rounded-lg hover:scale-110 transition-transform"
+                      >
+                        <Github className="w-5 h-5 text-gray-300" />
+                      </a>
+                    </div>
+
+                    {/* Summary */}
+                    <p className="text-gray-300 mb-6">
+                      {project.summary}
+                    </p>
+
+                    {/* Metrics Grid */}
+                    {metricsList.length > 0 && (
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        {metricsList.slice(0, 3).map((metric) => (
+                          <div key={metric.key} className="glassmorphism p-3 rounded-lg">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-xl font-bold text-white">
+                                {metric.value}{metric.unit || ''}
+                              </div>
+                              <ProvenanceChip
+                                provenance={metric.provenance}
+                                reproducible={metric.reproducible}
+                              />
+                            </div>
+                            <div className="text-xs text-gray-400">
+                              {metric.note || metric.key.replace(/_/g, ' ')}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.slice(0, 5).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs rounded-full glassmorphism text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > 5 && (
+                        <span className="px-3 py-1 text-xs rounded-full glassmorphism text-gray-400">
+                          +{project.tech.length - 5} more
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex gap-3 pt-4 border-t border-white/10">
+                      {/* Evidence Drawer */}
+                      {metricsList.length > 0 && (
+                        <Drawer>
+                          <DrawerTrigger asChild>
+                            <button className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                              <ExternalLink className="w-4 h-4" />
+                              <span>Evidence</span>
+                            </button>
+                          </DrawerTrigger>
+                          <DrawerContent>
+                            <DrawerHeader>
+                              <DrawerTitle>{project.title} — Evidence Links</DrawerTitle>
+                              <DrawerDescription>
+                                Reproducible metrics with GitHub artifacts
+                              </DrawerDescription>
+                            </DrawerHeader>
+                            <div className="p-4">
+                              <EvidenceList metrics={metricsList} />
+                            </div>
+                          </DrawerContent>
+                        </Drawer>
+                      )}
+
+                      {/* Case Study Link */}
+                      {project.caseStudyPath && (
+                        <a
+                          href={project.caseStudyPath}
+                          className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          <span>Details</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+
+                      {/* GitHub Link */}
+                      <a
+                        href={`https://github.com/${project.repo}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors ml-auto"
                       >
                         <Github className="w-4 h-4" />
-                        <span className="text-sm">Source Code</span>
-                      </a>
-                      <a
-                        href={`${project.githubUrl}${getBenchmarkAnchor(project.id)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        <span className="text-sm">View Benchmarks</span>
+                        <span>Source</span>
                       </a>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
     </section>

@@ -2,9 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, Activity, Zap, TrendingUp, Server } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { KPIGroup } from "./ui/KPIGroup";
+import { ProvenanceChip } from "./ui/ProvenanceChip";
+import type { SiteMetrics } from "@/types/metrics";
 
-export default function Hero() {
+interface HeroProps {
+  metricsData: SiteMetrics;
+}
+
+export default function Hero({ metricsData }: HeroProps) {
   const [models, setModels] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
   const [latency, setLatency] = useState(0);
@@ -15,7 +22,7 @@ export default function Hero() {
       const steps = 60;
       const increment = target / steps;
       let current = 0;
-      
+
       const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -25,52 +32,69 @@ export default function Hero() {
           setter(Math.floor(current));
         }
       }, duration / steps);
-      
+
       return () => clearInterval(timer);
     };
 
-    animateCounter(setModels, 4, 1000);
-    animateCounter(setAccuracy, 93, 1500);
-    animateCounter(setLatency, 186, 1500);
-    animateCounter(setDockerOpt, 88, 1800);
-  }, []);
+    animateCounter(setModels, metricsData.hero.projectsCount, 1000);
+    animateCounter(setAccuracy, Math.floor(metricsData.hero.bestAccuracy), 1500);
+    animateCounter(setLatency, metricsData.hero.fastestP95ms, 1500);
+    animateCounter(setDockerOpt, metricsData.hero.dockerReductionPct, 1800);
+  }, [metricsData]);
 
-  const metrics = [
-    {
-      icon: <TrendingUp className="w-5 h-5" />,
-      label: "Production Projects",
-      value: models + "",
-      color: "from-blue-400 to-cyan-400",
-      tooltip: "4 production ML systems with verified GitHub benchmarks"
-    },
-    {
-      icon: <Activity className="w-5 h-5" />,
-      label: "Best Model Accuracy",
-      value: accuracy + ".1%",
-      color: "from-purple-400 to-pink-400",
-      tooltip: "93.1% accuracy on Fantasy Football ensemble (verified)"
-    },
-    {
-      icon: <Zap className="w-5 h-5" />,
-      label: "P95 Latency",
-      value: `~${latency}ms`,
-      color: "from-green-400 to-emerald-400",
-      tooltip: "~186ms P95 latency (Chat platform, local synthetic benchmark)"
-    },
-    {
-      icon: <Server className="w-5 h-5" />,
-      label: "Docker Reduction (RAG)",
-      value: dockerOpt + "%",
-      color: "from-orange-400 to-red-400",
-      tooltip: "RAG: 3.3GB → 402MB (−88% reduction, verified)"
+  // Get provenance chips data from actual metrics
+  const getProvenanceChips = () => {
+    const chips = [];
+
+    // Find the accuracy metric
+    const fantasyProject = metricsData.projects.find(p => p.title.includes('Fantasy'));
+    if (fantasyProject) {
+      const accuracyMetric = Object.values(fantasyProject.metrics).find(m => m.key === 'accuracy');
+      if (accuracyMetric) {
+        chips.push({
+          label: 'Best Accuracy',
+          provenance: accuracyMetric.provenance,
+          reproducible: accuracyMetric.reproducible
+        });
+      }
     }
-  ];
+
+    // Find the P95 metric
+    const nbaProject = metricsData.projects.find(p => p.title.includes('NBA'));
+    if (nbaProject) {
+      const p95Metric = Object.values(nbaProject.metrics).find(m => m.key === 'p95_latency_ms');
+      if (p95Metric) {
+        chips.push({
+          label: 'P95 Latency',
+          provenance: p95Metric.provenance,
+          reproducible: p95Metric.reproducible
+        });
+      }
+    }
+
+    // Find the Docker metric
+    const ragProject = metricsData.projects.find(p => p.title.includes('Document'));
+    if (ragProject) {
+      const dockerMetric = Object.values(ragProject.metrics).find(m => m.key === 'docker_reduction');
+      if (dockerMetric) {
+        chips.push({
+          label: 'Docker Reduction',
+          provenance: dockerMetric.provenance,
+          reproducible: dockerMetric.reproducible
+        });
+      }
+    }
+
+    return chips;
+  };
+
+  const provenanceChips = getProvenanceChips();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
       <div className="absolute inset-0 gradient-bg opacity-20" />
       <div className="absolute inset-0 cyber-grid" />
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,43 +132,50 @@ export default function Hero() {
           className="max-w-4xl mx-auto mb-12 mt-8"
         >
           <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 md:p-8">
-            <p className="text-gray-300 leading-relaxed text-base md:text-lg"> 
-                I bridge advanced analytics and reliable engineering to transform experimental AI into 
-                <span className="text-cyan-400 font-semibold"> production systems</span> that deliver real business value. 
-                From deploying ML models and RAG architectures to building low-latency inference pipelines, I thrive at the intersection of 
-                <span className="text-purple-400 font-semibold"> cutting-edge AI capabilities</span> and 
-                <span className="text-green-400 font-semibold"> practical engineering constraints</span>. 
-                My mission: ensure ML solutions are not just accurate in notebooks, but scalable, monitored, and 
-                impactful once deployed. The rapid evolution in generative AI energizes me, pushing boundaries 
+            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+                I bridge advanced analytics and reliable engineering to transform experimental AI into
+                <span className="text-cyan-400 font-semibold"> production systems</span> that deliver real business value.
+                From deploying ML models and RAG architectures to building low-latency inference pipelines, I thrive at the intersection of
+                <span className="text-purple-400 font-semibold"> cutting-edge AI capabilities</span> and
+                <span className="text-green-400 font-semibold"> practical engineering constraints</span>.
+                My mission: ensure ML solutions are not just accurate in notebooks, but scalable, monitored, and
+                impactful once deployed. The rapid evolution in generative AI energizes me, pushing boundaries
                 while maintaining the discipline needed for production systems.
             </p>
           </div>
         </motion.div>
 
+        {/* KPI Group with animated counters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          className="mb-6"
         >
-          {metrics.map((metric, index) => (
-            <motion.div
-              key={metric.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-              className="glassmorphism p-4 rounded-xl"
-            >
-              <div className={`inline-flex p-2 rounded-lg bg-gradient-to-r ${metric.color} mb-2`}>
-                {metric.icon}
-              </div>
-              <div className="text-2xl font-bold text-white mb-1" title={metric.tooltip}>
-                {metric.value}
-              </div>
-              <div className="text-xs text-gray-400" title={metric.tooltip}>
-                {metric.label}
-              </div>
-            </motion.div>
+          <KPIGroup kpis={{
+            projectsCount: models,
+            bestAccuracy: accuracy + 0.1, // Show 93.1
+            fastestP95ms: latency,
+            dockerReductionPct: dockerOpt
+          }} />
+        </motion.div>
+
+        {/* Evidence-First Provenance Strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="mb-12 flex flex-wrap justify-center gap-2"
+        >
+          <span className="text-xs text-gray-500">Evidence sources:</span>
+          {provenanceChips.map((chip, idx) => (
+            <div key={idx} className="flex items-center gap-1">
+              <span className="text-xs text-gray-400">{chip.label}:</span>
+              <ProvenanceChip
+                provenance={chip.provenance}
+                reproducible={chip.reproducible}
+              />
+            </div>
           ))}
         </motion.div>
 
@@ -161,10 +192,20 @@ export default function Hero() {
             View Projects
           </a>
           <a
-            href="#contact"
+            href="https://github.com/cbratkovics"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 glassmorphism text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border border-white/20"
           >
-            Get In Touch
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/cbratkovics"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 glassmorphism text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border border-white/20"
+          >
+            LinkedIn
           </a>
         </motion.div>
       </motion.div>

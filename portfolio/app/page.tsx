@@ -8,7 +8,10 @@ import BenchmarkMethodology from "@/components/BenchmarkMethodology";
 import Metrics from "@/components/Metrics";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
-import metricsData from "@/data/metrics.json";
+import metricsDataRaw from "@/data/metrics.json";
+import type { SiteMetrics } from "@/types/metrics";
+
+const metricsData = metricsDataRaw as SiteMetrics;
 
 const Particles = dynamic(() => import("@/components/Particles"), {
   ssr: false,

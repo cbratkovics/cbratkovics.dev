@@ -4,17 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run fetch:metrics && npm run validate:content && next build",
+    "build:only": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "fetch:metrics": "tsx scripts/fetchMetrics.ts",
+    "validate:content": "tsx scripts/validateContent.ts",
+    "export:bullets": "tsx scripts/exportBullets.ts",
+    "prebuild": "npm run fetch:metrics"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
     "@vercel/analytics": "^1.2.0",
     "@vercel/speed-insights": "^1.0.0",
     "autoprefixer": "^10.4.21",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.537.0",
@@ -25,16 +34,19 @@
     "recharts": "^3.1.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.17",
-    "three": "^0.179.1"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.179.1",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/node": "^20.19.19",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.179.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }

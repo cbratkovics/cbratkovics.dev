@@ -23,10 +23,12 @@ export function Stat({
   colorClass = "from-blue-400 to-cyan-400"
 }: StatProps) {
   const content = (
-    <div className="glassmorphism p-4 rounded-xl">
+    <div className="glassmorphism p-6 rounded-xl min-h-[160px] flex flex-col justify-center items-center text-center">
       {icon && (
         <div className={`inline-flex p-2 rounded-lg bg-gradient-to-r ${colorClass} mb-2`}>
-          {icon}
+          <div className="w-6 h-6 flex items-center justify-center">
+            {icon}
+          </div>
         </div>
       )}
       <div className="flex items-center gap-2">

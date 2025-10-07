@@ -150,7 +150,7 @@ export default function Hero({ metricsData }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-8"
+          className="mb-12"
         >
           <KPIGroup kpis={{
             projectsCount: models,
@@ -165,16 +165,15 @@ export default function Hero({ metricsData }: HeroProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="mb-16 flex flex-wrap justify-center items-center gap-3"
+          className="mb-16 flex flex-wrap justify-center items-center gap-4"
         >
-          <span className="text-sm text-gray-400 font-medium">Evidence sources:</span>
+          <span className="text-sm text-gray-300 font-semibold">Evidence sources:</span>
           {provenanceChips.map((chip, idx) => (
-            <div key={idx} className="flex items-center gap-1">
-              <span className="text-xs text-gray-400">{chip.label}:</span>
-              <ProvenanceChip
-                provenance={chip.provenance}
-                reproducible={chip.reproducible}
-              />
+            <div key={idx} className="flex items-center gap-2">
+              <span className="text-sm text-gray-400">{chip.label}:</span>
+              <button className="px-4 py-2 bg-white/10 border border-white/30 rounded-lg text-sm font-semibold hover:bg-white/20 transition-colors">
+                README
+              </button>
             </div>
           ))}
         </motion.div>

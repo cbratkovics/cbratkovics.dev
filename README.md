@@ -213,7 +213,7 @@ P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
 3. **Evidence Links:** Reproducible metrics link directly to GitHub artifacts
 4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
 
-*Last updated: 2025-10-06T23:53:27.410Z*
+*Last updated: 2025-10-07T00:01:37.365Z*
 <!-- AUTO-GENERATED METRICS:END -->
 
 ---

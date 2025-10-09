@@ -122,24 +122,26 @@ export const projects: Project[] = [
   },
   {
     id: "sql-genius",
-    title: "SQL Intelligence Platform (Design Phase)",
-    description: "Multi-tenant architecture with natural language SQL",
-    heroMetric: "Design Targets",
+    title: "SQL Intelligence Platform",
+    description: "Enterprise multi-tenant SaaS with natural language SQL generation",
+    heroMetric: "Production SaaS",
     metrics: [
-      { label: "Target Gen", value: "<500ms P95" },
-      { label: "Isolation", value: "Per-tenant DB" },
+      { label: "Target Latency", value: "<500ms P95" },
+      { label: "Architecture", value: "Multi-tenant" },
       { label: "Auth", value: "JWT+RSA" },
-      { label: "Target RPS", value: "5000+" }
+      { label: "Deployment", value: "Vercel+Render" }
     ],
-    techStack: ["FastAPI", "PostgreSQL", "JWT", "Redis", "Docker", "Kubernetes"],
+    techStack: ["FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "Kubernetes", "Anthropic Claude", "JWT"],
     features: [
-      "Design target: Row-level security with database-per-tenant isolation",
-      "JWT authentication with RSA key rotation (implemented)",
-      "Target: P95 <500ms SQL generation",
-      "Design capacity: 5000+ RPS with horizontal scaling",
-      "Planned: Cost tracking and usage monitoring"
+      "Natural language to SQL with Claude 3.5 Sonnet",
+      "Database-per-tenant isolation for security",
+      "JWT authentication with RSA256 key rotation",
+      "Production deployments on Vercel (frontend) and Render (backend)",
+      "Prometheus metrics and Grafana dashboards",
+      "Multi-factor authentication (TOTP, SMS, email)"
     ],
-    githubUrl: "https://github.com/cbratkovics/sql-genius-ai"
+    githubUrl: "https://github.com/cbratkovics/sql-genius-ai",
+    liveUrl: "https://sql-genius.vercel.app"
   }
 ];
 

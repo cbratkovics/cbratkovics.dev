@@ -92,6 +92,21 @@ const REPOS: RepoConfig[] = [
       'results/ragas_evaluation.json'
     ],
     readmePath: 'README.md'
+  },
+  {
+    owner: 'cbratkovics',
+    repo: 'sql-genius-ai',
+    title: 'SQL Intelligence Platform',
+    stage: 'production',
+    summary: 'Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation',
+    caseStudyPath: '/projects/sql-intelligence',
+    tech: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'Kubernetes', 'Anthropic Claude', 'JWT'],
+    artifactPaths: [
+      'README.md',
+      'backend/observability/metrics.py',
+      'DEPLOYMENT.md'
+    ],
+    readmePath: 'README.md'
   }
 ];
 

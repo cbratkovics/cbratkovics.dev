@@ -23,7 +23,7 @@ export const projects: Project[] = [
   {
     id: "ai-chatbot",
     title: "Multi-Tenant AI Chat Platform",
-    description: "Production chat service with semantic caching achieving ~70% cost reduction",
+    description: "Enterprise-grade AI chatbot platform with multi-provider orchestration (OpenAI, Anthropic) and intelligent cost-aware routing achieving ~70% cost reduction through semantic caching",
     heroMetric: "~73% Cache Hit Rate",
     metrics: [
       { label: "P95 Latency", value: "~186ms" },
@@ -31,8 +31,11 @@ export const projects: Project[] = [
       { label: "Cost Reduction", value: "~70-73%" },
       { label: "Concurrent Users", value: "100+ verified" }
     ],
-    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger"],
+    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger", "Docker", "Kubernetes", "Prometheus", "Grafana", "Next.js"],
     features: [
+      "Multi-provider orchestration with intelligent cost-aware routing between OpenAI, Anthropic, and other LLMs",
+      "Production-grade multi-tenancy with complete tenant isolation, JWT authentication, and per-tenant quotas",
+      "Comprehensive observability stack (Prometheus/Grafana/Jaeger) with distributed tracing and custom SLOs",
       "P95 latency ~186ms with 100+ concurrent WebSocket sessions (verified)",
       "Semantic cache ~73% hit rate with ~70-73% API cost reduction (JSON artifacts)",
       "Provider failover ~463ms between OpenAI and Anthropic",

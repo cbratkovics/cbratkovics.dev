@@ -65,7 +65,8 @@
         "Redis",
         "PostgreSQL",
         "Jaeger"
-      ]
+      ],
+      "liveUrl": "https://chatbot-ai-system.vercel.app"
     },
     {
       "repo": "cbratkovics/document-intelligence-ai",
@@ -98,7 +99,8 @@
         "Redis",
         "MLflow",
         "SHAP"
-      ]
+      ],
+      "liveUrl": "https://nba-ai-ml.vercel.app"
     },
     {
       "repo": "cbratkovics/fantasy-football-ai",

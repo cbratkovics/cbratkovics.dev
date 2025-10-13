@@ -30,6 +30,7 @@ export interface ProjectMetrics {
   summary: string; // 1-2 lines for cards
   caseStudyPath: string; // /projects/chat-platform
   tech: string[]; // chips
+  liveUrl?: string; // optional live demo URL
 }
 
 export interface HeroKPIs {

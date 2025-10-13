@@ -156,13 +156,38 @@ export default function Projects({ metricsData }: ProjectsProps) {
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       )}
+                    </div>
 
-                      {/* GitHub Link */}
+                    {/* Action Buttons - Live Demo + Source */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                      {/* Live Demo Button - PRIMARY */}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5
+                                     bg-gradient-to-r from-blue-500 to-purple-600
+                                     hover:from-blue-600 hover:to-purple-700
+                                     text-white font-semibold rounded-lg
+                                     hover:shadow-xl hover:scale-105
+                                     transition-all duration-300 group"
+                        >
+                          <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                          <span>Live Demo</span>
+                        </a>
+                      )}
+
+                      {/* GitHub Source - SECONDARY */}
                       <a
                         href={`https://github.com/${project.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors ml-auto"
+                        className={`flex items-center justify-center gap-2 px-4 py-2.5
+                                   text-sm text-gray-400 hover:text-white
+                                   glassmorphism rounded-lg
+                                   hover:bg-white/10 transition-all duration-300
+                                   ${project.liveUrl ? 'flex-shrink-0' : 'flex-1'}`}
                       >
                         <Github className="w-4 h-4" />
                         <span>Source</span>

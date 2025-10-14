@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Hero from "@/components/Hero";
+import MinimalHero from "@/components/MinimalHero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import BenchmarkMethodology from "@/components/BenchmarkMethodology";
@@ -24,11 +24,16 @@ export default function Home() {
       <Particles />
       <Navigation />
       <main className="relative z-10">
+        {/* Minimal Hero - Just Name + Tagline */}
         <div id="home">
-          <Hero metricsData={metricsData} />
+          <MinimalHero />
         </div>
-        <Skills />
+
+        {/* Projects FIRST - The Main Event */}
         <Projects metricsData={metricsData} />
+
+        {/* Everything else */}
+        <Skills />
         <BenchmarkMethodology />
         <Metrics />
         <Contact />

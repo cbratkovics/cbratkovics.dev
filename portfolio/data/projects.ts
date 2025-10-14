@@ -43,6 +43,7 @@ export const projects: Project[] = [
       "SLO 99.5%+, achieved 99.58% in synthetic tests"
     ],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
+    liveUrl: "https://chatbot-ai-system.vercel.app",
     performance: {
       before: "No caching",
       after: "~73% cache hit",
@@ -95,6 +96,7 @@ export const projects: Project[] = [
       "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
     ],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
+    liveUrl: "https://fantasy-football-ai.vercel.app",
     architecture: "Repository pattern with clean architecture"
   },
   {
@@ -117,6 +119,7 @@ export const projects: Project[] = [
       "SHAP-based model explainability"
     ],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
+    liveUrl: "https://nba-ai-ml.vercel.app",
     performance: {
       before: "Manual analysis",
       after: "87ms P95",

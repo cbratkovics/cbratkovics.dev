@@ -77,6 +77,34 @@ export default function Projects({ metricsData }: ProjectsProps) {
                       </a>
                     </div>
 
+                    {/* Project Screenshot Preview */}
+                    {project.liveUrl && (
+                      <div className="mb-4 rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-colors">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block relative group"
+                        >
+                          <img
+                            src={`/images/${project.repo.split('/')[1]}-demo.png`}
+                            alt={`${project.title} Demo Screenshot`}
+                            className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              // Hide image if not found
+                              (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                            <span className="text-white font-semibold flex items-center gap-2">
+                              Open Live Demo
+                              <ExternalLink className="w-4 h-4" />
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                    )}
+
                     {/* Summary */}
                     <p className="text-gray-300 mb-6">
                       {project.summary}

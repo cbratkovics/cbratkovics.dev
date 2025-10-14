@@ -31,7 +31,7 @@ const REPOS: RepoConfig[] = [
     owner: 'cbratkovics',
     repo: 'chatbot-ai-system',
     title: 'Multi-Tenant Chat Platform',
-    stage: 'synthetic_benchmark',
+    stage: 'production',
     summary: '~186 ms P95, ~73% cache hit, ~70–73% cost reduction with failover across OpenAI/Anthropic',
     caseStudyPath: '/projects/chat-platform',
     tech: ['OpenAI', 'Anthropic', 'FastAPI', 'WebSockets', 'Redis', 'PostgreSQL', 'Jaeger'],

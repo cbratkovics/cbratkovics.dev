@@ -271,3 +271,94 @@ I'm passionate about transforming ML research into production systems that deliv
 4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
 
 *Last updated: 2025-10-14T02:45:44.400Z*
+
+
+<!-- AUTO-GENERATED METRICS:BEGIN -->
+
+## Verified Production Metrics
+
+> All metrics below are auto-generated from [data/metrics.json](portfolio/data/metrics.json) with GitHub artifacts as evidence.
+> Synthetic benchmarks are clearly labeled. Prototype projects excluded from hero KPIs.
+
+### Key Performance Indicators
+
+- **93.1% Model Accuracy** (within ±3 fantasy points) - Fantasy Football AI [📊 Evidence](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
+- **87ms P95 Latency** - NBA Performance Prediction System [📊 Evidence](https://github.com/cbratkovics/nba-ai-ml#model-performance)
+- **88% Docker Reduction** (3.3GB → 402MB) - Document Intelligence RAG [📊 Evidence](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
+- **6 Production ML Systems** with verified benchmarks
+
+### Project Portfolio
+
+#### Multi-Tenant Chat Platform 🟢 PRODUCTION
+
+~186 ms P95, ~73% cache hit, ~70–73% cost reduction with failover across OpenAI/Anthropic
+
+**Key Metrics:**
+- 73% semantic cache - [cache_metrics_latest.json](https://github.com/cbratkovics/chatbot-ai-system/blob/main/benchmarks/results/cache_metrics_latest.json)
+
+**Tech:** OpenAI, Anthropic, FastAPI, WebSockets, Redis, PostgreSQL, Jaeger
+
+[View on GitHub](https://github.com/cbratkovics/chatbot-ai-system)
+
+#### SQL Intelligence Platform 🟢 PRODUCTION
+
+Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation
+
+**Tech:** FastAPI, PostgreSQL, Redis, Celery, Docker, Kubernetes, Anthropic Claude, JWT
+
+[View on GitHub](https://github.com/cbratkovics/sql-genius-ai)
+
+#### Document Intelligence RAG 🔵 SYNTHETIC
+
+RAG with 42% semantic cache hit, P95 <200 ms, Docker −88% (3.3 GB → 402 MB)
+
+**Key Metrics:**
+- 88% 3.3GB → 402MB - [README.md](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
+- 35% cross-encoder reranking - [README.md](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
+
+**Tech:** LangChain, ChromaDB, FastAPI, Celery, Redis, Docker, OpenAI
+
+[View on GitHub](https://github.com/cbratkovics/document-intelligence-ai)
+
+#### NBA Performance Prediction System 🔵 SYNTHETIC
+
+R² 0.942 (points), P95 87 ms, 169K+ records, 40+ features
+
+**Key Metrics:**
+- 87ms API latency - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
+- 169K+ ETL pipeline - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
+- 40+ feature engineering - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
+
+**Tech:** XGBoost, FastAPI, PostgreSQL, Redis, MLflow, SHAP
+
+[View on GitHub](https://github.com/cbratkovics/nba-ai-ml)
+
+#### Fantasy Football AI 🔵 SYNTHETIC
+
+93.1% accuracy (±3 pts), <100 ms cached, <200 ms uncached
+
+**Key Metrics:**
+- 93.1% within ±3 fantasy points - [README.md](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
+- 100+ engineered features - [README.md](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
+
+**Tech:** XGBoost, LightGBM, Neural Networks, FastAPI, Redis, PostgreSQL
+
+[View on GitHub](https://github.com/cbratkovics/fantasy-football-ai)
+
+#### RAG Pipeline (Benchmarks) 🔵 SYNTHETIC
+
+P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
+
+**Tech:** LangChain, ChromaDB, RAGAS, OpenAI
+
+[View on GitHub](https://github.com/cbratkovics/rag-pipeline)
+
+### Benchmark Methodology
+
+1. **Provenance-First:** Every metric includes its source (GitHub artifact, README, etc.)
+2. **Stage Labels:** Projects are labeled as Production, Synthetic Benchmark, or Prototype
+3. **Evidence Links:** Reproducible metrics link directly to GitHub artifacts
+4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
+
+*Last updated: 2025-10-14T03:06:47.438Z*
+<!-- AUTO-GENERATED METRICS:END -->

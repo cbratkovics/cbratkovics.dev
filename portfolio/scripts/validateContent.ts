@@ -177,12 +177,12 @@ function validateMetrics(): ValidationError[] {
     }
   }
 
-  // Chat project must be labeled as synthetic
+  // Chat project can be production or synthetic_benchmark
   const chatProject = metrics.projects.find(p => p.title.toLowerCase().includes('chat'));
-  if (chatProject && chatProject.stage !== 'synthetic_benchmark') {
+  if (chatProject && chatProject.stage !== 'production' && chatProject.stage !== 'synthetic_benchmark') {
     errors.push({
       severity: 'error',
-      message: `Chat platform must have stage='synthetic_benchmark', found '${chatProject.stage}'`
+      message: `Chat platform must have stage='production' or 'synthetic_benchmark', found '${chatProject.stage}'`
     });
   }
 

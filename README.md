@@ -2,7 +2,9 @@
 
 ## Data Scientist → AI Engineer | Building Production ML Systems
 
-[Portfolio](https://cbratkovics.dev) | [LinkedIn](https://www.linkedin.com/in/cbratkovics/) | [GitHub](https://github.com/cbratkovics)
+[![Portfolio](https://img.shields.io/badge/Portfolio-cbratkovics.dev-blue?style=for-the-badge)](https://cbratkovics.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-cbratkovics-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/cbratkovics/)
+[![GitHub](https://img.shields.io/badge/GitHub-cbratkovics-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics)
 
 ---
 
@@ -16,31 +18,39 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 
 ### Production ML Systems
 
-#### Document Intelligence RAG System
-*Enterprise RAG implementation with hybrid search and async processing*
+#### 💬 Multi-Tenant AI Chat Platform
+*Production chat system with 99.5% uptime and <200ms latency*
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-success?style=for-the-badge&logo=vercel)](https://chatbot-ai-system.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/chatbot-ai-system)
 
 **Architecture Highlights:**
-- Document processing pipeline supporting PDF, TXT, Markdown formats
-- Hybrid search combining vector similarity (ChromaDB) with BM25 keyword matching
-- Asynchronous document processing with Celery task queue
-- Streaming response support for real-time interactions
-- Cache hit rate improvement of 42% through optimization
-- Docker optimization from 3.3GB to 402MB (88% reduction)
+- Multi-model integration (OpenAI, Anthropic) with failover logic
+- WebSocket implementation handling 100+ concurrent connections
+- Semantic caching reducing API costs by 30%
+- Distributed tracing for observability
+- Auto-scaling based on request patterns
+
+**Performance Metrics:**
+- ~186ms P95 latency
+- ~73% cache hit rate
+- ~70-73% cost reduction with failover
 
 **Engineering Decisions:**
-- Implemented chunking strategies preserving semantic boundaries
-- Used factory pattern for multiple embedding model support
-- Applied circuit breaker pattern for external API resilience
-- Structured with clean architecture (ports and adapters)
+- Implemented adapter pattern for LLM provider abstraction
+- Used strategy pattern for model selection logic
+- Applied saga pattern for distributed transactions
+- Built with hexagonal architecture principles
 
-**Technical Stack:** LangChain, ChromaDB, FastAPI, Celery, Redis, OpenAI APIs
-
-[GitHub](https://github.com/cbratkovics/document-intelligence-ai)
+**Technical Stack:** FastAPI, WebSockets, Redis, PostgreSQL, OpenAI/Anthropic APIs
 
 ---
 
-#### Multi-Tenant SQL Intelligence Platform
+#### 🔍 Multi-Tenant SQL Intelligence Platform
 *Enterprise platform with natural language SQL generation*
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-success?style=for-the-badge&logo=vercel)](https://sql-genius-ai.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/sql-genius-ai)
 
 **Architecture Highlights:**
 - Multi-tenant architecture with database-per-tenant isolation
@@ -59,62 +69,47 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - Input validation against SQL injection
 - Row-level security in PostgreSQL
 - Query result caching with Redis
-- <200ms average query generation time
+- <500ms P95 latency target
 
-**Technical Stack:** FastAPI, PostgreSQL, JWT, Redis, Docker, SQLAlchemy
-
-[GitHub](https://github.com/cbratkovics/sql-genius-ai)
+**Technical Stack:** FastAPI, PostgreSQL, JWT, Redis, Docker, Anthropic Claude
 
 ---
 
-#### Multi-Tenant AI Chat Platform
-*Production chat system with 99.5% uptime and <200ms latency*
+#### 📄 Document Intelligence RAG System
+*Enterprise RAG implementation with hybrid search and async processing*
+
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/document-intelligence-ai)
 
 **Architecture Highlights:**
-- Multi-model integration (OpenAI, Anthropic) with failover logic
-- WebSocket implementation handling 100+ concurrent connections
-- Semantic caching reducing API costs by 30%
-- Distributed tracing for observability
-- Auto-scaling based on request patterns
+- Document processing pipeline supporting PDF, TXT, Markdown formats
+- Hybrid search combining vector similarity (ChromaDB) with BM25 keyword matching
+- Asynchronous document processing with Celery task queue
+- Streaming response support for real-time interactions
+- Cache hit rate improvement of 42% through optimization
+- Docker optimization from 3.3GB to 402MB (88% reduction)
+
+**Performance Metrics:**
+- P95 <200ms latency
+- 42% semantic cache hit rate
+- 35% improvement with cross-encoder reranking
 
 **Engineering Decisions:**
-- Implemented adapter pattern for LLM provider abstraction
-- Used strategy pattern for model selection logic
-- Applied saga pattern for distributed transactions
-- Built with hexagonal architecture principles
+- Implemented chunking strategies preserving semantic boundaries
+- Used factory pattern for multiple embedding model support
+- Applied circuit breaker pattern for external API resilience
+- Structured with clean architecture (ports and adapters)
 
-**Technical Stack:** FastAPI, WebSockets, Redis, PostgreSQL, OpenAI/Anthropic APIs
-
-[GitHub](https://github.com/cbratkovics/chatbot-ai-system)
+**Technical Stack:** LangChain, ChromaDB, FastAPI, Celery, Redis, OpenAI APIs
 
 ---
 
 ### Data Science & Analytics Projects
 
-#### Fantasy Football AI Platform
-*93.1% prediction accuracy through ensemble ML with production API*
-
-**Architecture Highlights:**
-- Ensemble model combining XGBoost (0.4 weight), LightGBM (0.35), Random Forest (0.25)
-- 93.1% accuracy (predictions within 3 fantasy points)
-- FastAPI backend with <100ms cached response time
-- Redis caching layer with intelligent TTL strategies
-- Docker optimization from 2.4GB to 1.1GB (54% reduction)
-
-**Engineering Decisions:**
-- Implemented feature store with 40+ engineered features
-- Used repository pattern for data access layer abstraction
-- Applied dependency injection for testable components
-- Structured as microservices-ready monolith for future scaling
-
-**Technical Stack:** Python, FastAPI, Redis, PostgreSQL, Docker, XGBoost, LightGBM
-
-[GitHub](https://github.com/cbratkovics/fantasy-football-ai)
-
----
-
-#### NBA Performance Prediction System
+#### 🏀 NBA Performance Prediction System
 *End-to-end ML pipeline processing 169K+ game records*
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-success?style=for-the-badge&logo=vercel)](https://nba-ai-ml.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/nba-ai-ml)
 
 **Model Performance:**
 - R² scores: Points (0.942), Rebounds (0.887), Assists (0.863)
@@ -130,11 +125,50 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 
 **Technical Stack:** Python, Scikit-learn, XGBoost, FastAPI, PostgreSQL, MLflow
 
-[GitHub](https://github.com/cbratkovics/nba-ai-ml)
+---
+
+#### 🏈 Fantasy Football AI Platform
+*93.1% prediction accuracy through ensemble ML with production API*
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-success?style=for-the-badge&logo=vercel)](https://fantasy-football-ai.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/fantasy-football-ai)
+
+**Architecture Highlights:**
+- Ensemble model combining XGBoost (0.4 weight), LightGBM (0.35), Random Forest (0.25)
+- 93.1% accuracy (predictions within 3 fantasy points)
+- FastAPI backend with <100ms cached response time
+- Redis caching layer with intelligent TTL strategies
+- Docker optimization from 2.4GB to 1.1GB (54% reduction)
+
+**Performance Metrics:**
+- 93.1% accuracy within ±3 fantasy points
+- <100ms cached response time
+- <200ms uncached response time
+- 100+ engineered features
+
+**Engineering Decisions:**
+- Implemented feature store with 40+ engineered features
+- Used repository pattern for data access layer abstraction
+- Applied dependency injection for testable components
+- Structured as microservices-ready monolith for future scaling
+
+**Technical Stack:** Python, FastAPI, Redis, PostgreSQL, Docker, XGBoost, LightGBM
 
 ---
 
-<!-- AUTO-GENERATED METRICS:BEGIN -->
+#### 🔗 RAG Pipeline (Benchmarks)
+*Production-grade RAG with comprehensive evaluation framework*
+
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics/rag-pipeline)
+
+**Performance Metrics:**
+- P99 ~1456ms latency
+- 20.78 RPS throughput
+- RAGAS metrics with full evaluation
+
+**Technical Stack:** LangChain, ChromaDB, RAGAS, OpenAI
+
+---
 
 ## Verified Production Metrics
 
@@ -148,81 +182,16 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - **88% Docker Reduction** (3.3GB → 402MB) - Document Intelligence RAG [📊 Evidence](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
 - **6 Production ML Systems** with verified benchmarks
 
-### Project Portfolio
+### Project Matrix
 
-#### Multi-Tenant Chat Platform 🔵 SYNTHETIC
-
-~186 ms P95, ~73% cache hit, ~70–73% cost reduction with failover across OpenAI/Anthropic
-
-**Key Metrics:**
-- 73% semantic cache - [cache_metrics_latest.json](https://github.com/cbratkovics/chatbot-ai-system/blob/main/benchmarks/results/cache_metrics_latest.json)
-
-**Tech:** OpenAI, Anthropic, FastAPI, WebSockets, Redis, PostgreSQL, Jaeger
-
-[View on GitHub](https://github.com/cbratkovics/chatbot-ai-system)
-
-#### SQL Intelligence Platform 🟢 PRODUCTION
-
-Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation
-
-**Tech:** FastAPI, PostgreSQL, Redis, Celery, Docker, Kubernetes, Anthropic Claude, JWT
-
-[View on GitHub](https://github.com/cbratkovics/sql-genius-ai)
-
-#### Document Intelligence RAG 🔵 SYNTHETIC
-
-RAG with 42% semantic cache hit, P95 <200 ms, Docker −88% (3.3 GB → 402 MB)
-
-**Key Metrics:**
-- 88% 3.3GB → 402MB - [README.md](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
-- 35% cross-encoder reranking - [README.md](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
-
-**Tech:** LangChain, ChromaDB, FastAPI, Celery, Redis, Docker, OpenAI
-
-[View on GitHub](https://github.com/cbratkovics/document-intelligence-ai)
-
-#### NBA Performance Prediction System 🔵 SYNTHETIC
-
-R² 0.942 (points), P95 87 ms, 169K+ records, 40+ features
-
-**Key Metrics:**
-- 87ms API latency - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
-- 169K+ ETL pipeline - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
-- 40+ feature engineering - [README.md](https://github.com/cbratkovics/nba-ai-ml#model-performance)
-
-**Tech:** XGBoost, FastAPI, PostgreSQL, Redis, MLflow, SHAP
-
-[View on GitHub](https://github.com/cbratkovics/nba-ai-ml)
-
-#### Fantasy Football AI 🔵 SYNTHETIC
-
-93.1% accuracy (±3 pts), <100 ms cached, <200 ms uncached
-
-**Key Metrics:**
-- 93.1% within ±3 fantasy points - [README.md](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
-- 100+ engineered features - [README.md](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
-
-**Tech:** XGBoost, LightGBM, Neural Networks, FastAPI, Redis, PostgreSQL
-
-[View on GitHub](https://github.com/cbratkovics/fantasy-football-ai)
-
-#### RAG Pipeline (Benchmarks) 🔵 SYNTHETIC
-
-P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
-
-**Tech:** LangChain, ChromaDB, RAGAS, OpenAI
-
-[View on GitHub](https://github.com/cbratkovics/rag-pipeline)
-
-### Benchmark Methodology
-
-1. **Provenance-First:** Every metric includes its source (GitHub artifact, README, etc.)
-2. **Stage Labels:** Projects are labeled as Production, Synthetic Benchmark, or Prototype
-3. **Evidence Links:** Reproducible metrics link directly to GitHub artifacts
-4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
-
-*Last updated: 2025-10-14T02:45:44.400Z*
-<!-- AUTO-GENERATED METRICS:END -->
+| Project | Stage | Key Metric | Live Demo | GitHub |
+|---------|-------|------------|-----------|--------|
+| Chat Platform | 🔵 Synthetic | 73% cache hit | [Demo](https://chatbot-ai-system.vercel.app/) | [Code](https://github.com/cbratkovics/chatbot-ai-system) |
+| SQL Intelligence | 🟢 Production | <500ms P95 | [Demo](https://sql-genius-ai.vercel.app/) | [Code](https://github.com/cbratkovics/sql-genius-ai) |
+| Document RAG | 🔵 Synthetic | 88% Docker ↓ | - | [Code](https://github.com/cbratkovics/document-intelligence-ai) |
+| NBA Predictions | 🔵 Synthetic | R² 0.942 | [Demo](https://nba-ai-ml.vercel.app/) | [Code](https://github.com/cbratkovics/nba-ai-ml) |
+| Fantasy Football | 🔵 Synthetic | 93.1% accuracy | [Demo](https://fantasy-football-ai.vercel.app/) | [Code](https://github.com/cbratkovics/fantasy-football-ai) |
+| RAG Pipeline | 🔵 Synthetic | 20.78 RPS | - | [Code](https://github.com/cbratkovics/rag-pipeline) |
 
 ---
 
@@ -245,14 +214,18 @@ P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
 
 ## Professional Experience
 
-**Data Scientist** | Current Role (April 2024 - Present)
+### Data Scientist | Current Role
+*April 2024 - Present*
+
 - Developed and deployed predictive models to production
 - Integrated ML solutions with engineering teams on MLOps workflows
 - Validated product initiatives through rigorous A/B testing
 - Enhanced workflows with Generative AI implementation
 - Saved 20+ hours weekly through Python ETL automation
 
-**Senior Data Analyst** | (April 2021 - April 2024)
+### Senior Data Analyst
+*April 2021 - April 2024*
+
 - Led data initiatives using advanced analytics and predictive modeling
 - Evaluated product performance through A/B testing and experimentation
 - Identified business opportunities analyzing large-scale datasets
@@ -284,6 +257,18 @@ P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
 
 I'm passionate about transforming ML research into production systems that deliver real business value. If you're looking for someone who can both build models and deploy them reliably at scale, let's talk.
 
-**Portfolio:** [cbratkovics.dev](https://cbratkovics.dev)
-**LinkedIn:** [linkedin.com/in/cbratkovics](https://www.linkedin.com/in/cbratkovics/)
-**GitHub:** [github.com/cbratkovics](https://github.com/cbratkovics)
+[![Portfolio](https://img.shields.io/badge/Portfolio-cbratkovics.dev-blue?style=for-the-badge)](https://cbratkovics.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/cbratkovics/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/cbratkovics)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail)](mailto:cbratkovics@gmail.com)
+
+---
+
+### Benchmark Methodology
+
+1. **Provenance-First:** Every metric includes its source (GitHub artifact, README, etc.)
+2. **Stage Labels:** Projects are labeled as Production, Synthetic Benchmark, or Prototype
+3. **Evidence Links:** Reproducible metrics link directly to GitHub artifacts
+4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
+
+*Last updated: 2025-10-14T02:45:44.400Z*

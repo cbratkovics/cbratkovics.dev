@@ -1,9 +1,9 @@
 {
   "hero": {
-    "projectsCount": 0,
-    "bestAccuracy": 0,
-    "fastestP95ms": 0,
-    "dockerReductionPct": 0
+    "projectsCount": 4,
+    "bestAccuracy": 93.1,
+    "fastestP95ms": 87,
+    "dockerReductionPct": 88
   },
   "impactBullets": [
     {
@@ -54,7 +54,22 @@
       "repo": "cbratkovics/chatbot-ai-system",
       "title": "Multi-Tenant Chat Platform",
       "stage": "synthetic_benchmark",
-      "metrics": {},
+      "metrics": {
+        "cache_hit_rate": {
+          "key": "cache_hit_rate",
+          "value": 73,
+          "unit": "%",
+          "note": "semantic cache",
+          "evidence": [
+            {
+              "label": "cache_metrics_latest.json",
+              "href": "https://github.com/cbratkovics/chatbot-ai-system/blob/main/benchmarks/results/cache_metrics_latest.json"
+            }
+          ],
+          "provenance": "repo_artifact",
+          "reproducible": true
+        }
+      },
       "summary": "~186 ms P95, ~73% cache hit, ~70–73% cost reduction with failover across OpenAI/Anthropic",
       "caseStudyPath": "/projects/chat-platform",
       "tech": [
@@ -66,13 +81,61 @@
         "PostgreSQL",
         "Jaeger"
       ],
-      "liveUrl": "https://chatbot-ai-system.vercel.app"
+      "liveUrl": "https://chatbot-ai-system.vercel.app/"
+    },
+    {
+      "repo": "cbratkovics/sql-genius-ai",
+      "title": "SQL Intelligence Platform",
+      "stage": "production",
+      "metrics": {},
+      "summary": "Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation",
+      "caseStudyPath": "/projects/sql-intelligence",
+      "tech": [
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Celery",
+        "Docker",
+        "Kubernetes",
+        "Anthropic Claude",
+        "JWT"
+      ],
+      "liveUrl": "https://sql-genius-ai.vercel.app/"
     },
     {
       "repo": "cbratkovics/document-intelligence-ai",
       "title": "Document Intelligence RAG",
       "stage": "synthetic_benchmark",
-      "metrics": {},
+      "metrics": {
+        "docker_reduction": {
+          "key": "docker_reduction",
+          "value": 88,
+          "unit": "%",
+          "note": "3.3GB → 402MB",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        },
+        "relevance_boost": {
+          "key": "relevance_boost",
+          "value": 35,
+          "unit": "%",
+          "note": "cross-encoder reranking",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        }
+      },
       "summary": "RAG with 42% semantic cache hit, P95 <200 ms, Docker −88% (3.3 GB → 402 MB)",
       "caseStudyPath": "/projects/document-intelligence",
       "tech": [
@@ -89,7 +152,50 @@
       "repo": "cbratkovics/nba-ai-ml",
       "title": "NBA Performance Prediction System",
       "stage": "synthetic_benchmark",
-      "metrics": {},
+      "metrics": {
+        "p95_latency_ms": {
+          "key": "p95_latency_ms",
+          "value": 87,
+          "unit": "ms",
+          "note": "API latency",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/nba-ai-ml#model-performance"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        },
+        "records_processed": {
+          "key": "records_processed",
+          "value": "169K+",
+          "unit": "",
+          "note": "ETL pipeline",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/nba-ai-ml#model-performance"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        },
+        "features": {
+          "key": "features",
+          "value": "40+",
+          "unit": "",
+          "note": "feature engineering",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/nba-ai-ml#model-performance"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        }
+      },
       "summary": "R² 0.942 (points), P95 87 ms, 169K+ records, 40+ features",
       "caseStudyPath": "/projects/nba-predictions",
       "tech": [
@@ -100,13 +206,42 @@
         "MLflow",
         "SHAP"
       ],
-      "liveUrl": "https://nba-ai-ml.vercel.app"
+      "liveUrl": "https://nba-ai-ml.vercel.app/"
     },
     {
       "repo": "cbratkovics/fantasy-football-ai",
       "title": "Fantasy Football AI",
       "stage": "synthetic_benchmark",
-      "metrics": {},
+      "metrics": {
+        "accuracy": {
+          "key": "accuracy",
+          "value": 93.1,
+          "unit": "%",
+          "note": "within ±3 fantasy points",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        },
+        "features": {
+          "key": "features",
+          "value": "100+",
+          "unit": "",
+          "note": "engineered features",
+          "evidence": [
+            {
+              "label": "README.md",
+              "href": "https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics"
+            }
+          ],
+          "provenance": "readme_text",
+          "reproducible": true
+        }
+      },
       "summary": "93.1% accuracy (±3 pts), <100 ms cached, <200 ms uncached",
       "caseStudyPath": "/projects/fantasy-football",
       "tech": [
@@ -117,7 +252,7 @@
         "Redis",
         "PostgreSQL"
       ],
-      "liveUrl": "https://fantasy-football-ai.vercel.app"
+      "liveUrl": "https://fantasy-football-ai.vercel.app/"
     },
     {
       "repo": "cbratkovics/rag-pipeline",
@@ -134,5 +269,5 @@
       ]
     }
   ],
-  "lastGeneratedISO": "2025-10-07T00:17:29.776Z"
+  "lastGeneratedISO": "2025-10-14T02:45:44.400Z"
 }

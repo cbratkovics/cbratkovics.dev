@@ -146,7 +146,7 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 - **93.1% Model Accuracy** (within ±3 fantasy points) - Fantasy Football AI [📊 Evidence](https://github.com/cbratkovics/fantasy-football-ai#verified-production-metrics)
 - **87ms P95 Latency** - NBA Performance Prediction System [📊 Evidence](https://github.com/cbratkovics/nba-ai-ml#model-performance)
 - **88% Docker Reduction** (3.3GB → 402MB) - Document Intelligence RAG [📊 Evidence](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics)
-- **5 Production ML Systems** with verified benchmarks
+- **6 Production ML Systems** with verified benchmarks
 
 ### Project Portfolio
 
@@ -160,6 +160,14 @@ I bridge advanced analytics and reliable engineering to transform experimental A
 **Tech:** OpenAI, Anthropic, FastAPI, WebSockets, Redis, PostgreSQL, Jaeger
 
 [View on GitHub](https://github.com/cbratkovics/chatbot-ai-system)
+
+#### SQL Intelligence Platform 🟢 PRODUCTION
+
+Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation
+
+**Tech:** FastAPI, PostgreSQL, Redis, Celery, Docker, Kubernetes, Anthropic Claude, JWT
+
+[View on GitHub](https://github.com/cbratkovics/sql-genius-ai)
 
 #### Document Intelligence RAG 🔵 SYNTHETIC
 
@@ -213,7 +221,7 @@ P99 ~1456 ms, 20.78 RPS, RAGAS metrics with full evaluation
 3. **Evidence Links:** Reproducible metrics link directly to GitHub artifacts
 4. **Honest Reporting:** Missing artifacts = metric hidden or marked as target
 
-*Last updated: 2025-10-07T00:01:37.365Z*
+*Last updated: 2025-10-14T02:45:44.400Z*
 <!-- AUTO-GENERATED METRICS:END -->
 
 ---

@@ -9,6 +9,10 @@ Copy and paste these achievement bullets into your LinkedIn profile.
 - Shipped Multi-Tenant Chat Platform: 73% semantic cache ([evidence](https://github.com/cbratkovics/chatbot-ai-system/blob/main/benchmarks/results/cache_metrics_latest.json))
 
 
+## SQL Intelligence Platform
+
+- Built SQL Intelligence Platform with FastAPI, PostgreSQL, Redis
+
 ## Document Intelligence RAG
 
 - Shipped Document Intelligence RAG: 88% 3.3GB → 402MB, 35% cross-encoder reranking ([evidence](https://github.com/cbratkovics/document-intelligence-ai#key-performance-metrics))

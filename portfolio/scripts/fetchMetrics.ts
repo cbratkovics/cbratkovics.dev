@@ -23,6 +23,7 @@ interface RepoConfig {
   tech: string[];
   artifactPaths: string[];
   readmePath?: string;
+  liveUrl?: string;
 }
 
 const REPOS: RepoConfig[] = [
@@ -39,7 +40,24 @@ const REPOS: RepoConfig[] = [
       'benchmarks/results/cache_metrics_latest.json',
       'benchmarks/load_tests/k6_results.json',
     ],
-    readmePath: 'README.md'
+    readmePath: 'README.md',
+    liveUrl: 'https://chatbot-ai-system.vercel.app/'
+  },
+  {
+    owner: 'cbratkovics',
+    repo: 'sql-genius-ai',
+    title: 'SQL Intelligence Platform',
+    stage: 'production',
+    summary: 'Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation',
+    caseStudyPath: '/projects/sql-intelligence',
+    tech: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'Kubernetes', 'Anthropic Claude', 'JWT'],
+    artifactPaths: [
+      'README.md',
+      'backend/observability/metrics.py',
+      'DEPLOYMENT.md'
+    ],
+    readmePath: 'README.md',
+    liveUrl: 'https://sql-genius-ai.vercel.app/'
   },
   {
     owner: 'cbratkovics',
@@ -66,7 +84,8 @@ const REPOS: RepoConfig[] = [
     artifactPaths: [
       'docs/model_performance.md'
     ],
-    readmePath: 'README.md'
+    readmePath: 'README.md',
+    liveUrl: 'https://nba-ai-ml.vercel.app/'
   },
   {
     owner: 'cbratkovics',
@@ -77,7 +96,8 @@ const REPOS: RepoConfig[] = [
     caseStudyPath: '/projects/fantasy-football',
     tech: ['XGBoost', 'LightGBM', 'Neural Networks', 'FastAPI', 'Redis', 'PostgreSQL'],
     artifactPaths: [],
-    readmePath: 'README.md'
+    readmePath: 'README.md',
+    liveUrl: 'https://fantasy-football-ai.vercel.app/'
   },
   {
     owner: 'cbratkovics',
@@ -90,21 +110,6 @@ const REPOS: RepoConfig[] = [
     artifactPaths: [
       'results/metrics.json',
       'results/ragas_evaluation.json'
-    ],
-    readmePath: 'README.md'
-  },
-  {
-    owner: 'cbratkovics',
-    repo: 'sql-genius-ai',
-    title: 'SQL Intelligence Platform',
-    stage: 'production',
-    summary: 'Enterprise multi-tenant SaaS with natural language SQL generation, <500ms P95 latency target, JWT auth with RSA rotation, database-per-tenant isolation',
-    caseStudyPath: '/projects/sql-intelligence',
-    tech: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'Kubernetes', 'Anthropic Claude', 'JWT'],
-    artifactPaths: [
-      'README.md',
-      'backend/observability/metrics.py',
-      'DEPLOYMENT.md'
     ],
     readmePath: 'README.md'
   }
@@ -597,7 +602,8 @@ async function ingestMetrics() {
       metrics,
       summary: config.summary,
       caseStudyPath: config.caseStudyPath,
-      tech: config.tech
+      tech: config.tech,
+      liveUrl: config.liveUrl
     });
 
     console.log('');

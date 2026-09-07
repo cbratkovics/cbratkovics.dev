@@ -2,197 +2,169 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  heroMetric: string;
-  metrics: {
-    label: string;
-    value: string;
-  }[];
-  techStack: string[];
-  features: string[];
-  githubUrl?: string;
+  tech: string[];
+  githubUrl: string;
   liveUrl?: string;
-  architecture?: string;
-  performance?: {
-    before?: string;
-    after?: string;
-    improvement?: string;
-  };
+  image?: string;
 }
+
+export interface ExperienceRole {
+  id: string;
+  title: string;
+  focus: string;
+  company: string;
+  location: string;
+  period: string;
+  bullets: string[];
+}
+
+export interface EducationEntry {
+  degree: string;
+  field: string;
+  institution: string;
+  date: string;
+}
+
+export const experience: ExperienceRole[] = [
+  {
+    id: "senior-data-analyst",
+    title: "Senior Data Analyst",
+    focus: "Data Science / Analytics Engineering",
+    company: "OUTFRONT Media",
+    location: "New York, NY",
+    period: "April 2022 to Present",
+    bullets: [
+      "Built and own the production Snowflake and dbt pipeline unifying five advertising sources for revenue and delivery reporting in Sigma, with S3 feed integration, deduplication, and historical backfills",
+      "Developed Python churn-risk models and K-means segmentation, delivering risk scores and interpretable customer segments through Snowflake and Sigma to guide retention outreach and growth targeting",
+      "Built regression models for inventory utilization and revenue per unit, using cross-market peer clustering to identify performance gaps and support yield-management decisions",
+      "Implemented a Python fuzzy-matching workflow comparing external advertiser names against 400,000+ internal records, delivering Snowflake ID mappings with confidence tiers and business-user overrides",
+      "Created reusable SQL reconciliation checks with explicit tolerances and record-level diagnostics, producing auditable evidence for data-platform migration",
+      "Developed daily programmatic occupancy components in dbt and co-designed a reporting model separating sales activity from shared inventory capacity",
+      "Delivered a generative AI application for CFO financial communications, separating verified SQL data from generated narrative with numeric validation and editable previews"
+    ]
+  },
+  {
+    id: "bi-data-analyst",
+    title: "Business Intelligence Data Analyst",
+    focus: "Data Architecture / Data Science",
+    company: "OUTFRONT Media",
+    location: "New York, NY",
+    period: "July 2019 to April 2022",
+    bullets: [
+      "Automated recurring reporting workflows with Python ETL, saving 20+ hours per week across teams",
+      "Designed fact and dimension tables and KPI definitions to support executive dashboards and business reporting",
+      "Built automated data-quality checks and anomaly-detection workflows to identify issues in reporting data",
+      "Developed predictive-model prototypes to support business analysis and decision-making"
+    ]
+  }
+];
+
+export const education: EducationEntry[] = [
+  {
+    degree: "Master of Science",
+    field: "Applied Data Science",
+    institution: "Bay Path University",
+    date: "June 2025"
+  },
+  {
+    degree: "Bachelor of Science",
+    field: "Computer Science",
+    institution: "University of Vermont",
+    date: "December 2018"
+  }
+];
 
 export const projects: Project[] = [
   {
-    id: "ai-chatbot",
-    title: "Multi-Tenant AI Chat Platform",
-    description: "Enterprise-grade AI chatbot platform with multi-provider orchestration (OpenAI, Anthropic) and intelligent cost-aware routing achieving ~70% cost reduction through semantic caching",
-    heroMetric: "~73% Cache Hit Rate",
-    metrics: [
-      { label: "P95 Latency", value: "~186ms" },
-      { label: "Cache Hit Rate", value: "~73%" },
-      { label: "Cost Reduction", value: "~70-73%" },
-      { label: "Concurrent Users", value: "100+ verified" }
-    ],
-    techStack: ["OpenAI", "Anthropic", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Jaeger", "Docker", "Kubernetes", "Prometheus", "Grafana", "Next.js"],
-    features: [
-      "Multi-provider orchestration with intelligent cost-aware routing between OpenAI, Anthropic, and other LLMs",
-      "Production-grade multi-tenancy with complete tenant isolation, JWT authentication, and per-tenant quotas",
-      "Comprehensive observability stack (Prometheus/Grafana/Jaeger) with distributed tracing and custom SLOs",
-      "P95 latency ~186ms with 100+ concurrent WebSocket sessions (verified)",
-      "Semantic cache ~73% hit rate with ~70-73% API cost reduction (JSON artifacts)",
-      "Provider failover ~463ms between OpenAI and Anthropic",
-      "Throughput ~250 RPS on developer hardware (local benchmark)",
-      "SLO 99.5%+, achieved 99.58% in synthetic tests"
-    ],
-    githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
-    liveUrl: "https://chatbot-ai-system.vercel.app",
-    performance: {
-      before: "No caching",
-      after: "~73% cache hit",
-      improvement: "~70% cost reduction"
-    }
-  },
-  {
-    id: "document-intelligence",
-    title: "Enterprise Document Intelligence (RAG)",
-    description: "Hybrid retrieval system with verified metrics",
-    heroMetric: "P95 <200ms",
-    metrics: [
-      { label: "Cache Hit Rate", value: "42%" },
-      { label: "Query Latency P95", value: "<200ms" },
-      { label: "Docker Reduction", value: "88%" },
-      { label: "Relevance Boost", value: "+35%" }
-    ],
-    techStack: ["LangChain", "ChromaDB", "FastAPI", "Celery", "Redis", "Docker", "OpenAI"],
-    features: [
-      "Hybrid retrieval (ChromaDB + BM25) with P95 <200ms",
-      "42% semantic cache hit rate (verified)",
-      "Docker 3.3GB → 402MB (−88% reduction)",
-      "Cross-encoder reranking improving relevance by +35%",
-      "nDCG@10: 0.82, MRR@10: 0.76 on evaluation sets"
-    ],
-    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
-    performance: {
-      before: "3.3GB Docker image",
-      after: "402MB Docker image",
-      improvement: "88% reduction"
-    }
-  },
-  {
     id: "fantasy-football",
     title: "Fantasy Football AI Platform",
-    description: "Weighted ensemble achieving 93.1% accuracy",
-    heroMetric: "93.1% Accuracy",
-    metrics: [
-      { label: "Model Accuracy", value: "93.1%" },
-      { label: "API Latency", value: "<100ms cached" },
-      { label: "Features Engineered", value: "100+" },
-      { label: "Ensemble Models", value: "XGB, LGBM, NN" }
-    ],
-    techStack: ["XGBoost", "LightGBM", "Neural Networks", "FastAPI", "Redis", "PostgreSQL", "Celery"],
-    features: [
-      "Weighted ensemble (XGBoost, LightGBM, Neural Networks) reaching 93.1% accuracy",
-      "Feature store with 100+ engineered features (verifiable in code)",
-      "Redis caching achieving <100ms cached, <200ms uncached",
-      "Repository pattern supporting microservices migration",
-      "Docker optimization from 2.6GB to 1.2GB (54% reduction)"
-    ],
+    description:
+      "Ensemble forecasting models and a draft-analysis application using engineered player features. Gaussian mixture modeling and PCA applied to produce probabilistic player tiers, with predictions exposed via FastAPI.",
+    tech: ["Python", "XGBoost", "LightGBM", "scikit-learn", "FastAPI", "Redis", "PostgreSQL"],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     liveUrl: "https://fantasy-football-ai.vercel.app",
-    architecture: "Repository pattern with clean architecture"
+    image: "/images/fantasy-football-ai-demo.png"
   },
   {
     id: "nba-ml",
     title: "NBA Performance Prediction System",
-    description: "ETL pipeline processing 169K+ records with drift detection",
-    heroMetric: "R²: 0.942",
-    metrics: [
-      { label: "Points R²", value: "0.942" },
-      { label: "API P95", value: "87ms" },
-      { label: "ETL Records", value: "169K+" },
-      { label: "Features", value: "40+" }
-    ],
-    techStack: ["XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "SHAP"],
-    features: [
-      "R² 0.942/0.887/0.863 (pts/reb/ast) on 169K+ records",
-      "P95 latency 87ms with Redis caching (verified)",
-      "Drift detection using KS and Chi-squared tests",
-      "A/B testing framework with Bayesian inference",
-      "SHAP-based model explainability"
-    ],
+    description:
+      "Ensemble models for points, rebounds, and assists using engineered player features, with time-based evaluation routines and predictions served through FastAPI.",
+    tech: ["Python", "scikit-learn", "XGBoost", "FastAPI", "PostgreSQL", "Redis"],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
     liveUrl: "https://nba-ai-ml.vercel.app",
-    performance: {
-      before: "Manual analysis",
-      after: "87ms P95",
-      improvement: "Automated pipeline"
-    }
+    image: "/images/nba-ai-ml-demo.png"
   },
   {
     id: "sql-genius",
     title: "SQL Intelligence Platform",
-    description: "Enterprise multi-tenant SaaS with natural language SQL generation",
-    heroMetric: "Production SaaS",
-    metrics: [
-      { label: "Target Latency", value: "<500ms P95" },
-      { label: "Architecture", value: "Multi-tenant" },
-      { label: "Auth", value: "JWT+RSA" },
-      { label: "Deployment", value: "Vercel+Render" }
-    ],
-    techStack: ["FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "Kubernetes", "Anthropic Claude", "JWT"],
-    features: [
-      "Natural language to SQL with Claude 3.5 Sonnet",
-      "Database-per-tenant isolation for security",
-      "JWT authentication with RSA256 key rotation",
-      "Production deployments on Vercel (frontend) and Render (backend)",
-      "Prometheus metrics and Grafana dashboards",
-      "Multi-factor authentication (TOTP, SMS, email)"
-    ],
+    description:
+      "A natural-language-to-SQL application using schema inference and schema-aware prompts, with SQL parsing, result previews, and asynchronous query processing.",
+    tech: ["Python", "FastAPI", "PostgreSQL", "Redis", "Celery", "Anthropic Claude", "Next.js"],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai",
-    liveUrl: "https://sql-genius.vercel.app"
+    liveUrl: "https://sql-genius-ai.vercel.app",
+    image: "/images/sql-genius-ai-demo.png"
+  },
+  {
+    id: "ai-chatbot",
+    title: "Multi-Tenant AI Chat Platform",
+    description:
+      "A chat application integrating OpenAI and Anthropic models with WebSocket streaming, semantic caching, and provider failover including timeouts and retry handling.",
+    tech: ["Python", "FastAPI", "OpenAI", "Anthropic", "WebSockets", "Redis", "PostgreSQL"],
+    githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
+    liveUrl: "https://chatbot-ai-system.vercel.app",
+    image: "/images/chatbot-ai-system-demo.png"
+  },
+  {
+    id: "document-intelligence",
+    title: "Document Intelligence RAG System",
+    description:
+      "A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking, connected to question-answering workflows through FastAPI. Includes a companion retrieval pipeline with a RAGAS evaluation harness.",
+    tech: ["Python", "LangChain", "ChromaDB", "BM25", "FastAPI", "Celery", "Redis", "OpenAI"],
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai"
   }
 ];
 
 export const skills = {
-  "Core AI Engineering": [
-    "LLM Orchestration (OpenAI/Anthropic)",
-    "RAG (ChromaDB + BM25)",
-    "Semantic Caching (~73% hit rate)",
-    "WebSocket Streaming",
-    "Failover Patterns"
+  Core: ["Python", "SQL", "Machine Learning", "Snowflake", "dbt", "Sigma"],
+  "Data Engineering": [
+    "Dimensional modeling",
+    "ETL and ELT",
+    "Data quality",
+    "Reconciliation",
+    "dbt testing",
+    "PostgreSQL",
+    "Airflow"
   ],
-  "MLOps": [
-    "FastAPI Serving",
-    "CI/CD (GitHub Actions)",
-    "Drift Detection (KS/Chi-squared)",
-    "MLflow/Monitoring",
-    "A/B Testing"
+  "Modeling and Analysis": [
+    "pandas",
+    "NumPy",
+    "scikit-learn",
+    "XGBoost",
+    "LightGBM",
+    "Random forest",
+    "K-means",
+    "Gaussian mixture models",
+    "PCA",
+    "Feature engineering",
+    "Model evaluation",
+    "A/B testing analysis"
   ],
-  "Systems": [
-    "Redis", "PostgreSQL",
-    "Docker/K8s",
-    "Prometheus/Grafana/Jaeger",
-    "JWT + RSA Auth"
+  "Cloud and Development": [
+    "AWS (S3, EC2, Lambda, Bedrock)",
+    "Snowflake Python notebooks",
+    "Git",
+    "GitHub Actions",
+    "Docker"
   ],
-  "ML/AI Models": [
-    "XGBoost", "LightGBM",
-    "Neural Networks",
-    "Feature Engineering",
-    "SHAP Explainability"
-  ],
-  "Backend & APIs": [
-    "FastAPI", "AsyncIO", "Celery",
-    "SQLAlchemy", "WebSockets"
-  ],
-  "Data & Tools": [
-    "Python", "SQL", "Git",
-    "Pandas", "NumPy", "Jupyter"
+  "Applied AI and Applications": [
+    "RAG",
+    "LangChain",
+    "ChromaDB",
+    "BM25",
+    "OpenAI and Anthropic APIs",
+    "FastAPI",
+    "Redis",
+    "Next.js"
   ]
-};
-
-export const metrics = {
-  modelsInProduction: "15+",
-  avgAccuracy: "90%+",
-  avgLatency: "<150ms",
-  dockerOptimization: "54-88%",
-  weeklyHoursSaved: "20+",
-  dataProcessed: "169K+"
 };

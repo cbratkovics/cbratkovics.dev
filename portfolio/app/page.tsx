@@ -2,16 +2,12 @@
 
 import dynamic from "next/dynamic";
 import MinimalHero from "@/components/MinimalHero";
-import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import BenchmarkMethodology from "@/components/BenchmarkMethodology";
-import Metrics from "@/components/Metrics";
+import Skills from "@/components/Skills";
+import Impact from "@/components/Impact";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
-import metricsDataRaw from "@/data/metrics.json";
-import type { SiteMetrics } from "@/types/metrics";
-
-const metricsData = metricsDataRaw as SiteMetrics;
 
 const Particles = dynamic(() => import("@/components/Particles"), {
   ssr: false,
@@ -24,18 +20,14 @@ export default function Home() {
       <Particles />
       <Navigation />
       <main className="relative z-10">
-        {/* Minimal Hero - Just Name + Tagline */}
         <div id="home">
           <MinimalHero />
         </div>
 
-        {/* Projects FIRST - The Main Event */}
-        <Projects metricsData={metricsData} />
-
-        {/* Everything else */}
+        <Experience />
+        <Projects />
         <Skills />
-        <BenchmarkMethodology />
-        <Metrics />
+        <Impact />
         <Contact />
       </main>
     </>

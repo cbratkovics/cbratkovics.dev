@@ -3,34 +3,31 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { skills } from "@/data/projects";
-import { Brain, Database, Cloud, Code, Cpu, Layout } from "lucide-react";
+import { Brain, Database, Cloud, Cpu, Sparkles } from "lucide-react";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Core AI Engineering": <Cpu className="w-6 h-6" />,
-  "MLOps": <Cloud className="w-6 h-6" />,
-  "Systems": <Layout className="w-6 h-6" />,
-  "ML/AI Models": <Brain className="w-6 h-6" />,
-  "Backend & APIs": <Code className="w-6 h-6" />,
-  "Data & Tools": <Database className="w-6 h-6" />
+  "Core": <Cpu className="w-6 h-6" />,
+  "Data Engineering": <Database className="w-6 h-6" />,
+  "Modeling and Analysis": <Brain className="w-6 h-6" />,
+  "Cloud and Development": <Cloud className="w-6 h-6" />,
+  "Applied AI and Applications": <Sparkles className="w-6 h-6" />
 };
 
 const categoryColors: Record<string, string> = {
-  "Core AI Engineering": "from-pink-400 to-pink-600",
-  "MLOps": "from-orange-400 to-orange-600",
-  "Systems": "from-cyan-400 to-cyan-600",
-  "ML/AI Models": "from-blue-400 to-blue-600",
-  "Backend & APIs": "from-purple-400 to-purple-600",
-  "Data & Tools": "from-green-400 to-green-600"
+  "Core": "from-blue-400 to-cyan-400",
+  "Data Engineering": "from-green-400 to-emerald-500",
+  "Modeling and Analysis": "from-purple-400 to-pink-500",
+  "Cloud and Development": "from-orange-400 to-red-500",
+  "Applied AI and Applications": "from-cyan-400 to-blue-500"
 };
 
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
     <section id="skills" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 tech-lines opacity-50" />
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -40,14 +37,14 @@ export default function Skills() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Technical Arsenal
+            Technical Skills
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Demonstrated expertise in production ML systems - all skills verifiable through GitHub projects
+            Tools and methods I use across analytics engineering, modeling, and applied AI
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(skills).map(([category, items], categoryIndex) => (
             <motion.div
               key={category}
@@ -55,10 +52,9 @@ export default function Skills() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className={`glassmorphism p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+              className={`glassmorphism p-6 rounded-xl transition-all duration-300 ${
                 selectedCategory === category ? "ring-2 ring-blue-500" : ""
               }`}
-              onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
               onMouseEnter={() => setSelectedCategory(category)}
               onMouseLeave={() => setSelectedCategory(null)}
             >
@@ -66,48 +62,22 @@ export default function Skills() {
                 <div className={`p-2 rounded-lg bg-gradient-to-r ${categoryColors[category]} mr-3`}>
                   {categoryIcons[category]}
                 </div>
-                <h3 className="text-xl font-semibold text-white">{category}</h3>
+                <h3 className="text-lg md:text-xl font-semibold text-white">{category}</h3>
               </div>
-              
+
               <div className="flex flex-wrap gap-2">
-                {items.map((skill, index) => (
-                  <motion.span
+                {items.map((skill) => (
+                  <span
                     key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
-                      hoveredSkill === skill
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                        : "glassmorphism text-gray-300"
-                    }`}
-                    onMouseEnter={() => setHoveredSkill(skill)}
-                    onMouseLeave={() => setHoveredSkill(null)}
+                    className="px-3 py-1 text-sm rounded-full glassmorphism text-gray-300"
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="glassmorphism-strong p-8 rounded-xl text-center"
-        >
-          <h3 className="text-2xl font-semibold mb-4 gradient-text">
-            Production Focus
-          </h3>
-          <p className="text-gray-300 max-w-3xl mx-auto">
-            Specialized in building production-ready ML systems with 93.1% accuracy, ~186ms P95 latency, 
-            and 88% Docker optimization. Experienced in taking models from notebook to production 
-            with proper engineering practices in production environments.
-          </p>
-        </motion.div>
       </motion.div>
     </section>
   );

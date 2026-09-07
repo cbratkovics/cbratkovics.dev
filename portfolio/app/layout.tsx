@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
   keywords: [
-    'Christopher Bratkovics', 'AI Engineer', 'ML Engineer', 'MLOps',
-    'FastAPI', 'Production ML', 'RAG Systems', 'LLM Orchestration',
-    'XGBoost', 'LightGBM', 'Semantic Caching', 'WebSockets'
+    'Christopher Bratkovics', 'Data Scientist', 'Analytics Engineer', 'Applied AI',
+    'Python', 'SQL', 'Snowflake', 'dbt', 'AWS', 'Sigma',
+    'Predictive Modeling', 'Customer Segmentation', 'dimensional modeling'
   ],
   authors: [{ name: SITE.author.name }],
   creator: SITE.author.name,
@@ -20,21 +20,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: SITE.url,
-    siteName: `${SITE.name} - AI/ML Engineer`,
+    siteName: SITE.shortTitle,
     title: SITE.title,
-    description: SITE.description,
-    images: [{
-      url: '/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: `${SITE.name} - AI/ML Engineer Portfolio`
-    }]
+    description: SITE.description
   },
   twitter: {
-    card: 'summary_large_image',
-    title: SITE.title,
-    description: 'Building Production ML Systems with Verified Performance Metrics',
-    images: ['/og-image.png']
+    card: 'summary',
+    title: SITE.shortTitle,
+    description: SITE.description
   },
   robots: {
     index: true,
@@ -48,14 +41,41 @@ export const metadata: Metadata = {
     }
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png'
+    icon: '/favicon.ico'
   },
-  // Add structured data for SEO
   other: {
     'sameAs': SITE.sameAs.join(',')
   }
+};
+
+const personStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Christopher J. Bratkovics',
+  jobTitle: SITE.author.jobTitle,
+  description: SITE.description,
+  url: SITE.url,
+  sameAs: SITE.sameAs,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'OUTFRONT Media'
+  },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Bay Path University' },
+    { '@type': 'CollegeOrUniversity', name: 'University of Vermont' }
+  ],
+  knowsAbout: [
+    'Data Science',
+    'Analytics Engineering',
+    'Python',
+    'SQL',
+    'Snowflake',
+    'dbt',
+    'AWS',
+    'Sigma',
+    'Predictive Modeling',
+    'Dimensional Modeling'
+  ]
 };
 
 export default function RootLayout({
@@ -66,6 +86,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-[#0a0a0f] text-white`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+        />
         {children}
       </body>
     </html>

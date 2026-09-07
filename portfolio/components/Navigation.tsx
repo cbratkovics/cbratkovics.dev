@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Home, User, Code, BarChart3, Mail, Menu, X } from "lucide-react";
+import { Home, Briefcase, Code, User, BarChart3, Mail, Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,9 +11,10 @@ export default function Navigation() {
 
   const navItems = useMemo(() => [
     { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
-    { id: "skills", label: "Skills", icon: <User className="w-4 h-4" /> },
+    { id: "experience", label: "Experience", icon: <Briefcase className="w-4 h-4" /> },
     { id: "projects", label: "Projects", icon: <Code className="w-4 h-4" /> },
-    { id: "metrics", label: "Impact", icon: <BarChart3 className="w-4 h-4" /> },
+    { id: "skills", label: "Skills", icon: <User className="w-4 h-4" /> },
+    { id: "impact", label: "Impact", icon: <BarChart3 className="w-4 h-4" /> },
     { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
   ], []);
 
@@ -70,7 +71,7 @@ export default function Navigation() {
               CB
             </motion.div>
 
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.id}
@@ -92,7 +93,7 @@ export default function Navigation() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 glassmorphism rounded-lg"
+              className="lg:hidden p-2 glassmorphism rounded-lg"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -105,7 +106,7 @@ export default function Navigation() {
           initial={{ opacity: 0, x: 300 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 300 }}
-          className="fixed right-0 top-16 bottom-0 w-64 glassmorphism-strong z-40 p-6 md:hidden"
+          className="fixed right-0 top-16 bottom-0 w-64 glassmorphism-strong z-40 p-6 lg:hidden"
         >
           <div className="space-y-2">
             {navItems.map((item) => (

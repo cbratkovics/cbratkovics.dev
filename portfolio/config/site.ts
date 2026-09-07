@@ -1,7 +1,10 @@
 export const SITE = {
   name: "Christopher Bratkovics",
-  title: "Christopher Bratkovics | AI/ML Engineer | Production ML Systems",
-  description: "AI Engineer building production ML systems. 93.1% model accuracy, ~186ms P95 latency (synthetic benchmarks), 88% Docker reduction (RAG). All metrics verifiable via GitHub.",
+  title:
+    "Data Scientist | Analytics Engineer | Applied AI | Python, SQL, Snowflake, dbt, AWS, Sigma",
+  shortTitle: "Christopher J. Bratkovics | Data Scientist and Analytics Engineer",
+  description:
+    "Data Scientist and Analytics Engineer with 7+ years in enterprise analytics. Predictive modeling, production data pipelines, and applied AI with Python, SQL, Snowflake, and dbt.",
   url: "https://cbratkovics.dev",
 
   // Contact policy: Links-only (no email, phone, or forms)
@@ -20,6 +23,7 @@ export const SITE = {
   author: {
     name: "Christopher Bratkovics",
     // No email or phone - links only per HARD RULES
+    jobTitle: "Data Scientist and Analytics Engineer"
   }
 } as const;
 

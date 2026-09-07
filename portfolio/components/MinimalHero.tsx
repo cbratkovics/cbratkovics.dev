@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 export default function MinimalHero() {
   return (
-    <section className="min-h-[60vh] flex items-center justify-center px-4 relative overflow-hidden">
+    <section className="min-h-[60vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-30" />
 
       <motion.div
@@ -14,25 +14,23 @@ export default function MinimalHero() {
         transition={{ duration: 0.8 }}
         className="max-w-4xl mx-auto text-center relative z-10"
       >
-        {/* Name - Bold and Clear */}
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="gradient-text">Christopher J. Bratkovics</span>
         </h1>
 
-        {/* Title */}
         <p className="text-2xl md:text-3xl text-gray-300 mb-6 font-semibold">
-          Data Scientist → AI Engineer
+          Data Scientist and Analytics Engineer
         </p>
 
-        {/* The Pitch - 2 Sentences Max */}
         <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12">
-          I transform experimental AI into production-ready systems that deliver measurable business value.
-          Building at the intersection of cutting-edge AI capabilities and practical engineering constraints—LLM orchestration, RAG architectures, and real-time inference pipelines with verified performance.
+          Data Scientist and Analytics Engineer with 7+ years in enterprise analytics. I build
+          predictive models, reliable data pipelines, and reporting tools that help people make
+          better business decisions. My work spans data modeling, source integration, validation,
+          and applied AI, with independent projects in forecasting, retrieval, and LLM applications.
         </p>
 
-        {/* CTA - Scroll to Projects */}
         <motion.a
-          href="#projects"
+          href="#experience"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -43,7 +41,7 @@ export default function MinimalHero() {
                      shadow-lg hover:shadow-xl hover:scale-105
                      transition-all duration-300"
         >
-          View Live Demos
+          View Experience
           <ChevronDown className="w-5 h-5 animate-bounce" />
         </motion.a>
       </motion.div>

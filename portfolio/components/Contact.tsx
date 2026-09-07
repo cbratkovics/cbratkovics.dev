@@ -35,7 +35,7 @@ export default function Contact() {
             Let&apos;s Build Together
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Ready to transform your ML models into production-ready systems? Let&apos;s discuss how I can help.
+            Open to Data Scientist, Analytics Engineer, AI Engineer, and Data Engineer roles.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function Contact() {
           <div className="glassmorphism-strong p-6 rounded-xl max-w-md w-full">
             <h3 className="text-xl font-semibold text-white mb-4">Quick Connect</h3>
             <p className="text-gray-400 mb-4 text-sm">
-              View source code for all projects on GitHub - all metrics verifiable
+              Source code for all independent projects is on GitHub.
             </p>
             <div className="space-y-4">
               {socialLinks.map((link) => (
@@ -80,10 +80,7 @@ export default function Contact() {
           className="mt-20 pt-8 border-t border-white/10 text-center"
         >
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
-          </p>
-          <p className="text-gray-500 text-sm mt-2">
-            All metrics from GitHub repositories | Synthetic benchmarks noted with (~)
+            © 2026 Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
         </motion.div>
       </motion.div>

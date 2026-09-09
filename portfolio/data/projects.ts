@@ -142,7 +142,7 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  Core: ["Python", "SQL", "Machine Learning", "Snowflake", "dbt", "Sigma"],
+  Core: ["Python", "SQL", "Snowflake", "dbt", "Sigma"],
   "Data Engineering": [
     "Dimensional modeling",
     "ETL and ELT",

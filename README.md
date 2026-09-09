@@ -111,7 +111,7 @@ RAGAS evaluation harness lives in [rag-pipeline](https://github.com/cbratkovics/
 
 ## Technical Skills
 
-**Core:** Python, SQL, Machine Learning, Snowflake, dbt, Sigma
+**Core:** Python, SQL, Snowflake, dbt, Sigma
 
 **Data Engineering:** Dimensional modeling, ETL and ELT, data quality, reconciliation, dbt testing,
 PostgreSQL, Airflow

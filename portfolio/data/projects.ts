@@ -109,8 +109,8 @@ export const projects: Project[] = [
     id: "ai-chatbot",
     title: "Multi-Tenant AI Chat Platform",
     description:
-      "A chat application integrating OpenAI and Anthropic models with WebSocket streaming, semantic caching, and provider failover including timeouts and retry handling.",
-    tech: ["Python", "FastAPI", "OpenAI", "Anthropic", "WebSockets", "Redis", "PostgreSQL"],
+      "A chat application integrating OpenAI and Anthropic models with server-sent event streaming, semantic caching, and provider failover including timeouts and retry handling.",
+    tech: ["Python", "FastAPI", "OpenAI", "Anthropic", "Server-sent events", "Redis", "PostgreSQL"],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
     liveUrl: "https://chatbot-ai-system.vercel.app",
     image: "/images/chatbot-ai-system-demo.png"

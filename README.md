@@ -89,10 +89,10 @@ parsing, result previews, and asynchronous query processing.
 
 ### Multi-Tenant AI Chat Platform
 
-A chat application integrating OpenAI and Anthropic models with WebSocket streaming, semantic
+A chat application integrating OpenAI and Anthropic models with server-sent event streaming, semantic
 caching, and provider failover including timeouts and retry handling.
 
-**Stack:** Python, FastAPI, OpenAI, Anthropic, WebSockets, Redis, PostgreSQL
+**Stack:** Python, FastAPI, OpenAI, Anthropic, Server-sent events, Redis, PostgreSQL
 
 [Live demo](https://chatbot-ai-system.vercel.app) |
 [Source](https://github.com/cbratkovics/chatbot-ai-system)

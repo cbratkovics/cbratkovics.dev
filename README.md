@@ -100,8 +100,8 @@ caching, and provider failover including timeouts and retry handling.
 ### Document Intelligence RAG System
 
 A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking,
-connected to question-answering workflows through FastAPI. Includes a companion retrieval pipeline
-with a RAGAS evaluation harness.
+connected to question-answering workflows through FastAPI. A companion retrieval pipeline with a
+RAGAS evaluation harness lives in [rag-pipeline](https://github.com/cbratkovics/rag-pipeline).
 
 **Stack:** Python, LangChain, ChromaDB, BM25, FastAPI, Celery, Redis, OpenAI
 

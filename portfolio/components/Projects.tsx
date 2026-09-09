@@ -85,6 +85,21 @@ export default function Projects() {
                   {/* Description */}
                   <p className="text-gray-300 leading-relaxed mb-6">
                     {project.description}
+                    {project.companion && (
+                      <>
+                        {" "}
+                        {project.companion.lead}{" "}
+                        <a
+                          href={project.companion.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-white transition-colors"
+                        >
+                          {project.companion.label}
+                        </a>
+                        .
+                      </>
+                    )}
                   </p>
 
                   {/* Tech Stack */}

@@ -6,6 +6,11 @@ export interface Project {
   githubUrl: string;
   liveUrl?: string;
   image?: string;
+  companion?: {
+    lead: string;
+    label: string;
+    url: string;
+  };
 }
 
 export interface ExperienceRole {
@@ -119,9 +124,14 @@ export const projects: Project[] = [
     id: "document-intelligence",
     title: "Document Intelligence RAG System",
     description:
-      "A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking, connected to question-answering workflows through FastAPI. Includes a companion retrieval pipeline with a RAGAS evaluation harness.",
+      "A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking, connected to question-answering workflows through FastAPI.",
     tech: ["Python", "LangChain", "ChromaDB", "BM25", "FastAPI", "Celery", "Redis", "OpenAI"],
-    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai"
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
+    companion: {
+      lead: "A companion retrieval pipeline with a RAGAS evaluation harness lives in",
+      label: "rag-pipeline",
+      url: "https://github.com/cbratkovics/rag-pipeline"
+    }
   }
 ];
 

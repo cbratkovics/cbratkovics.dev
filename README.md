@@ -149,7 +149,7 @@ npm run dev
 
 ## Contact
 
-Open to Data Scientist, Analytics Engineer, AI Engineer, and Data Engineer roles.
+Open to Data Scientist and Analytics Engineer roles, and to applied AI Engineer roles that build on a data foundation.
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-cbratkovics.dev-blue?style=for-the-badge)](https://cbratkovics.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/cbratkovics/)

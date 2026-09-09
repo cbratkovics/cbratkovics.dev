@@ -35,7 +35,7 @@ export default function Contact() {
             Let&apos;s Build Together
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Open to Data Scientist, Analytics Engineer, AI Engineer, and Data Engineer roles.
+            Open to Data Scientist and Analytics Engineer roles, and to applied AI Engineer roles that build on a data foundation.
           </p>
         </div>
 

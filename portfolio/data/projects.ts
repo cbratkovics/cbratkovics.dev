@@ -77,10 +77,10 @@ export const education: EducationEntry[] = [
 export const projects: Project[] = [
   {
     id: "fantasy-football",
-    title: "Fantasy Football AI Platform",
+    title: "Win My League (Fantasy Football decision system)",
     description:
-      "Ensemble forecasting models and a draft-analysis application using engineered player features. Gaussian mixture modeling and PCA applied to produce probabilistic player tiers, with predictions exposed via FastAPI.",
-    tech: ["Python", "XGBoost", "LightGBM", "scikit-learn", "FastAPI", "Redis", "PostgreSQL"],
+      "A decision-science case study that turns player projections into an explicit lineup and draft policy, with time-split evaluation, Gaussian mixture player tiers, and a policy simulator served through FastAPI and a Next.js front end.",
+    tech: ["Python", "SQL", "scikit-learn", "FastAPI", "Next.js", "Docker"],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     liveUrl: "https://fantasy-football-ai.vercel.app",
     image: "/images/fantasy-football-ai-demo.png"

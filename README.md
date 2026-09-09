@@ -56,13 +56,13 @@ independent projects in forecasting, retrieval, and LLM applications.
 
 Self-directed work in forecasting, retrieval, and LLM applications.
 
-### Fantasy Football AI Platform
+### Win My League (Fantasy Football decision system)
 
-Ensemble forecasting models and a draft-analysis application using engineered player features.
-Gaussian mixture modeling and PCA applied to produce probabilistic player tiers, with predictions
-exposed via FastAPI.
+A decision-science case study that turns player projections into an explicit lineup and draft
+policy, with time-split evaluation, Gaussian mixture player tiers, and a policy simulator served
+through FastAPI and a Next.js front end.
 
-**Stack:** Python, XGBoost, LightGBM, scikit-learn, FastAPI, Redis, PostgreSQL
+**Stack:** Python, SQL, scikit-learn, FastAPI, Next.js, Docker
 
 [Live demo](https://fantasy-football-ai.vercel.app) |
 [Source](https://github.com/cbratkovics/fantasy-football-ai)

@@ -55,6 +55,12 @@ export default function Projects() {
                     </a>
                   </div>
 
+                  {project.status && (
+                    <p className="text-xs uppercase tracking-wider text-gray-500 -mt-2 mb-4">
+                      {project.status}
+                    </p>
+                  )}
+
                   {/* Screenshot */}
                   {project.image && project.liveUrl && (
                     <div className="mb-4 rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-colors">

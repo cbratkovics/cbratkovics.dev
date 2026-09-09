@@ -1,7 +1,10 @@
+export type ProjectStatus = "Live demo" | "Demo data" | "Source only";
+
 export interface Project {
   id: string;
   title: string;
   description: string;
+  status?: ProjectStatus;
   tech: string[];
   githubUrl: string;
   liveUrl?: string;
@@ -83,6 +86,7 @@ export const projects: Project[] = [
   {
     id: "fantasy-football",
     title: "Win My League (Fantasy Football decision system)",
+    status: "Demo data",
     description:
       "A decision-science case study that turns player projections into an explicit lineup and draft policy, with time-split evaluation, Gaussian mixture player tiers, and a policy simulator served through FastAPI and a Next.js front end.",
     tech: ["Python", "SQL", "scikit-learn", "FastAPI", "Next.js", "Docker"],
@@ -93,6 +97,7 @@ export const projects: Project[] = [
   {
     id: "nba-ml",
     title: "NBA Performance Prediction System",
+    status: "Demo data",
     description:
       "Ensemble models for points, rebounds, and assists using engineered player features, with time-based evaluation routines and predictions served through FastAPI.",
     tech: ["Python", "scikit-learn", "XGBoost", "FastAPI", "PostgreSQL", "Redis"],
@@ -123,6 +128,7 @@ export const projects: Project[] = [
   {
     id: "document-intelligence",
     title: "Document Intelligence RAG System",
+    status: "Source only",
     description:
       "A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking, connected to question-answering workflows through FastAPI.",
     tech: ["Python", "LangChain", "ChromaDB", "BM25", "FastAPI", "Celery", "Redis", "OpenAI"],

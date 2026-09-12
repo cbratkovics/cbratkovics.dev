@@ -62,7 +62,6 @@ const personStructuredData = {
     { '@type': 'CollegeOrUniversity', name: 'University of Vermont' },
     { '@type': 'EducationalOrganization', name: 'General Assembly' }
   ],
-  homeLocation: { '@type': 'Place', name: 'Lewiston, Maine' },
   knowsAbout: [
     'Data Science',
     'Analytics Engineering',

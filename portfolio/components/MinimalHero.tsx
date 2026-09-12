@@ -15,7 +15,7 @@ export default function MinimalHero() {
         className="max-w-6xl mx-auto relative z-10 w-full"
       >
         <p className="text-cyan-400 font-semibold tracking-wide uppercase text-sm mb-4">
-          Maine-based · Open to remote opportunities · 7+ years in enterprise analytics
+          7+ years in enterprise analytics
         </p>
         <h1 className="text-5xl md:text-7xl font-bold mb-5">
           <span className="gradient-text">Christopher J. Bratkovics</span>

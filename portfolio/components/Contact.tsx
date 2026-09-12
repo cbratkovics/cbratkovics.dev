@@ -32,10 +32,10 @@ export default function Contact() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Connect
+            Let’s connect
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Maine-based and open to remote data-science and analytics-engineering opportunities, with applied AI and data engineering as adjacent areas.
+            Questions about my work or interested in exchanging ideas about data science, analytics engineering, or applied AI? Get in touch.
           </p>
         </div>
 

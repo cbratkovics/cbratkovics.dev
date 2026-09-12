@@ -1,4 +1,5 @@
 import { ArrowDownRight } from "lucide-react";
+import { identity } from "@/data/projects";
 
 export default function MinimalHero() {
   return (
@@ -7,18 +8,18 @@ export default function MinimalHero() {
 
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         <p className="text-cyan-400 font-semibold tracking-wide uppercase text-sm mb-4">
-          7+ years in enterprise analytics
+          {identity.eyebrow}
         </p>
         <h1 className="text-5xl md:text-7xl font-bold mb-5">
-          <span className="gradient-text">Christopher J. Bratkovics</span>
+          <span className="gradient-text">{identity.name}</span>
         </h1>
 
         <p className="text-2xl md:text-4xl text-white mb-7 font-semibold">
-          Data Scientist <span className="text-gray-500">|</span> Analytics Engineer <span className="text-gray-500">|</span> Applied AI
+          {identity.headline.split(" | ").map((part, index) => <span key={part}>{index > 0 && <span className="text-gray-500"> | </span>}{part}</span>)}
         </p>
 
         <p className="text-lg md:text-xl text-gray-300 max-w-4xl leading-relaxed mb-10">
-          I build predictive models and production data products, translating fragmented business data into reliable reporting and analytical tools. At OUTFRONT Media, I own a five-platform Snowflake/dbt reporting foundation and develop Python-based solutions for advertiser retention, segmentation, and inventory performance.
+          {identity.summary}
         </p>
 
         <div className="flex flex-wrap gap-4">

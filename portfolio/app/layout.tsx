@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 const personStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Christopher J. Bratkovics',
+  name: SITE.author.name,
   jobTitle: SITE.author.jobTitle,
   description: SITE.description,
   url: SITE.url,

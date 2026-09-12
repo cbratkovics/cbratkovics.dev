@@ -22,11 +22,12 @@ const layout = await read("../app/layout.tsx");
 const prohibitedChannels = /(?:mailto:|tel:|\bemail\b\s*[:=]|contact\s*form|booking\s+link)/i;
 
 test("canonical positioning and chronology do not drift", () => {
-  assert.match(hero, />\s*7\+ years in enterprise analytics\s*</);
-  assert.match(hero, /Data Scientist[\s\S]*Analytics Engineer[\s\S]*Applied AI/);
+  assert.match(content, /eyebrow: "7\+ years in enterprise analytics"/);
+  assert.match(content, /headline: "Data Scientist \| Analytics Engineer \| Applied AI"/);
+  assert.match(hero, /identity\.headline/);
   assert.equal((content.match(/company: "OUTFRONT Media"/g) ?? []).length, 2);
-  assert.match(content, /Senior Data Analyst \(Data Science \/ Analytics Engineering\)[\s\S]*April 2022 to present/);
-  assert.match(content, /Business Intelligence Data Analyst \(Data Architecture \/ Data Science\)[\s\S]*July 2019 to April 2022/);
+  assert.match(content, /Senior Data Analyst \(Data Science \/ Analytics Engineering\)[\s\S]*April 2022–Present/);
+  assert.match(content, /Business Intelligence Data Analyst \(Data Architecture \/ Data Science\)[\s\S]*July 2019–April 2022/);
 });
 
 test("education remains complete, ordered, and separate from employment", () => {
@@ -36,6 +37,7 @@ test("education remains complete, ordered, and separate from employment", () => 
   assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.match(content, /Non-degree training program/);
   assert.equal((content.match(/company: "OUTFRONT Media"/g) ?? []).length, 2);
+  assert.doesNotMatch(content, /GPA/);
 });
 
 test("featured project destinations and evidence labels remain scoped", () => {
@@ -43,14 +45,22 @@ test("featured project destinations and evidence labels remain scoped", () => {
     assert.match(content, new RegExp(`https://github\\.com/cbratkovics/${repo}`));
   }
   assert.match(content, /label: "Model card"[\s\S]*docs\/MODEL_CARD\.md/);
-  assert.doesNotMatch(content, /Retrospective 2025 evaluation:/);
-  assert.match(content, /browser-based SQLite playground/);
+  assert.match(content, /metric: "Mean absolute error"[\s\S]*value: 4\.4909[\s\S]*value: 4\.8046/);
+  assert.match(content, /5,914 player-weeks/);
+  assert.match(content, /Historical out-of-sample season evaluation of a frozen artifact/);
+  assert.match(content, /8e22a47cfc99ba85861cccbe63732da42feb27ab/);
+  assert.match(content, /synthetic sample schema[\s\S]*Browser SQLite/);
   assert.match(content, /SSE streaming/);
+  assert.match(content, /LightGBM[\s\S]*Hugging Face[\s\S]*Next\.js/);
+  assert.doesNotMatch(content.match(/id: "nba-ml"[\s\S]*?featured: false/)[0], /scikit-learn|FastAPI/);
+  for (const label of ["Pinned evaluation", "Implementation evidence", "System evaluations", "Replay", "Engineering case study"]) assert.match(content, new RegExp(label));
 });
 
 test("identity schema and contact configuration expose only profile links", () => {
-  assert.match(config, /Christopher J\. Bratkovics/);
-  assert.match(config, /Data Scientist \| Analytics Engineer \| Applied AI/);
+  assert.match(content, /name: "Christopher J\. Bratkovics"/);
+  assert.match(content, /headline: "Data Scientist \| Analytics Engineer \| Applied AI"/);
+  assert.match(config, /identity\.name/);
+  assert.match(config, /identity\.headline/);
   const urls = [...config.matchAll(/https:\/\/[^"']+/g)].map((match) => match[0]);
   assert.deepEqual(new Set(urls), new Set(["https://cbratkovics.dev", "https://github.com/cbratkovics", "https://linkedin.com/in/cbratkovics"]));
   assert.doesNotMatch([config, contact, layout].join("\n"), prohibitedChannels);

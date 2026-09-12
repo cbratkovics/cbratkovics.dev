@@ -275,6 +275,17 @@ section, .scroll-target { scroll-margin-top: 5rem; }
 .mobile-navigation > summary { list-style: none; }
 .mobile-navigation > summary::-webkit-details-marker { display: none; }
 .story-details > summary { cursor: pointer; color: rgb(103 232 249); font-weight: 600; }
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: rgb(103 232 249);
+  font-size: .875rem;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.project-link:hover { color: rgb(207 250 254); text-decoration: underline; }
+.project-link:focus-visible { outline: 2px solid rgb(103 232 249); outline-offset: 4px; border-radius: .2rem; }
 
 body {
   background: #0a0a0f;
@@ -312,6 +323,11 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: rgba(102, 126, 234, 0.3);
   color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
 dt {

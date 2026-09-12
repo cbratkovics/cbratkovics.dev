@@ -44,6 +44,29 @@ test("earlier OUTFRONT role retains its technical focus", () => {
   assert.doesNotMatch(role, /Financial Pacing|compensation reporting|Reporting delivery/);
 });
 
+test("senior OUTFRONT role retains its ordered implementation detail", () => {
+  const role = content.match(/id: "senior-data-analyst"[\s\S]*?\n  },\n  \{\n    id: "bi-data-analyst"/)[0];
+  const expectedCopy = [
+    "Built production reporting systems, developed Python models, and delivered business-facing AI applications. Translated fragmented advertising data and complex business rules into reusable data products for revenue reporting, customer retention, and inventory-performance analysis.",
+    "Production data architecture",
+    "Designed, built, and own the Snowflake/dbt foundation integrating five advertising platforms into unified production revenue and delivery reporting in Sigma, with standardized source transformations, inventory enrichment, source-specific deduplication, and controlled historical backfills.",
+    "Predictive modeling & customer segmentation",
+    "Developed Python advertiser churn-risk models and K-means segmentation to identify retention priorities and account-growth opportunities, combining advertiser behavior with business-defined criteria for targeted analysis.",
+    "Inventory modeling & peer analysis",
+    "Built inventory-utilization and revenue-per-unit regression models and peer comparisons to evaluate expected performance, identify underperforming advertising assets, and support yield-management analysis.",
+    "Advertiser entity resolution",
+    "Built Python/SQL workflows linking external advertiser data to internal accounts through name normalization, exact and fuzzy matching, and similarity scoring. Preserved confidence tiers and reviewable exceptions to make cross-source advertiser reporting traceable.",
+    "Occupancy modeling & reconciliation",
+    "Built and validated monthly and daily occupancy and buy-type models, integrating programmatic activity with direct-sold reporting while controlling shared-capacity aggregation. Created reusable SQL proofs to reconcile revenue, fees, delivery, and inventory coverage and validate metric behavior across reporting grains.",
+    "Applied AI delivery & recovery",
+    "Delivered and supported a generative AI application turning financial data into editable executive communications. Traced a production failure to outdated source views, worked with the data team to correct them, and validated the restored output."
+  ];
+  const positions = expectedCopy.map((copy) => role.indexOf(copy));
+  assert.ok(positions.every((position) => position >= 0));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+  assert.doesNotMatch(role, /Senior individual-contributor work spanning|Reporting foundation|Daily occupancy|Applied modeling|Operational AI/);
+});
+
 test("education remains complete, ordered, and separate from employment", () => {
   const institutions = ["Bay Path University", "University of Vermont", "General Assembly"];
   const positions = institutions.map((name) => content.indexOf(name));

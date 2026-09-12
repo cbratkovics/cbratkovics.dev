@@ -4,7 +4,7 @@
 
 [Portfolio](https://cbratkovics.dev) · [LinkedIn](https://www.linkedin.com/in/cbratkovics/) · [GitHub](https://github.com/cbratkovics)
 
-Maine-based Data Scientist and Analytics Engineer with 7+ years in enterprise analytics. I build predictive models and production data products, translating fragmented business data into reliable reporting and analytical tools. At OUTFRONT Media, I own a five-platform Snowflake/dbt reporting foundation and develop Python-based solutions for advertiser retention, segmentation, and inventory performance.
+Data Scientist and Analytics Engineer with 7+ years in enterprise analytics. I build predictive models and production data products, translating fragmented business data into reliable reporting and analytical tools. At OUTFRONT Media, I own a five-platform Snowflake/dbt reporting foundation and develop Python-based solutions for advertiser retention, segmentation, and inventory performance.
 
 ## Professional experience
 

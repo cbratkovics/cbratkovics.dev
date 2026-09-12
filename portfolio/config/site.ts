@@ -4,7 +4,7 @@ export const SITE = {
     "Christopher J. Bratkovics | Data Scientist | Analytics Engineer | Applied AI",
   shortTitle: "Christopher J. Bratkovics | Data Scientist | Analytics Engineer | Applied AI",
   description:
-    "Maine-based Data Scientist and Analytics Engineer with 7+ years in enterprise analytics, building predictive models, production data products, and applied AI.",
+    "Data Scientist and Analytics Engineer with 7+ years in enterprise analytics, building predictive models, production data products, and applied AI.",
   url: "https://cbratkovics.dev",
 
   // Contact policy: Links-only (no email, phone, or forms)

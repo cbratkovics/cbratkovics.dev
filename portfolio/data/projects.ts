@@ -32,7 +32,7 @@ export const experience: ExperienceRole[] = [
     id: "senior-data-analyst",
     title: "Senior Data Analyst (Data Science / Analytics Engineering)",
     company: "OUTFRONT Media",
-    location: "New York-based employer | Maine-based",
+    location: "New York-based employer",
     period: "April 2022 to present",
     summary:
       "Promoted into a senior individual-contributor role spanning production analytics engineering, applied modeling, and operational AI.",
@@ -59,7 +59,7 @@ export const experience: ExperienceRole[] = [
     id: "bi-data-analyst",
     title: "Business Intelligence Data Analyst (Data Architecture / Data Science)",
     company: "OUTFRONT Media",
-    location: "New York-based employer | Maine-based",
+    location: "New York-based employer",
     period: "July 2019 to April 2022",
     summary:
       "Built reporting foundations with Python ETL automation, dimensional models, KPI definitions, data-quality checks, and early applied data-science collaboration.",

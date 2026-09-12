@@ -12,9 +12,10 @@ export default function Navigation() {
   const navItems = useMemo(() => [
     { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
     { id: "experience", label: "Experience", icon: <Briefcase className="w-4 h-4" /> },
+    { id: "work", label: "Selected Work", icon: <BarChart3 className="w-4 h-4" /> },
     { id: "projects", label: "Projects", icon: <Code className="w-4 h-4" /> },
     { id: "skills", label: "Skills", icon: <User className="w-4 h-4" /> },
-    { id: "impact", label: "Impact", icon: <BarChart3 className="w-4 h-4" /> },
+    { id: "impact", label: "Highlights", icon: <BarChart3 className="w-4 h-4" /> },
     { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
   ], []);
 
@@ -92,6 +93,8 @@ export default function Navigation() {
             </div>
 
             <button
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 glassmorphism rounded-lg"
             >
@@ -102,7 +105,7 @@ export default function Navigation() {
       </motion.nav>
 
       {isMobileMenuOpen && (
-        <motion.div
+        <motion.div role="dialog" aria-label="Mobile navigation"
           initial={{ opacity: 0, x: 300 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 300 }}

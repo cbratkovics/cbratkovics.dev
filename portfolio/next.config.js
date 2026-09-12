@@ -27,11 +27,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/resume',
-        destination: '/Resume_CJB.pdf',
-        permanent: false,
-      },
-      {
         source: '/github',
         destination: 'https://github.com/cbratkovics',
         permanent: false,

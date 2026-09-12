@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import MinimalHero from "@/components/MinimalHero";
 import Experience from "@/components/Experience";
+import WorkStories from "@/components/WorkStories";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Impact from "@/components/Impact";
@@ -25,6 +26,7 @@ export default function Home() {
         </div>
 
         <Experience />
+        <WorkStories />
         <Projects />
         <Skills />
         <Impact />

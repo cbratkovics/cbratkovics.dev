@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
+import Image from "next/image";
 
 export default function Projects() {
+  const featuredProjects = projects.filter((project) => project.featured);
+  const additionalProjects = projects.filter((project) => !project.featured);
+
   return (
     <section id="projects" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-30" />
@@ -21,12 +25,12 @@ export default function Projects() {
             Independent Technical Projects
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Self-directed work in forecasting, retrieval, and LLM applications, with source code on GitHub
+            Three complementary builds in forecasting, analytical interfaces, and reliable LLM application behavior
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
@@ -64,13 +68,12 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="block relative group/image"
                       >
-                        <img
+                        <Image
                           src={project.image}
                           alt={`${project.title} interface`}
+                          width={1200}
+                          height={675}
                           className="w-full h-auto group-hover/image:scale-105 transition-transform duration-300"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = "none";
-                          }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                           <span className="text-white font-semibold flex items-center gap-2">
@@ -83,9 +86,10 @@ export default function Projects() {
                   )}
 
                   {/* Description */}
-                  <p className="text-gray-300 leading-relaxed mb-6">
-                    {project.description}
+                  <p className="text-gray-200 leading-relaxed mb-3 font-medium">
+                    {project.summary}
                   </p>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6">{project.detail}</p>
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -114,7 +118,7 @@ export default function Projects() {
                                    transition-all duration-300"
                       >
                         <ExternalLink className="w-4 h-4" />
-                        <span>Live demo</span>
+                        <span>Demo</span>
                       </a>
                     )}
 
@@ -129,13 +133,28 @@ export default function Projects() {
                                  ${project.liveUrl ? "flex-shrink-0" : "flex-1"}`}
                     >
                       <Github className="w-4 h-4" />
-                      <span>Source</span>
+                      <span>Source code</span>
                     </a>
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="mt-10 border-t border-white/10 pt-8">
+          <h3 className="text-xl font-semibold text-white mb-4">Additional work</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {additionalProjects.map((project) => (
+              <article key={project.id} className="glassmorphism rounded-lg p-5">
+                <h4 className="text-lg font-semibold text-white">{project.title}</h4>
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">{project.summary}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mt-2">{project.detail}</p>
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mt-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+                  <Github className="w-4 h-4" /> Source code
+                </a>
+              </article>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>

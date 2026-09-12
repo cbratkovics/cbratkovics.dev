@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "test": "node --test tests/content-contract.test.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

@@ -6,19 +6,19 @@ import { skills } from "@/data/projects";
 import { Brain, Database, Cloud, Cpu, Sparkles } from "lucide-react";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Core": <Cpu className="w-6 h-6" />,
-  "Data Engineering": <Database className="w-6 h-6" />,
-  "Modeling and Analysis": <Brain className="w-6 h-6" />,
-  "Cloud and Development": <Cloud className="w-6 h-6" />,
-  "Applied AI and Applications": <Sparkles className="w-6 h-6" />
+  "Core analytics engineering": <Cpu className="w-6 h-6" />,
+  "Data products and quality": <Database className="w-6 h-6" />,
+  "Modeling and validation": <Brain className="w-6 h-6" />,
+  "Cloud and delivery": <Cloud className="w-6 h-6" />,
+  "Applied AI and applications": <Sparkles className="w-6 h-6" />
 };
 
 const categoryColors: Record<string, string> = {
-  "Core": "from-blue-400 to-cyan-400",
-  "Data Engineering": "from-green-400 to-emerald-500",
-  "Modeling and Analysis": "from-purple-400 to-pink-500",
-  "Cloud and Development": "from-orange-400 to-red-500",
-  "Applied AI and Applications": "from-cyan-400 to-blue-500"
+  "Core analytics engineering": "from-blue-400 to-cyan-400",
+  "Data products and quality": "from-green-400 to-emerald-500",
+  "Modeling and validation": "from-purple-400 to-pink-500",
+  "Cloud and delivery": "from-orange-400 to-red-500",
+  "Applied AI and applications": "from-cyan-400 to-blue-500"
 };
 
 export default function Skills() {
@@ -52,7 +52,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className={`glassmorphism p-6 rounded-xl transition-all duration-300 ${
+              className={`glassmorphism p-6 rounded-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-cyan-400 ${
                 selectedCategory === category ? "ring-2 ring-blue-500" : ""
               }`}
               onMouseEnter={() => setSelectedCategory(category)}

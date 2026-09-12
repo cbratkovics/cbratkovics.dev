@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/config/site";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -62,8 +59,10 @@ const personStructuredData = {
   },
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Bay Path University' },
-    { '@type': 'CollegeOrUniversity', name: 'University of Vermont' }
+    { '@type': 'CollegeOrUniversity', name: 'University of Vermont' },
+    { '@type': 'EducationalOrganization', name: 'General Assembly' }
   ],
+  homeLocation: { '@type': 'Place', name: 'Lewiston, Maine' },
   knowsAbout: [
     'Data Science',
     'Analytics Engineering',
@@ -85,7 +84,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased bg-[#0a0a0f] text-white`}>
+      <body className="antialiased bg-[#0a0a0f] text-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}

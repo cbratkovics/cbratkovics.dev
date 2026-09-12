@@ -32,10 +32,10 @@ export default function Contact() {
       >
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Let&apos;s Build Together
+            Connect
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Open to Data Scientist, Analytics Engineer, AI Engineer, and Data Engineer roles.
+            Maine-based and open to remote data-science and analytics-engineering opportunities, with applied AI and data engineering as adjacent areas.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export default function Contact() {
           className="flex justify-center"
         >
           <div className="glassmorphism-strong p-6 rounded-xl max-w-md w-full">
-            <h3 className="text-xl font-semibold text-white mb-4">Quick Connect</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">Professional profiles</h3>
             <p className="text-gray-400 mb-4 text-sm">
               Source code for all independent projects is on GitHub.
             </p>

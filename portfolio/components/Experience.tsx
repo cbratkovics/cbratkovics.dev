@@ -21,7 +21,7 @@ export default function Experience() {
             Experience
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Seven years building analytics and data infrastructure in enterprise advertising
+            Progression from business-critical reporting into applied modeling, operational AI, and production data-product ownership
           </p>
         </div>
 
@@ -44,7 +44,6 @@ export default function Experience() {
                     <h3 className="text-xl md:text-2xl font-semibold text-white">
                       {role.title}
                     </h3>
-                    <p className="text-sm text-cyan-400 mt-1">{role.focus}</p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-gray-400 mt-2">
                       <span className="font-medium text-gray-300">{role.company}</span>
                       <span className="text-gray-600">|</span>
@@ -60,17 +59,16 @@ export default function Experience() {
                 </span>
               </div>
 
-              <ul className="space-y-3">
-                {role.bullets.map((bullet) => (
-                  <li key={bullet} className="flex gap-3 text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed mb-5">{role.summary}</p>
+              <ol className="space-y-3 border-l border-white/10 pl-5">
+                {role.milestones.map((milestone) => (
+                  <li key={`${role.id}-${milestone.date}`} className="text-gray-300 leading-relaxed">
+                    <span className="block text-cyan-400 text-sm font-semibold mb-1">{milestone.date}</span>
                     <span
-                      className="mt-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm md:text-base">{bullet}</span>
+                      className="text-sm md:text-base">{milestone.text}</span>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </motion.div>
           ))}
         </div>
@@ -89,17 +87,18 @@ export default function Experience() {
             <h3 className="text-xl md:text-2xl font-semibold text-white">Education</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {education.map((entry) => (
               <div
                 key={entry.institution}
                 className="glassmorphism p-4 rounded-lg"
               >
                 <p className="text-white font-medium">
-                  {entry.degree}, {entry.field}
+                  {entry.credential}
                 </p>
                 <p className="text-gray-400 text-sm mt-1">{entry.institution}</p>
                 <p className="text-gray-500 text-sm mt-1">{entry.date}</p>
+                {entry.detail && <p className="text-gray-400 text-sm mt-1">{entry.detail}</p>}
               </div>
             ))}
           </div>

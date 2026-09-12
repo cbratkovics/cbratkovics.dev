@@ -1,170 +1,181 @@
 export interface Project {
   id: string;
   title: string;
-  description: string;
+  summary: string;
+  detail: string;
   tech: string[];
   githubUrl: string;
   liveUrl?: string;
   image?: string;
+  featured: boolean;
 }
 
 export interface ExperienceRole {
   id: string;
   title: string;
-  focus: string;
   company: string;
   location: string;
   period: string;
-  bullets: string[];
+  summary: string;
+  milestones: { date: string; text: string }[];
 }
 
 export interface EducationEntry {
-  degree: string;
-  field: string;
+  credential: string;
   institution: string;
   date: string;
+  detail?: string;
 }
 
 export const experience: ExperienceRole[] = [
   {
     id: "senior-data-analyst",
-    title: "Senior Data Analyst",
-    focus: "Data Science / Analytics Engineering",
+    title: "Senior Data Analyst (Data Science / Analytics Engineering)",
     company: "OUTFRONT Media",
-    location: "New York, NY",
-    period: "April 2022 to Present",
-    bullets: [
-      "Built and own the production Snowflake and dbt pipeline unifying five advertising sources for revenue and delivery reporting in Sigma, with S3 feed integration, deduplication, and historical backfills",
-      "Developed Python churn-risk models and K-means segmentation, delivering risk scores and interpretable customer segments through Snowflake and Sigma to guide retention outreach and growth targeting",
-      "Built regression models for inventory utilization and revenue per unit, using cross-market peer clustering to identify performance gaps and support yield-management decisions",
-      "Implemented a Python fuzzy-matching workflow comparing external advertiser names against 400,000+ internal records, delivering Snowflake ID mappings with confidence tiers and business-user overrides",
-      "Created reusable SQL reconciliation checks with explicit tolerances and record-level diagnostics, producing auditable evidence for data-platform migration",
-      "Developed daily programmatic occupancy components in dbt and co-designed a reporting model separating sales activity from shared inventory capacity",
-      "Delivered a generative AI application for CFO financial communications, separating verified SQL data from generated narrative with numeric validation and editable previews"
+    location: "New York-based employer | Maine-based",
+    period: "April 2022 to present",
+    summary:
+      "Promoted into a senior individual-contributor role spanning production analytics engineering, applied modeling, and operational AI.",
+    milestones: [
+      {
+        date: "2026",
+        text: "Designed, built, and own the Snowflake/dbt foundation that standardizes Vistar, Place Exchange, Hivestack DDA, Hivestack Programmatic, and ViOOH data for production revenue and delivery reporting in Sigma."
+      },
+      {
+        date: "2025",
+        text: "Developed churn-risk models, K-means customer segments, inventory-utilization and revenue-per-unit regressions, peer comparisons, and reviewable Python/SQL advertiser mappings."
+      },
+      {
+        date: "2024",
+        text: "Delivered and supported a generative AI application for editable executive financial communications, then restored its output by tracing a production failure to stale source views and validating the cross-team correction."
+      },
+      {
+        date: "2022–2023",
+        text: "Delivered Mobile Contract Tracking to production, iterated on stakeholder enhancements and Finance reporting fixes, and completed acceptance testing for a marketing dashboard."
+      }
     ]
   },
   {
     id: "bi-data-analyst",
-    title: "Business Intelligence Data Analyst",
-    focus: "Data Architecture / Data Science",
+    title: "Business Intelligence Data Analyst (Data Architecture / Data Science)",
     company: "OUTFRONT Media",
-    location: "New York, NY",
+    location: "New York-based employer | Maine-based",
     period: "July 2019 to April 2022",
-    bullets: [
-      "Automated recurring reporting workflows with Python ETL, saving 20+ hours per week across teams",
-      "Designed fact and dimension tables and KPI definitions to support executive dashboards and business reporting",
-      "Built automated data-quality checks and anomaly-detection workflows to identify issues in reporting data",
-      "Developed predictive-model prototypes to support business analysis and decision-making"
+    summary:
+      "Built reporting foundations with Python ETL automation, dimensional models, KPI definitions, data-quality checks, and early applied data-science collaboration.",
+    milestones: [
+      {
+        date: "March 2022",
+        text: "Supported budget-data corrections and loading required for sales-compensation and quarterly bonus calculations."
+      },
+      {
+        date: "September 2021",
+        text: "Coordinated Financial Pacing reports into production with Finance, sequencing the release and phased rollout around active reporting users."
+      },
+      {
+        date: "May 2021",
+        text: "Coauthored and presented an applied machine-learning use case for advertising-inventory optimization and customer-value projection with external data-science specialists."
+      }
     ]
   }
 ];
 
 export const education: EducationEntry[] = [
   {
-    degree: "Master of Science",
-    field: "Applied Data Science",
+    credential: "M.S., Applied Data Science",
     institution: "Bay Path University",
-    date: "June 2025"
+    date: "June 2025",
+    detail: "4.0 GPA"
   },
   {
-    degree: "Bachelor of Science",
-    field: "Computer Science",
+    credential: "B.S., Computer Science",
     institution: "University of Vermont",
     date: "December 2018"
+  },
+  {
+    credential: "Data Science Immersive",
+    institution: "General Assembly",
+    date: "February–May 2019",
+    detail: "Non-degree training program"
   }
 ];
 
 export const projects: Project[] = [
   {
     id: "fantasy-football",
-    title: "Fantasy Football AI Platform",
-    description:
-      "Ensemble forecasting models and a draft-analysis application using engineered player features. Gaussian mixture modeling and PCA applied to produce probabilistic player tiers, with predictions exposed via FastAPI.",
-    tech: ["Python", "XGBoost", "LightGBM", "scikit-learn", "FastAPI", "Redis", "PostgreSQL"],
+    title: "Fantasy Football Projection Pipeline",
+    summary:
+      "Per-position random forests use lagged player features and season-based evaluation, with predictions presented through FastAPI and Next.js.",
+    detail:
+      "Versioned model artifacts record the model and feature version, season split, population, metric, and causal trailing-mean baseline. Forecast evaluation remains separate from the GMM/PCA draft-tier component.",
+    tech: ["Python", "Random forest", "FastAPI", "Next.js", "GMM / PCA"],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     liveUrl: "https://fantasy-football-ai.vercel.app",
-    image: "/images/fantasy-football-ai-demo.png"
-  },
-  {
-    id: "nba-ml",
-    title: "NBA Performance Prediction System",
-    description:
-      "Ensemble models for points, rebounds, and assists using engineered player features, with time-based evaluation routines and predictions served through FastAPI.",
-    tech: ["Python", "scikit-learn", "XGBoost", "FastAPI", "PostgreSQL", "Redis"],
-    githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
-    liveUrl: "https://nba-ai-ml.vercel.app",
-    image: "/images/nba-ai-ml-demo.png"
+    image: "/images/fantasy-football-ai-demo.png",
+    featured: true
   },
   {
     id: "sql-genius",
-    title: "SQL Intelligence Platform",
-    description:
-      "A natural-language-to-SQL application using schema inference and schema-aware prompts, with SQL parsing, result previews, and asynchronous query processing.",
-    tech: ["Python", "FastAPI", "PostgreSQL", "Redis", "Celery", "Anthropic Claude", "Next.js"],
+    title: "SQL Genius AI | SQL Analytics Playground",
+    summary:
+      "A browser-based SQLite playground for synthetic sample data with schema inspection, editable SQL, explicit user-controlled execution, bounded previews, and CSV export.",
+    detail:
+      "Reviewed-template intent matching and conservative schema fallbacks assist query drafting. Read-only checks narrow what the interface will execute; they are not a general-purpose security or SQL-correctness guarantee.",
+    tech: ["TypeScript", "Next.js", "SQLite", "Schema inspection"],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai",
     liveUrl: "https://sql-genius-ai.vercel.app",
-    image: "/images/sql-genius-ai-demo.png"
+    image: "/images/sql-genius-ai-demo.png",
+    featured: true
   },
   {
     id: "ai-chatbot",
-    title: "Multi-Tenant AI Chat Platform",
-    description:
-      "A chat application integrating OpenAI and Anthropic models with WebSocket streaming, semantic caching, and provider failover including timeouts and retry handling.",
-    tech: ["Python", "FastAPI", "OpenAI", "Anthropic", "WebSockets", "Redis", "PostgreSQL"],
+    title: "AI Chat System | Multi-Provider LLM Gateway",
+    summary:
+      "A FastAPI and Next.js chat system with SSE streaming, response caching, provider failover, structured errors, and request budgets.",
+    detail:
+      "Per-request and session telemetry make latency and estimated API cost observable. Semantic-cache support is an implementation capability, not a claim that semantic matching is enabled on every deployment.",
+    tech: ["Python", "FastAPI", "Next.js", "SSE", "Caching"],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
     liveUrl: "https://chatbot-ai-system.vercel.app",
-    image: "/images/chatbot-ai-system-demo.png"
+    image: "/images/chatbot-ai-system-demo.png",
+    featured: true
+  },
+  {
+    id: "nba-ml",
+    title: "NBA Performance Forecasting",
+    summary:
+      "Player-stat forecasting work with engineered features, time-aware evaluation routines, and a FastAPI presentation layer.",
+    detail:
+      "The project separates time-aware evaluation routines from the FastAPI presentation layer; no historical traffic or service-reliability metric is attributed to the modeling work.",
+    tech: ["Python", "scikit-learn", "FastAPI"],
+    githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
+    featured: false
   },
   {
     id: "document-intelligence",
-    title: "Document Intelligence RAG System",
-    description:
-      "A document-ingestion system with chunking, hybrid keyword and vector retrieval, and reranking, connected to question-answering workflows through FastAPI. Includes a companion retrieval pipeline with a RAGAS evaluation harness.",
-    tech: ["Python", "LangChain", "ChromaDB", "BM25", "FastAPI", "Celery", "Redis", "OpenAI"],
-    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai"
+    title: "Document Retrieval System",
+    summary:
+      "A document-processing and retrieval codebase covering chunking, keyword and vector retrieval, reranking, and evaluation scaffolding.",
+    detail:
+      "Implemented pipeline components and evaluation scaffolding are described separately from the optional stages configured in a hosted application.",
+    tech: ["Python", "Retrieval", "FastAPI", "Evaluation"],
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
+    featured: false
   }
 ];
 
 export const skills = {
-  Core: ["Python", "SQL", "Machine Learning", "Snowflake", "dbt", "Sigma"],
-  "Data Engineering": [
-    "Dimensional modeling",
-    "ETL and ELT",
-    "Data quality",
-    "Reconciliation",
-    "dbt testing",
-    "PostgreSQL",
-    "Airflow"
+  "Core analytics engineering": ["Python", "SQL", "Snowflake", "dbt", "Sigma"],
+  "Data products and quality": [
+    "Dimensional modeling", "ETL / ELT", "Source integration", "Reconciliation",
+    "Data testing", "Controlled backfills", "Git"
   ],
-  "Modeling and Analysis": [
-    "pandas",
-    "NumPy",
-    "scikit-learn",
-    "XGBoost",
-    "LightGBM",
-    "Random forest",
-    "K-means",
-    "Gaussian mixture models",
-    "PCA",
-    "Feature engineering",
-    "Model evaluation",
-    "A/B testing analysis"
+  "Modeling and validation": [
+    "Random forests", "Regression", "K-means", "Entity resolution",
+    "Feature engineering", "Time-aware evaluation", "Baseline comparison"
   ],
-  "Cloud and Development": [
-    "AWS (S3, EC2, Lambda, Bedrock)",
-    "Snowflake Python notebooks",
-    "Git",
-    "GitHub Actions",
-    "Docker"
+  "Applied AI and applications": [
+    "FastAPI", "Next.js", "LLM APIs", "Retrieval", "Streaming", "Caching", "Telemetry"
   ],
-  "Applied AI and Applications": [
-    "RAG",
-    "LangChain",
-    "ChromaDB",
-    "BM25",
-    "OpenAI and Anthropic APIs",
-    "FastAPI",
-    "Redis",
-    "Next.js"
-  ]
+  "Cloud and delivery": ["AWS", "S3", "Docker", "GitHub Actions", "PostgreSQL"]
 };

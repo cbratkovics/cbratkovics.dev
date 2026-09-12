@@ -37,10 +37,10 @@ const stories = [
   },
   {
     id: "operational-ai",
-    title: "Restoring executive financial-email output",
-    outcome: "Restored application output after identifying stale source dependencies.",
+    title: "Generative AI for executive financial communications",
+    outcome: "Delivered and supported workflows that turn pacing data into editable executive communications.",
     problem: "An application that turns financial pacing data into editable executive communications stopped producing valid output.",
-    contribution: "Traced invalid financial-email output to stale source views, coordinated the correction with the data team, and validated the restored application output.",
+    contribution: "Contributed to delivery and ongoing support; when output failed, I traced the issue to stale source views, coordinated correction with the data team, and validated source data and restored output.",
     decision: "The correction addressed the source dependency instead of masking the problem with prompt or interface changes.",
     validation: "Application output was checked after the cross-team source correction, preserving the boundary between operational support and broader application ownership."
   }

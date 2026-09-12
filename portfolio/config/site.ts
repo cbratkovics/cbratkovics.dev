@@ -1,8 +1,9 @@
+import { identity } from "@/data/projects";
+
 export const SITE = {
-  name: "Christopher J. Bratkovics",
-  title:
-    "Christopher J. Bratkovics | Data Scientist | Analytics Engineer | Applied AI",
-  shortTitle: "Christopher J. Bratkovics | Data Scientist | Analytics Engineer | Applied AI",
+  name: identity.name,
+  title: `${identity.name} | ${identity.headline}`,
+  shortTitle: `${identity.name} | ${identity.headline}`,
   description:
     "Data Scientist and Analytics Engineer with 7+ years in enterprise analytics, building predictive models, production data products, and applied AI.",
   url: "https://cbratkovics.dev",
@@ -18,8 +19,8 @@ export const SITE = {
   ],
 
   author: {
-    name: "Christopher J. Bratkovics",
-    jobTitle: "Data Scientist | Analytics Engineer | Applied AI"
+    name: identity.name,
+    jobTitle: identity.headline
   }
 } as const;
 

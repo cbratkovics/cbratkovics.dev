@@ -1,179 +1,147 @@
+export const identity = {
+  name: "Christopher J. Bratkovics",
+  headline: "Data Scientist | Analytics Engineer | Applied AI",
+  eyebrow: "7+ years in enterprise analytics",
+  summary:
+    "Data Scientist and Analytics Engineer with 7+ years building predictive models, production data pipelines, and business-facing applications. I combine Python/SQL development with Snowflake/dbt modeling to turn fragmented source data into reliable reporting and decision-support tools."
+} as const;
+
+export interface QuantitativeEvidence {
+  metric: string;
+  value: number;
+  unit: string;
+  baseline: { label: string; value: number; unit: string };
+  population: string;
+  timeWindow: string;
+  evaluationType: string;
+  modelVersion: string;
+  sourceArtifact: string;
+  sourceUrl: string;
+  verifiedOn: string;
+}
+
 export interface Project {
   id: string;
   title: string;
   summary: string;
   detail: string;
+  inspect: string;
   tech: string[];
   githubUrl: string;
   liveUrl?: string;
-  image?: string;
+  liveLabel?: string;
   evidence?: { label: string; url: string }[];
+  metric?: QuantitativeEvidence;
   featured: boolean;
 }
 
-export interface ExperienceRole {
-  id: string;
-  title: string;
-  company: string;
-  period: string;
-  summary: string;
-  milestones: { date: string; text: string }[];
-}
-
-export interface EducationEntry {
-  credential: string;
-  institution: string;
-  date: string;
-  detail?: string;
-}
+export interface ExperienceRole { id: string; title: string; company: string; period: string; summary: string; milestones: { date: string; text: string }[]; }
+export interface EducationEntry { credential: string; institution: string; date: string; detail?: string; }
 
 export const experience: ExperienceRole[] = [
   {
-    id: "senior-data-analyst",
-    title: "Senior Data Analyst (Data Science / Analytics Engineering)",
-    company: "OUTFRONT Media",
-    period: "April 2022 to present",
-    summary:
-      "Senior individual-contributor work spanning a five-source production reporting foundation, applied modeling, operational AI, and Python/SQL solutions for advertiser retention, segmentation, inventory performance, and entity resolution.",
+    id: "senior-data-analyst", title: "Senior Data Analyst (Data Science / Analytics Engineering)", company: "OUTFRONT Media", period: "April 2022–Present",
+    summary: "Senior individual-contributor work spanning a five-source production reporting foundation, applied modeling, operational AI, and Python/SQL solutions for advertiser retention, segmentation, inventory performance, and entity resolution.",
     milestones: [
-      {
-        date: "2026",
-        text: "Designed, built, and own the Snowflake/dbt foundation that standardizes Vistar, Place Exchange, Hivestack DDA, Hivestack Programmatic, and ViOOH data for production revenue and delivery reporting in Sigma."
-      },
-      {
-        date: "2025",
-        text: "Developed churn-risk models, K-means customer segments, and reviewable Python/SQL advertiser mappings."
-      },
-      {
-        date: "2024",
-        text: "Delivered and supported a generative AI application for editable executive financial communications, then restored its output by tracing a production failure to stale source views and validating the cross-team correction."
-      },
-      {
-        date: "2022–2023",
-        text: "Delivered Mobile Contract Tracking to production, iterated on stakeholder enhancements and Finance reporting fixes, and completed acceptance testing for a marketing dashboard."
-      }
+      { date: "Reporting foundation", text: "Built and own the Snowflake/dbt foundation integrating five advertising platforms into production revenue and delivery reporting in Sigma, including source transformations, deduplication, inventory enrichment, controlled backfills, unified facts, and reporting marts." },
+      { date: "Daily occupancy", text: "Built and validated SSP occupancy and buy-type components and their integration; co-designed the architecture with a data engineer who owns the shared-capacity and charted components." },
+      { date: "Applied modeling", text: "Developed Python churn-risk models, K-means customer segmentation, inventory-utilization and revenue-per-unit regressions, peer comparisons, and reviewable Python/SQL advertiser entity resolution." },
+      { date: "Operational AI", text: "Delivered and supported generative AI workflows for editable executive financial communications, including production troubleshooting and source-data/output validation with the data team." }
     ]
   },
   {
-    id: "bi-data-analyst",
-    title: "Business Intelligence Data Analyst (Data Architecture / Data Science)",
-    company: "OUTFRONT Media",
-    period: "July 2019 to April 2022",
-    summary:
-      "Built reporting foundations with Python ETL automation, dimensional models, KPI definitions, data-quality checks, and early applied data-science collaboration.",
+    id: "bi-data-analyst", title: "Business Intelligence Data Analyst (Data Architecture / Data Science)", company: "OUTFRONT Media", period: "July 2019–April 2022",
+    summary: "Built reporting foundations with Python ETL automation, fact/dimension models, KPI definitions, and data-quality checks; expanded that foundation through applied data-science collaboration and production-release coordination.",
     milestones: [
-      {
-        date: "March 2022",
-        text: "Supported budget-data corrections and loading required for sales-compensation and quarterly bonus calculations."
-      },
-      {
-        date: "September 2021",
-        text: "Coordinated Financial Pacing reports into production with Finance, sequencing the release and phased rollout around active reporting users."
-      },
-      {
-        date: "May 2021",
-        text: "Coauthored and presented an applied machine-learning use case for advertising-inventory optimization and customer-value projection with external data-science specialists."
-      }
+      { date: "2021", text: "Coauthored and presented an applied-ML use case for inventory optimization and customer-value projection with external specialists." },
+      { date: "Reporting delivery", text: "Coordinated Financial Pacing reporting into production with Finance and supported budget-data corrections used in compensation reporting." }
     ]
   }
 ];
 
 export const education: EducationEntry[] = [
-  {
-    credential: "M.S., Applied Data Science",
-    institution: "Bay Path University",
-    date: "June 2025",
-    detail: "4.0 GPA"
-  },
-  {
-    credential: "B.S., Computer Science",
-    institution: "University of Vermont",
-    date: "December 2018"
-  },
-  {
-    credential: "Data Science Immersive",
-    institution: "General Assembly",
-    date: "February–May 2019",
-    detail: "Non-degree training program"
-  }
+  { credential: "M.S., Applied Data Science", institution: "Bay Path University", date: "June 2025" },
+  { credential: "B.S., Computer Science", institution: "University of Vermont", date: "December 2018" },
+  { credential: "Data Science Immersive", institution: "General Assembly", date: "February–May 2019", detail: "Non-degree training program" }
 ];
+
+const footballEvaluation: QuantitativeEvidence = {
+  metric: "Mean absolute error", value: 4.4909, unit: "PPR points",
+  baseline: { label: "causal trailing-mean baseline", value: 4.8046, unit: "PPR points" },
+  population: "5,914 player-weeks", timeWindow: "2025 season", evaluationType: "Historical out-of-sample season evaluation of a frozen artifact",
+  modelVersion: "20260911-asof_v1-d333de20", sourceArtifact: "eval-20260911-20260911-asof_v1-d333de20-rf-oos2025.json",
+  sourceUrl: "https://github.com/cbratkovics/fantasy-football-ai/blob/8e22a47cfc99ba85861cccbe63732da42feb27ab/artifacts/eval/eval-20260911-20260911-asof_v1-d333de20-rf-oos2025.json",
+  verifiedOn: "2026-09-12"
+};
+
+export const relativeReduction = (evidence: QuantitativeEvidence) =>
+  ((evidence.baseline.value - evidence.value) / evidence.baseline.value) * 100;
 
 export const projects: Project[] = [
   {
-    id: "fantasy-football",
-    title: "Fantasy Football Projection Pipeline",
-    summary:
-      "Per-position random forests use lagged player features and season-based evaluation, with predictions presented through FastAPI and Next.js.",
-    detail:
-      "Versioned model artifacts record the model and feature version, season split, population, metric, and causal trailing-mean baseline. Forecast evaluation remains separate from the GMM/PCA draft-tier component.",
-    tech: ["Python", "Random forest", "FastAPI", "Next.js", "GMM / PCA"],
-    githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
-    liveUrl: "https://fantasy-football-ai.vercel.app",
+    id: "fantasy-football", title: "Fantasy Football Projection Pipeline",
+    summary: `${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than a trailing-mean baseline across ${footballEvaluation.population} in a 2025 out-of-sample evaluation.`,
+    detail: "Per-position random forests use lagged/as-of features and temporal splits. The 4.49 versus 4.80 PPR-point result is a September 2026 historical evaluation of the frozen model—not a prospectively recorded 2025 forecast. GMM/PCA preseason draft tiers are evaluated separately.",
+    inspect: "Inspect the pinned evaluation artifact, model card, and artifact-backed FastAPI/Next.js presentation.",
+    tech: ["Python", "Random forests", "As-of features", "FastAPI", "Next.js", "GMM / PCA"],
+    githubUrl: "https://github.com/cbratkovics/fantasy-football-ai", liveUrl: "https://fantasy-football-ai.vercel.app", liveLabel: "Project demo", metric: footballEvaluation,
     evidence: [
-      { label: "Model card", url: "https://github.com/cbratkovics/fantasy-football-ai/blob/main/docs/MODEL_CARD.md" }
-    ],
-    featured: true
+      { label: "Model card", url: "https://github.com/cbratkovics/fantasy-football-ai/blob/main/docs/MODEL_CARD.md" },
+      { label: "Pinned evaluation", url: footballEvaluation.sourceUrl }
+    ], featured: true
   },
   {
-    id: "sql-genius",
-    title: "SQL Genius AI | SQL Analytics Playground",
-    summary:
-      "A browser-based SQLite playground for synthetic sample data with schema inspection, editable SQL, explicit user-controlled execution, bounded previews, and CSV export.",
-    detail:
-      "Reviewed-template intent matching and conservative schema fallbacks assist query drafting. Read-only checks narrow what the interface will execute; they are not a general-purpose security or SQL-correctness guarantee.",
-    tech: ["TypeScript", "Next.js", "SQLite", "Schema inspection"],
-    githubUrl: "https://github.com/cbratkovics/sql-genius-ai",
-    liveUrl: "https://sql-genius-ai.vercel.app",
-    featured: true
+    id: "sql-genius", title: "SQL Genius AI | SQL Analytics Playground",
+    summary: "An inspectable browser analytics workflow: explore a synthetic sample schema, draft or edit SQL, explicitly run an accepted read-only query in SQLite, preview bounded results, and export CSV.",
+    detail: "The active generator uses local reviewed-intent/template matching with a conservative schema fallback. User-controlled execution and read-only policy checks narrow behavior; they are not unrestricted LLM synthesis or a hardened security guarantee.",
+    inspect: "Inspect the maintained local generator, browser database, query policy, and portfolio evidence notes.",
+    tech: ["TypeScript", "Next.js", "Browser SQLite", "Local templates", "Read-only policy"],
+    githubUrl: "https://github.com/cbratkovics/sql-genius-ai", liveUrl: "https://sql-genius-ai.vercel.app/demo", liveLabel: "Open playground",
+    evidence: [{ label: "Implementation evidence", url: "https://github.com/cbratkovics/sql-genius-ai/blob/main/docs/PORTFOLIO_EVIDENCE.md" }], featured: true
   },
   {
-    id: "ai-chatbot",
-    title: "AI Chat System | Multi-Provider LLM Gateway",
-    summary:
-      "A FastAPI and Next.js chat system with SSE streaming, response caching, provider failover, structured errors, and request budgets.",
-    detail:
-      "Per-request and session telemetry make latency and estimated API cost observable. Semantic-cache support is an implementation capability, not a claim that semantic matching is enabled on every deployment.",
-    tech: ["Python", "FastAPI", "Next.js", "SSE", "Caching"],
-    githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
-    liveUrl: "https://chatbot-ai-system.vercel.app",
-    featured: true
+    id: "ai-chatbot", title: "AI Chat System | Multi-Provider LLM Gateway",
+    summary: "An observable FastAPI/Next.js gateway with SSE streaming, provider failover, exact and semantic response caching, structured errors, bounded requests, and per-request/session telemetry.",
+    detail: "A scoped localhost benchmark recorded failover checks passing 10/10 and stream-contract checks passing 20/20. Its 68-pair semantic-cache run also exposed the trade-off: 56.6% precision, 90.9% recall, and 23 false positives; runtime behavior remains configuration-dependent.",
+    inspect: "Inspect the committed benchmark and the deployed evaluation presentation; these checks are not a production SLA or real-outage guarantee.",
+    tech: ["Python", "FastAPI", "Next.js", "SSE", "Caching", "Telemetry"],
+    githubUrl: "https://github.com/cbratkovics/chatbot-ai-system", liveUrl: "https://chatbot-ai-system.vercel.app", liveLabel: "Project demo",
+    evidence: [
+      { label: "System evaluations", url: "https://chatbot-ai-system.vercel.app/evals" },
+      { label: "Committed benchmark", url: "https://github.com/cbratkovics/chatbot-ai-system/blob/main/evals/results/latest.md" }
+    ], featured: true
   },
   {
-    id: "nba-ml",
-    title: "NBA Performance Forecasting",
-    summary:
-      "Player-stat forecasting work with engineered features, time-aware evaluation routines, and a FastAPI presentation layer.",
-    detail:
-      "Time-aware evaluation routines remain separate from the FastAPI presentation layer, keeping model analysis distinct from interface behavior.",
-    tech: ["Python", "scikit-learn", "FastAPI"],
-    githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
-    featured: false
+    id: "nba-ml", title: "NBA Stat Predictor",
+    summary: "A LightGBM batch pipeline with point-in-time features, GitHub Actions, Hugging Face artifacts, Next.js artifact-reading pages, season replay reconciliation, and a read-only tool-grounded brief.",
+    detail: "The holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 minutes with baseline available). The distinct all-replay population does not beat its baseline, and post-game minutes eligibility is not pregame knowledge.",
+    inspect: "Inspect cohort-aware metrics, replay reconciliation, agent design, and the overview, replay, and brief demonstrations.",
+    tech: ["Python", "LightGBM", "GitHub Actions", "Hugging Face", "Next.js"],
+    githubUrl: "https://github.com/cbratkovics/nba-ai-ml", liveUrl: "https://nba-ai-ml.vercel.app", liveLabel: "Project overview",
+    evidence: [
+      { label: "Replay", url: "https://nba-ai-ml.vercel.app/replay" },
+      { label: "Agent brief", url: "https://nba-ai-ml.vercel.app/brief" },
+      { label: "Reconciliation notes", url: "https://github.com/cbratkovics/nba-ai-ml/blob/master/docs/reconciliation.md" }
+    ], featured: false
   },
   {
-    id: "document-intelligence",
-    title: "Document Retrieval System",
-    summary:
-      "A document-processing and retrieval codebase covering document lifecycle, chunking, keyword and vector retrieval, reranking, citation checking, and evaluation routines.",
-    detail:
-      "Pipeline tests exercise retrieval and citation behavior while optional hosted stages remain configuration-dependent.",
-    tech: ["Python", "Retrieval", "FastAPI", "Evaluation"],
+    id: "document-intelligence", title: "Document Intelligence | Local-First Retrieval Service",
+    summary: "A local-first retrieval service with an authoritative SQLite manifest, staged ingestion/replacement/deletion, current-version hydration, scoped lexical and hybrid retrieval, and offline evaluation.",
+    detail: "Document scope is applied to both retrieval branches, while unavailable-provider and excerpts-only outcomes are explicit. Dense retrieval, generation, and some reranking paths require configuration; citation validation checks references, not entailment, and sample tests are not a general quality benchmark.",
+    inspect: "Inspect the engineering case study, architecture, and lifecycle/retrieval tests; the repository documents a local walkthrough rather than claiming a verified hosted service.",
+    tech: ["Python", "SQLite", "Hybrid retrieval", "FastAPI", "Offline evaluation"],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
-    featured: false
+    evidence: [
+      { label: "Engineering case study", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ENGINEERING_CASE_STUDY.md" },
+      { label: "Architecture", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ARCHITECTURE.md" }
+    ], featured: false
   }
 ];
 
 export const skills = {
   "Core analytics engineering": ["Python", "SQL", "Snowflake", "dbt", "Sigma"],
-  "Data products and quality": [
-    "Dimensional modeling", "ETL / ELT", "Source integration", "Reconciliation",
-    "Data testing", "Controlled backfills", "Git"
-  ],
-  "Modeling and validation": [
-    "Random forests", "Regression", "K-means", "Entity resolution",
-    "Feature engineering", "Time-aware evaluation", "Baseline comparison"
-  ],
-  "Applied AI and applications": [
-    "FastAPI", "Next.js", "LLM APIs", "Retrieval", "Streaming", "Caching", "Telemetry"
-  ],
+  "Data products and quality": ["Dimensional modeling", "ETL / ELT", "Source integration", "Reconciliation", "Data testing", "Controlled backfills", "Git"],
+  "Modeling and validation": ["Random forests", "LightGBM", "Regression", "K-means", "Entity resolution", "Feature engineering", "Time-aware evaluation", "Baseline comparison"],
+  "Applied AI and applications": ["FastAPI", "Next.js", "LLM APIs", "Retrieval", "SSE streaming", "Caching", "Telemetry"],
   "Cloud and delivery": ["AWS", "S3", "Docker", "GitHub Actions", "PostgreSQL"]
 };

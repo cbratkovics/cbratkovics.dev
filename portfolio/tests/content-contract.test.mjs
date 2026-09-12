@@ -30,6 +30,20 @@ test("canonical positioning and chronology do not drift", () => {
   assert.match(content, /Business Intelligence Data Analyst \(Data Architecture \/ Data Science\)[\s\S]*July 2019–April 2022/);
 });
 
+test("earlier OUTFRONT role retains its technical focus", () => {
+  const role = content.match(/id: "bi-data-analyst"[\s\S]*?\n  }\n\];/)[0];
+  for (const copy of [
+    "Built the data pipelines and analytical models behind recurring executive reporting, combining Python automation, dimensional modeling, and KPI design with applied machine-learning collaboration.",
+    "Python ETL & automation",
+    "Automated recurring reporting workflows with Python ETL, replacing manual data preparation with repeatable processes.",
+    "Dimensional modeling & business metrics",
+    "Designed fact and dimension tables and defined KPIs for executive dashboards, translating business requirements into reusable reporting structures.",
+    "Applied machine learning | 2021",
+    "Coauthored and presented an applied machine-learning use case for advertising-inventory optimization and customer-value projection, collaborating with external data-science specialists."
+  ]) assert.ok(role.includes(copy));
+  assert.doesNotMatch(role, /Financial Pacing|compensation reporting|Reporting delivery/);
+});
+
 test("education remains complete, ordered, and separate from employment", () => {
   const institutions = ["Bay Path University", "University of Vermont", "General Assembly"];
   const positions = institutions.map((name) => content.indexOf(name));

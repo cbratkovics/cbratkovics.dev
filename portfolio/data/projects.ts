@@ -51,10 +51,11 @@ export const experience: ExperienceRole[] = [
   },
   {
     id: "bi-data-analyst", title: "Business Intelligence Data Analyst (Data Architecture / Data Science)", company: "OUTFRONT Media", period: "July 2019–April 2022",
-    summary: "Built reporting foundations with Python ETL automation, fact/dimension models, KPI definitions, and data-quality checks; expanded that foundation through applied data-science collaboration and production-release coordination.",
+    summary: "Built the data pipelines and analytical models behind recurring executive reporting, combining Python automation, dimensional modeling, and KPI design with applied machine-learning collaboration.",
     milestones: [
-      { date: "2021", text: "Coauthored and presented an applied-ML use case for inventory optimization and customer-value projection with external specialists." },
-      { date: "Reporting delivery", text: "Coordinated Financial Pacing reporting into production with Finance and supported budget-data corrections used in compensation reporting." }
+      { date: "Python ETL & automation", text: "Automated recurring reporting workflows with Python ETL, replacing manual data preparation with repeatable processes." },
+      { date: "Dimensional modeling & business metrics", text: "Designed fact and dimension tables and defined KPIs for executive dashboards, translating business requirements into reusable reporting structures." },
+      { date: "Applied machine learning | 2021", text: "Coauthored and presented an applied machine-learning use case for advertising-inventory optimization and customer-value projection, collaborating with external data-science specialists." }
     ]
   }
 ];

@@ -41,12 +41,14 @@ export interface EducationEntry { credential: string; institution: string; date:
 export const experience: ExperienceRole[] = [
   {
     id: "senior-data-analyst", title: "Senior Data Analyst (Data Science / Analytics Engineering)", company: "OUTFRONT Media", period: "April 2022–Present",
-    summary: "Senior individual-contributor work spanning a five-source production reporting foundation, applied modeling, operational AI, and Python/SQL solutions for advertiser retention, segmentation, inventory performance, and entity resolution.",
+    summary: "Built production reporting systems, developed Python models, and delivered business-facing AI applications. Translated fragmented advertising data and complex business rules into reusable data products for revenue reporting, customer retention, and inventory-performance analysis.",
     milestones: [
-      { date: "Reporting foundation", text: "Built and own the Snowflake/dbt foundation integrating five advertising platforms into production revenue and delivery reporting in Sigma, including source transformations, deduplication, inventory enrichment, controlled backfills, unified facts, and reporting marts." },
-      { date: "Daily occupancy", text: "Built and validated SSP occupancy and buy-type components and their integration; co-designed the architecture with a data engineer who owns the shared-capacity and charted components." },
-      { date: "Applied modeling", text: "Developed Python churn-risk models, K-means customer segmentation, inventory-utilization and revenue-per-unit regressions, peer comparisons, and reviewable Python/SQL advertiser entity resolution." },
-      { date: "Operational AI", text: "Delivered and supported generative AI workflows for editable executive financial communications, including production troubleshooting and source-data/output validation with the data team." }
+      { date: "Production data architecture", text: "Designed, built, and own the Snowflake/dbt foundation integrating five advertising platforms into unified production revenue and delivery reporting in Sigma, with standardized source transformations, inventory enrichment, source-specific deduplication, and controlled historical backfills." },
+      { date: "Predictive modeling & customer segmentation", text: "Developed Python advertiser churn-risk models and K-means segmentation to identify retention priorities and account-growth opportunities, combining advertiser behavior with business-defined criteria for targeted analysis." },
+      { date: "Inventory modeling & peer analysis", text: "Built inventory-utilization and revenue-per-unit regression models and peer comparisons to evaluate expected performance, identify underperforming advertising assets, and support yield-management analysis." },
+      { date: "Advertiser entity resolution", text: "Built Python/SQL workflows linking external advertiser data to internal accounts through name normalization, exact and fuzzy matching, and similarity scoring. Preserved confidence tiers and reviewable exceptions to make cross-source advertiser reporting traceable." },
+      { date: "Occupancy modeling & reconciliation", text: "Built and validated monthly and daily occupancy and buy-type models, integrating programmatic activity with direct-sold reporting while controlling shared-capacity aggregation. Created reusable SQL proofs to reconcile revenue, fees, delivery, and inventory coverage and validate metric behavior across reporting grains." },
+      { date: "Applied AI delivery & recovery", text: "Delivered and supported a generative AI application turning financial data into editable executive communications. Traced a production failure to outdated source views, worked with the data team to correct them, and validated the restored output." }
     ]
   },
   {

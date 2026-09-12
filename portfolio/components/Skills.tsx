@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { skills } from "@/data/projects";
 import { Brain, Database, Cloud, Cpu, Sparkles } from "lucide-react";
 
@@ -22,17 +18,11 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function Skills() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   return (
     <section id="skills" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 tech-lines opacity-50" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+      <div
         className="max-w-7xl mx-auto relative z-10"
       >
         <div className="text-center mb-12">
@@ -45,18 +35,10 @@ export default function Skills() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(skills).map(([category, items], categoryIndex) => (
-            <motion.div
+          {Object.entries(skills).map(([category, items]) => (
+            <div
               key={category}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className={`glassmorphism p-6 rounded-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-cyan-400 ${
-                selectedCategory === category ? "ring-2 ring-blue-500" : ""
-              }`}
-              onMouseEnter={() => setSelectedCategory(category)}
-              onMouseLeave={() => setSelectedCategory(null)}
+              className="glassmorphism p-6 rounded-xl"
             >
               <div className="flex items-center mb-4">
                 <div className={`p-2 rounded-lg bg-gradient-to-r ${categoryColors[category]} mr-3`}>
@@ -75,10 +57,10 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

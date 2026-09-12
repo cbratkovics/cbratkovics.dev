@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Github, Linkedin } from "lucide-react";
 
 export default function Contact() {
@@ -23,13 +20,7 @@ export default function Contact() {
     <section id="contact" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 tech-lines opacity-30" />
       
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-6xl mx-auto relative z-10"
-      >
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
             Let’s connect
@@ -39,13 +30,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
+        <div className="flex justify-center">
           <div className="glassmorphism-strong p-6 rounded-xl max-w-md w-full">
             <h3 className="text-xl font-semibold text-white mb-4">Professional profiles</h3>
             <p className="text-gray-400 mb-4 text-sm">
@@ -70,20 +55,14 @@ export default function Contact() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-20 pt-8 border-t border-white/10 text-center"
-        >
+        <div className="mt-20 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-400">
             © 2026 Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

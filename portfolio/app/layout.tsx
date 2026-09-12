@@ -13,18 +13,21 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE.author.name }],
   creator: SITE.author.name,
+  alternates: { canonical: "/" },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: SITE.url,
     siteName: SITE.shortTitle,
     title: SITE.title,
-    description: SITE.description
+    description: SITE.description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${SITE.author.name} — ${SITE.author.jobTitle}` }]
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: SITE.shortTitle,
-    description: SITE.description
+    description: SITE.description,
+    images: ["/opengraph-image"]
   },
   robots: {
     index: true,
@@ -82,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className="antialiased bg-[#0a0a0f] text-white">
         <script
           type="application/ld+json"

@@ -7,6 +7,7 @@ export interface Project {
   githubUrl: string;
   liveUrl?: string;
   image?: string;
+  evidence?: { label: string; url: string }[];
   featured: boolean;
 }
 
@@ -14,7 +15,6 @@ export interface ExperienceRole {
   id: string;
   title: string;
   company: string;
-  location: string;
   period: string;
   summary: string;
   milestones: { date: string; text: string }[];
@@ -32,10 +32,9 @@ export const experience: ExperienceRole[] = [
     id: "senior-data-analyst",
     title: "Senior Data Analyst (Data Science / Analytics Engineering)",
     company: "OUTFRONT Media",
-    location: "New York-based employer",
     period: "April 2022 to present",
     summary:
-      "Promoted into a senior individual-contributor role spanning production analytics engineering, applied modeling, and operational AI.",
+      "Senior individual-contributor work spanning a five-source production reporting foundation, applied modeling, operational AI, and Python/SQL solutions for advertiser retention, segmentation, inventory performance, and entity resolution.",
     milestones: [
       {
         date: "2026",
@@ -43,7 +42,7 @@ export const experience: ExperienceRole[] = [
       },
       {
         date: "2025",
-        text: "Developed churn-risk models, K-means customer segments, inventory-utilization and revenue-per-unit regressions, peer comparisons, and reviewable Python/SQL advertiser mappings."
+        text: "Developed churn-risk models, K-means customer segments, and reviewable Python/SQL advertiser mappings."
       },
       {
         date: "2024",
@@ -59,7 +58,6 @@ export const experience: ExperienceRole[] = [
     id: "bi-data-analyst",
     title: "Business Intelligence Data Analyst (Data Architecture / Data Science)",
     company: "OUTFRONT Media",
-    location: "New York-based employer",
     period: "July 2019 to April 2022",
     summary:
       "Built reporting foundations with Python ETL automation, dimensional models, KPI definitions, data-quality checks, and early applied data-science collaboration.",
@@ -111,7 +109,9 @@ export const projects: Project[] = [
     tech: ["Python", "Random forest", "FastAPI", "Next.js", "GMM / PCA"],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai",
     liveUrl: "https://fantasy-football-ai.vercel.app",
-    image: "/images/fantasy-football-ai-demo.png",
+    evidence: [
+      { label: "Model card", url: "https://github.com/cbratkovics/fantasy-football-ai/blob/main/docs/MODEL_CARD.md" }
+    ],
     featured: true
   },
   {
@@ -124,7 +124,6 @@ export const projects: Project[] = [
     tech: ["TypeScript", "Next.js", "SQLite", "Schema inspection"],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai",
     liveUrl: "https://sql-genius-ai.vercel.app",
-    image: "/images/sql-genius-ai-demo.png",
     featured: true
   },
   {
@@ -137,7 +136,6 @@ export const projects: Project[] = [
     tech: ["Python", "FastAPI", "Next.js", "SSE", "Caching"],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system",
     liveUrl: "https://chatbot-ai-system.vercel.app",
-    image: "/images/chatbot-ai-system-demo.png",
     featured: true
   },
   {
@@ -146,7 +144,7 @@ export const projects: Project[] = [
     summary:
       "Player-stat forecasting work with engineered features, time-aware evaluation routines, and a FastAPI presentation layer.",
     detail:
-      "The project separates time-aware evaluation routines from the FastAPI presentation layer; no historical traffic or service-reliability metric is attributed to the modeling work.",
+      "Time-aware evaluation routines remain separate from the FastAPI presentation layer, keeping model analysis distinct from interface behavior.",
     tech: ["Python", "scikit-learn", "FastAPI"],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml",
     featured: false
@@ -155,9 +153,9 @@ export const projects: Project[] = [
     id: "document-intelligence",
     title: "Document Retrieval System",
     summary:
-      "A document-processing and retrieval codebase covering chunking, keyword and vector retrieval, reranking, and evaluation scaffolding.",
+      "A document-processing and retrieval codebase covering document lifecycle, chunking, keyword and vector retrieval, reranking, citation checking, and evaluation routines.",
     detail:
-      "Implemented pipeline components and evaluation scaffolding are described separately from the optional stages configured in a hosted application.",
+      "Pipeline tests exercise retrieval and citation behavior while optional hosted stages remain configuration-dependent.",
     tech: ["Python", "Retrieval", "FastAPI", "Evaluation"],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
     featured: false

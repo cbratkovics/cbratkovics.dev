@@ -1,6 +1,3 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import MinimalHero from "@/components/MinimalHero";
 import Experience from "@/components/Experience";
 import WorkStories from "@/components/WorkStories";
@@ -10,18 +7,14 @@ import Impact from "@/components/Impact";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 
-const Particles = dynamic(() => import("@/components/Particles"), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 z-0" />
-});
-
 export default function Home() {
   return (
     <>
-      <Particles />
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <div className="site-background" aria-hidden="true" />
       <Navigation />
-      <main className="relative z-10">
-        <div id="home">
+      <main id="main-content" tabIndex={-1} className="relative z-10">
+        <div id="home" className="scroll-target">
           <MinimalHero />
         </div>
 

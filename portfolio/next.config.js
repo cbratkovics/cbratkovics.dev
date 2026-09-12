@@ -3,9 +3,7 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   images: {
-    domains: ['cbratkovics.dev', 'github.com'],
     formats: ['image/avif', 'image/webp'],
-    unoptimized: true,
   },
   async headers() {
     return [

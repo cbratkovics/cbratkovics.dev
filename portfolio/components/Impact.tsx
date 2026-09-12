@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Calendar, GitMerge, RefreshCw, Target } from "lucide-react";
 
 const highlights = [
@@ -34,10 +31,10 @@ export default function Impact() {
   return (
     <section id="impact" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 matrix-bg" />
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Delivery highlights</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Concrete scope and outcomes, without substituting activity counts for business impact</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Selected outcomes from production reporting, applied modeling, and operational AI.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {highlights.map(({ icon: Icon, ...highlight }) => (
@@ -49,7 +46,7 @@ export default function Impact() {
             </article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

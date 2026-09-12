@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, MapPin } from "lucide-react";
+import { Briefcase, GraduationCap } from "lucide-react";
 import { experience, education } from "@/data/projects";
 
 export default function Experience() {
@@ -9,13 +6,7 @@ export default function Experience() {
     <section id="experience" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 tech-lines opacity-50" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-5xl mx-auto relative z-10"
-      >
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
             Experience
@@ -26,13 +17,9 @@ export default function Experience() {
         </div>
 
         <div className="space-y-6">
-          {experience.map((role, index) => (
-            <motion.div
+          {experience.map((role) => (
+            <article
               key={role.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
               className="glassmorphism p-6 md:p-8 rounded-xl"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
@@ -46,11 +33,6 @@ export default function Experience() {
                     </h3>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-gray-400 mt-2">
                       <span className="font-medium text-gray-300">{role.company}</span>
-                      <span className="text-gray-600">|</span>
-                      <span className="inline-flex items-center gap-1 text-sm">
-                        <MapPin className="w-3.5 h-3.5" />
-                        {role.location}
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -69,17 +51,11 @@ export default function Experience() {
                   </li>
                 ))}
               </ol>
-            </motion.div>
+            </article>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          viewport={{ once: true }}
-          className="glassmorphism p-6 md:p-8 rounded-xl mt-6"
-        >
+        <div className="glassmorphism p-6 md:p-8 rounded-xl mt-6">
           <div className="flex items-center gap-4 mb-5">
             <div className="p-2 rounded-lg bg-gradient-to-r from-purple-400 to-pink-500 flex-shrink-0">
               <GraduationCap className="w-5 h-5 text-white" />
@@ -102,8 +78,8 @@ export default function Experience() {
               </div>
             ))}
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

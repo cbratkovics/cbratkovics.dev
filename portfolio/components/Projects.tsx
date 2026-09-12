@@ -1,9 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
-import Image from "next/image";
 
 export default function Projects() {
   const featuredProjects = projects.filter((project) => project.featured);
@@ -13,11 +9,7 @@ export default function Projects() {
     <section id="projects" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-30" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+      <div
         className="max-w-7xl mx-auto relative z-10"
       >
         <div className="text-center mb-12">
@@ -30,13 +22,9 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {featuredProjects.map((project, index) => (
-            <motion.div
+          {featuredProjects.map((project) => (
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
               className="relative group"
             >
               <div className="glassmorphism p-6 md:p-8 rounded-xl h-full flex flex-col transition-all duration-300 hover:shadow-2xl">
@@ -59,37 +47,21 @@ export default function Projects() {
                     </a>
                   </div>
 
-                  {/* Screenshot */}
-                  {project.image && project.liveUrl && (
-                    <div className="mb-4 rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-colors">
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block relative group/image"
-                      >
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} interface`}
-                          width={1200}
-                          height={675}
-                          className="w-full h-auto group-hover/image:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                          <span className="text-white font-semibold flex items-center gap-2">
-                            Open live demo
-                            <ExternalLink className="w-4 h-4" />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                  )}
-
                   {/* Description */}
                   <p className="text-gray-200 leading-relaxed mb-3 font-medium">
                     {project.summary}
                   </p>
                   <p className="text-gray-400 text-sm leading-relaxed mb-6">{project.detail}</p>
+                  {project.evidence && (
+                    <div className="flex flex-wrap gap-3 mb-6" aria-label={`${project.title} evidence`}>
+                      {project.evidence.map((item) => (
+                        <a key={item.url} href={item.url} target="_blank" rel="noopener noreferrer"
+                          className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200">
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -138,7 +110,7 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
         <div className="mt-10 border-t border-white/10 pt-8">
@@ -156,7 +128,7 @@ export default function Projects() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,134 +1,85 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Home, Briefcase, Code, User, BarChart3, Mail, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { BarChart3, Briefcase, Code, Home, Mail, Menu, User } from "lucide-react";
+
+const navItems = [
+  { id: "home", label: "Home", icon: Home },
+  { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "work", label: "Selected Work", icon: BarChart3 },
+  { id: "projects", label: "Projects", icon: Code },
+  { id: "skills", label: "Skills", icon: User },
+  { id: "impact", label: "Highlights", icon: BarChart3 },
+  { id: "contact", label: "Contact", icon: Mail },
+];
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
-  const navItems = useMemo(() => [
-    { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
-    { id: "experience", label: "Experience", icon: <Briefcase className="w-4 h-4" /> },
-    { id: "work", label: "Selected Work", icon: <BarChart3 className="w-4 h-4" /> },
-    { id: "projects", label: "Projects", icon: <Code className="w-4 h-4" /> },
-    { id: "skills", label: "Skills", icon: <User className="w-4 h-4" /> },
-    { id: "impact", label: "Highlights", icon: <BarChart3 className="w-4 h-4" /> },
-    { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
-  ], []);
+  const [isOpen, setIsOpen] = useState(false);
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const summaryRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-
-      const sections = navItems.map(item => item.id);
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+    const syncHash = () => setActiveSection(window.location.hash.slice(1) || "home");
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    const media = window.matchMedia("(min-width: 1024px)");
+    const closeAtDesktop = () => {
+      detailsRef.current?.removeAttribute("open");
+      setIsOpen(false);
     };
+    media.addEventListener("change", closeAtDesktop);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target.id) setActiveSection(visible.target.id);
+    }, { rootMargin: "-20% 0px -65%", threshold: [0, 0.25, 0.5] });
+    navItems.forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => {
+      window.removeEventListener("hashchange", syncHash);
+      media.removeEventListener("change", closeAtDesktop);
+      observer.disconnect();
+    };
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [navItems]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = sectionId === "home" ? 0 : element.offsetTop - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false);
+  const closeMenu = () => {
+    detailsRef.current?.removeAttribute("open");
+    setIsOpen(false);
   };
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "glassmorphism-strong" : ""
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl font-bold gradient-text"
-            >
-              CB
-            </motion.div>
-
-            <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                      : "text-gray-400 hover:text-white hover:glassmorphism"
-                  }`}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                </motion.button>
-              ))}
-            </div>
-
-            <button
-              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 glassmorphism rounded-lg"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+    <nav aria-label="Primary navigation" className="fixed top-0 left-0 right-0 z-50 glassmorphism-strong">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="#home" className="text-xl font-bold gradient-text" aria-label="Christopher Bratkovics, home">CB</a>
+        <div className="hidden lg:flex items-center gap-1">
+          {navItems.map(({ id, label, icon: Icon }) => (
+            <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined}
+              className="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-gray-300 hover:text-white">
+              <Icon className="w-4 h-4" aria-hidden="true" /><span>{label}</span>
+            </a>
+          ))}
         </div>
-      </motion.nav>
-
-      {isMobileMenuOpen && (
-        <motion.div role="dialog" aria-label="Mobile navigation"
-          initial={{ opacity: 0, x: 300 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 300 }}
-          className="fixed right-0 top-16 bottom-0 w-64 glassmorphism-strong z-40 p-6 lg:hidden"
-        >
-          <div className="space-y-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all duration-300 ${
-                  activeSection === item.id
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                    : "text-gray-400 hover:text-white hover:glassmorphism"
-                }`}
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </button>
+        <details ref={detailsRef} className="mobile-navigation lg:hidden" onToggle={(event) => setIsOpen(event.currentTarget.open)} onKeyDown={(event) => {
+          if (event.key === "Escape" && detailsRef.current?.open) {
+            closeMenu();
+            summaryRef.current?.focus();
+          }
+        }}>
+          <summary ref={summaryRef} aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isOpen} aria-controls="mobile-navigation-panel" className="p-2 glassmorphism rounded-lg cursor-pointer">
+            <Menu className="w-6 h-6" aria-hidden="true" />
+          </summary>
+          <div id="mobile-navigation-panel" className="absolute right-4 top-14 w-64 glassmorphism-strong rounded-xl p-4 shadow-2xl">
+            {navItems.map(({ id, label, icon: Icon }) => (
+              <a key={id} href={`#${id}`} onClick={closeMenu} aria-current={activeSection === id ? "location" : undefined}
+                className="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-200 hover:text-white">
+                <Icon className="w-4 h-4" aria-hidden="true" /><span>{label}</span>
+              </a>
             ))}
           </div>
-        </motion.div>
-      )}
-    </>
+        </details>
+      </div>
+    </nav>
   );
 }

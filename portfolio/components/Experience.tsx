@@ -44,8 +44,8 @@ export default function Experience() {
               <p className="text-gray-300 leading-relaxed mb-5">{role.summary}</p>
               <ol className="space-y-3 border-l border-white/10 pl-5">
                 {role.milestones.map((milestone) => (
-                  <li key={`${role.id}-${milestone.date}`} className="text-gray-300 leading-relaxed">
-                    <span className="block text-cyan-400 text-sm font-semibold mb-1">{milestone.date}</span>
+                  <li key={`${role.id}-${milestone.label}`} className="text-gray-300 leading-relaxed">
+                    <span className="block text-cyan-400 text-sm font-semibold mb-1">{milestone.label}</span>
                     <span
                       className="text-sm md:text-base">{milestone.text}</span>
                   </li>

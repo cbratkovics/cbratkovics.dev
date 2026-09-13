@@ -1,17 +1,18 @@
 import { Github, Linkedin } from "lucide-react";
+import { SITE } from "@/config/site";
 
 export default function Contact() {
   const socialLinks = [
     {
       name: "GitHub",
       icon: <Github className="w-6 h-6" />,
-      url: "https://github.com/cbratkovics",
+      url: SITE.links.github,
       color: "hover:from-gray-600 hover:to-gray-800"
     },
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-6 h-6" />,
-      url: "https://linkedin.com/in/cbratkovics",
+      url: SITE.links.linkedin,
       color: "hover:from-blue-600 hover:to-blue-800"
     }
   ];
@@ -59,7 +60,7 @@ export default function Contact() {
 
         <div className="mt-20 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-400">
-            © 2026 Christopher Bratkovics. Built with Next.js, TypeScript, and Tailwind CSS.
+            © 2026 {SITE.author.name}. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
         </div>
       </div>

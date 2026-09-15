@@ -140,13 +140,10 @@ export const projects: Project[] = [
     id: "document-intelligence", title: "Document Intelligence | Local-First Retrieval Service",
     summary: "A local-first retrieval service with an authoritative SQLite manifest, staged ingestion/replacement/deletion, current-version hydration, scoped lexical and hybrid retrieval, and offline evaluation.",
     detail: "Document scope is applied to both retrieval branches, while unavailable-provider and excerpts-only outcomes are explicit. Dense retrieval, generation, and some reranking paths require configuration; citation validation checks references, not entailment, and sample tests are not a general quality benchmark.",
-    inspect: "Inspect the engineering case study, architecture, and lifecycle/retrieval tests; the repository documents a local walkthrough rather than claiming a verified hosted service.",
+    inspect: "Inspect the repository implementation and lifecycle/retrieval tests; the project documents a local walkthrough rather than claiming a verified hosted service.",
     tech: ["Python", "SQLite", "Hybrid retrieval", "FastAPI", "Offline evaluation"],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
-    evidence: [
-      { label: "Engineering case study", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ENGINEERING_CASE_STUDY.md" },
-      { label: "Architecture", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ARCHITECTURE.md" }
-    ], featured: false
+    featured: false
   }
 ];
 

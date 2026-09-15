@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
+    "check:publication": "node scripts/publication-content-check.mjs",
+    "check:publication:build": "node scripts/publication-content-check.mjs --generated",
     "test": "node --test tests/content-contract.test.mjs",
     "test:e2e": "node --test tests/e2e.test.mjs"
   },

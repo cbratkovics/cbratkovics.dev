@@ -3,6 +3,7 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { scanText, suspiciousDocumentName } from "../scripts/publication-content-check.mjs";
 
 async function filesBelow(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -96,4 +97,25 @@ test("publishable repository excludes private contact, career-status copy, and d
   assert.doesNotMatch(publicSource, prohibitedChannels);
   assert.doesNotMatch(publicSource, /available for hire|open to opportunities|selectively exploring|seeking a new role/i);
   assert.equal(files.some((file) => /(?:resume|curriculum.vitae|linkedin.export).*\.(?:pdf|docx?|txt)$/i.test(file)), false);
+});
+
+test("publication rules detect preparation guidance without reproducing matched content", () => {
+  const prohibitedExamples = [
+    ["interview", " preparation"].join(""),
+    ["STAR", " answer"].join(""),
+    ["tailor your", " resume"].join(""),
+    ["recruiter", " talking points"].join(""),
+  ];
+  for (const example of prohibitedExamples) assert.ok(scanText(example).length > 0);
+  assert.match(["alignment", "notes.md"].join("-"), suspiciousDocumentName);
+});
+
+test("publication rules preserve professional and technical language", () => {
+  const allowedExamples = [
+    "A technical case study documents the design decision and measured result.",
+    "A reviewer validated the software terms against the source artifact.",
+    "Professional experience follows a clear problem, contribution, and validation narrative.",
+    "The parser extracts structured fields from uploaded documents.",
+  ];
+  for (const example of allowedExamples) assert.deepEqual(scanText(example), []);
 });

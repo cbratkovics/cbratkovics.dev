@@ -24,14 +24,16 @@ npm start
 ## Quality checks
 
 ```bash
+npm run check:publication
 npm run lint
 npm run type-check
 npm test
 npm run build
+npm run check:publication:build
 npm run test:e2e
 ```
 
-`test:e2e` launches the previously built production server and checks initial HTML, fragment navigation contracts, contact policy, canonical metadata, discovery routes, and the generated social image. The GitHub Actions workflow runs the same sequence from a clean install.
+The publication checks scan tracked first-party text across the repository and, after a build, generated deployable output. Diagnostics identify the path, line, and rule without printing matched content. `test:e2e` launches the previously built production server and checks initial HTML, fragment navigation contracts, contact policy, canonical metadata, discovery routes, and the generated social image. The GitHub Actions workflow runs the same sequence from a clean install.
 
 ## Structure
 

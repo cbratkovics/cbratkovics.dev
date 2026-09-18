@@ -18,8 +18,8 @@ export default function Home() {
           <MinimalHero />
         </div>
 
-        <Experience />
         <WorkStories />
+        <Experience />
         <Projects />
         <Skills />
         <Impact />

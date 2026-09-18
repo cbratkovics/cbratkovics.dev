@@ -5,8 +5,8 @@ import { BarChart3, Briefcase, Code, Home, Mail, Menu, User } from "lucide-react
 
 const navItems = [
   { id: "home", label: "Home", icon: Home },
-  { id: "experience", label: "Experience", icon: Briefcase },
   { id: "work", label: "Selected Work", icon: BarChart3 },
+  { id: "experience", label: "Experience", icon: Briefcase },
   { id: "projects", label: "Projects", icon: Code },
   { id: "skills", label: "Skills", icon: User },
   { id: "impact", label: "Highlights", icon: BarChart3 },

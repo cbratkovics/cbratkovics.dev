@@ -2,9 +2,24 @@ export const identity = {
   name: "Christopher J. Bratkovics",
   headline: "Data Scientist | Analytics Engineer | Applied AI",
   eyebrow: "7+ years in enterprise analytics",
+  valueProposition: "Trustworthy data foundations. Clear metrics. Defensible decisions.",
   summary:
-    "Data Scientist and Analytics Engineer with 7+ years in enterprise analytics, building predictive models, production data pipelines, and business-facing applications. I combine hands-on development with data modeling, source reconciliation, and business-rule validation to turn messy source data into reliable reporting and decision support."
+    "I integrate messy sources, define business logic, validate results, and automate recurring workflows, connecting analytics engineering with applied data science and AI."
 } as const;
+
+export interface DecisionNarrative {
+  decisionContext: string;
+  finding: string;
+  findingBasis: "Measured evaluation" | "Observed implementation" | "Design conclusion" | "Illustrative example";
+  whyItMatters: string;
+  recommendation: string;
+  recommendationStatus: "Documented decision" | "Evidence-based interpretation" | "Proposed next step";
+  ambiguity?: string;
+  contribution?: string;
+  validation?: string;
+  deliveredOutcome?: string;
+  limitations?: string;
+}
 
 export interface QuantitativeEvidence {
   metric: string;
@@ -34,6 +49,9 @@ export interface Project {
   liveUrl?: string;
   liveLabel?: string;
   evidence?: { label: string; url: string }[];
+  primaryAction?: { label: string; url: string };
+  secondaryAction?: { label: string; url: string };
+  narrative: DecisionNarrative;
   metric?: QuantitativeEvidence;
   featured: boolean;
 }
@@ -91,14 +109,25 @@ export const relativeReduction = (evidence: QuantitativeEvidence) =>
 
 export const projects: Project[] = [
   {
-    id: "fantasy-football", title: "Fantasy Football Projection Pipeline",
-    summary: `${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than a trailing-mean baseline across ${footballEvaluation.population} in a 2025 out-of-sample evaluation.`,
-    detail: "Per-position random forests use lagged/as-of features and season-based temporal evaluation. The 4.4909 versus 4.8046 PPR-point result is a historical evaluation of a frozen model—not a prospectively published 2025 forecast or a rolling-origin result. GMM/PCA preseason draft tiers are evaluated separately.",
-    inspect: "Inspect the pinned evaluation artifact, model card, and artifact-backed FastAPI/Next.js presentation.",
-    tech: ["Python", "Random forests", "As-of features", "FastAPI", "Next.js", "GMM / PCA"],
-    githubUrl: "https://github.com/cbratkovics/fantasy-football-ai", liveUrl: "https://fantasy-football-ai.vercel.app", liveLabel: "Project demo", metric: footballEvaluation,
+    id: "fantasy-football", title: "Fantasy Football Data Platform & Decision Lab",
+    summary: "A Python and dbt/DuckDB workflow connecting time-aware predictions with tested facts, reconciled evaluation marts, and inspectable decision support.",
+    detail: `Python produces predictions and evaluation artifacts; dbt builds tested facts and marts from statistics and artifacts; the API and product expose those distinct provenance paths. The frozen-model evaluation measured ${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than its baseline across ${footballEvaluation.population}.`,
+    inspect: "Inspect the data-platform lineage, metric definition, dbt documentation, model card, and pinned evaluation artifact.",
+    tech: ["Python", "dbt", "DuckDB", "Time-aware evaluation", "FastAPI", "Next.js"],
+    githubUrl: "https://github.com/cbratkovics/fantasy-football-ai", liveUrl: "https://fantasy-football-ai.vercel.app/data-platform", liveLabel: "Explore the data platform", metric: footballEvaluation,
+    primaryAction: { label: "Explore the data platform", url: "https://fantasy-football-ai.vercel.app/data-platform" },
+    secondaryAction: { label: "Trace a metric", url: "https://fantasy-football-ai.vercel.app/data-platform#trace" },
+    narrative: {
+      decisionContext: "When is a projection sufficiently traceable to use as decision support?",
+      findingBasis: "Design conclusion", finding: "An evaluation metric is interpretable only when its population, window, model version, candidate, and aggregation rules stay aligned across the pipeline.",
+      whyItMatters: "A historical error reduction does not show that the product wins leagues, improves lineups, or captures every piece of pregame context.",
+      recommendation: "Inspect the metric definition, baseline, applicable population, and reconciliation before acting on a projection.", recommendationStatus: "Evidence-based interpretation",
+      validation: "Tested facts and reconciled marts provide an independent path alongside pinned model artifacts.",
+      limitations: "The 4.4909 versus 4.8046 PPR-point result is a frozen-model historical evaluation, not a rolling-origin result or prospectively published forecast."
+    },
     evidence: [
       { label: "Model card", url: "https://github.com/cbratkovics/fantasy-football-ai/blob/main/docs/MODEL_CARD.md" },
+      { label: "dbt documentation", url: "https://cbratkovics.github.io/fantasy-football-ai/" },
       { label: "Pinned evaluation", url: footballEvaluation.sourceUrl }
     ], featured: true
   },
@@ -107,6 +136,12 @@ export const projects: Project[] = [
     summary: "An inspectable browser analytics workflow: explore a synthetic sample schema, draft or edit SQL, explicitly run an accepted read-only query in SQLite, preview bounded results, and export CSV.",
     detail: "The maintained demo defaults to local reviewed-intent/template generation with a conservative schema fallback, separate generation and execution, and synthetic fixtures. A legacy Python/FastAPI Anthropic route remains optional for private compatibility; the browser demo does not call it by default.",
     inspect: "Inspect the maintained local generator, browser SQLite execution, editable query flow, read-only policy, bounded previews, CSV export, and evidence notes. Policy checks narrow behavior but do not prove SQL correctness, tenant security, or a hardened sandbox.",
+    narrative: {
+      decisionContext: "How can generated SQL remain inspectable and under human control?", findingBasis: "Design conclusion",
+      finding: "A syntactically accepted query does not establish that its metric answers the intended business question.", whyItMatters: "Even an illustrative question such as ‘best customers’ requires a definition, time window, and eligible population.",
+      recommendation: "Inspect the schema, define the metric and population, review the editable SQL, and deliberately execute it.", recommendationStatus: "Evidence-based interpretation",
+      limitations: "Read-only checks do not independently prove semantic correctness, tenant isolation, or a hardened sandbox."
+    },
     tech: ["TypeScript", "Next.js", "Browser SQLite", "Local templates", "Read-only policy"],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai", liveUrl: "https://sql-genius-ai.vercel.app/demo", liveLabel: "Open playground",
     evidence: [{ label: "Implementation evidence", url: "https://github.com/cbratkovics/sql-genius-ai/blob/main/docs/PORTFOLIO_EVIDENCE.md" }], featured: true
@@ -116,6 +151,12 @@ export const projects: Project[] = [
     summary: "An observable FastAPI/Next.js gateway with SSE streaming, provider failover, exact and semantic response caching, structured errors, bounded requests, and per-request/session telemetry.",
     detail: "A scoped 2026-09-09 localhost run from a dirty working tree used an in-memory cache with configured embeddings: failover checks passed 10/10 and SSE checks passed 20/20. The 68-pair semantic-cache run measured 56.6% precision, 90.9% recall, and 23 false positives.",
     inspect: "Inspect the committed evaluation routines and presentation. The simulated primary failure occurred before its request; these checks are not a production SLA, real-timeout guarantee, or Redis-backed benchmark, and cache behavior is configuration-dependent.",
+    narrative: {
+      decisionContext: "When is semantic response reuse worth the cost of a wrong answer?", findingBasis: "Measured evaluation",
+      finding: "In the scoped local run, similarity-based reuse produced 23 false positives and 56.6% precision.", whyItMatters: "A cache hit or avoided provider call is not useful when it returns an answer to a different question.",
+      recommendation: "Evaluate false-positive costs and workload fit before enabling semantic reuse; treat bypass rules or threshold changes as proposals, not shipped policy.", recommendationStatus: "Proposed next step",
+      limitations: "The localhost, in-memory-cache run came from a dirty working tree and is not a production reliability or Redis benchmark."
+    },
     tech: ["Python", "FastAPI", "Next.js", "SSE", "Caching", "Telemetry"],
     githubUrl: "https://github.com/cbratkovics/chatbot-ai-system", liveUrl: "https://chatbot-ai-system.vercel.app", liveLabel: "Project demo",
     evidence: [
@@ -128,6 +169,12 @@ export const projects: Project[] = [
     summary: "A LightGBM batch pipeline with point-in-time features, GitHub Actions, Hugging Face artifacts, Next.js artifact-reading pages, season replay reconciliation, and a read-only tool-grounded brief.",
     detail: "The holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 minutes with baseline available). The distinct all-replay population does not beat its baseline, and post-game minutes eligibility is not pregame knowledge.",
     inspect: "Inspect cohort-aware metrics, replay reconciliation, and the read-only tool-grounded brief. Published replay differences are +0.0021 points, +0.0008 rebounds, and +0.0010 assists against a 0.05 tolerance; the restricted replay and holdout cohorts have different eligibility rules.",
+    narrative: {
+      decisionContext: "Does a favorable restricted-cohort score justify the model for the full pregame population?", findingBasis: "Measured evaluation",
+      finding: "The restricted eligible cohort improves on its baseline, while the distinct all-replay population does not.", whyItMatters: "Post-game minutes eligibility is unavailable at the pregame decision point, so mixing populations can reverse the recommendation.",
+      recommendation: "Compare like-for-like populations using decision-time information, and prefer the supported baseline where the comparison does not justify the model.", recommendationStatus: "Evidence-based interpretation",
+      limitations: "This is a conclusion about the scoped evaluations, not every target or possible model."
+    },
     tech: ["Python", "LightGBM", "GitHub Actions", "Hugging Face", "Next.js"],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml", liveUrl: "https://nba-ai-ml.vercel.app", liveLabel: "Project overview",
     evidence: [
@@ -139,8 +186,14 @@ export const projects: Project[] = [
   {
     id: "document-intelligence", title: "Document Intelligence | Hybrid Retrieval With Visible Evidence",
     summary: "A hybrid retrieval service that shows its work: every passage reports its BM25 rank, dense rank, and reciprocal-rank-fused rank, so you can see why a result surfaced and which retriever found it.",
-    detail: "The live demo runs BM25 alongside ONNX MiniLM embeddings on a free Hugging Face Space, behind a Next.js proxy that keeps the API key server-side. It is retrieval-only by design: no LLM is called and it costs nothing to run. Uploads are size-limited, rate-limited, scoped to the visitor's session, and evicted oldest-first. The example questions are curated illustrations of where lexical and dense retrieval differ, not a quality benchmark; the repository includes an evaluation harness but publishes no retrieval-quality figures.",
+    detail: "The maintained demo runs BM25 alongside ONNX MiniLM embeddings behind a Next.js proxy. It is retrieval-only by design: no LLM is called. Uploads are size-limited, rate-limited, scoped to the visitor's session, and evicted oldest-first. Curated example questions illustrate retrieval differences; they are not quality measurements.",
     inspect: "Try an exact-identifier question, a paraphrase question, and the fusion example where neither retriever ranks the answer first, then compare the BM25, dense, and fused columns. In the repository, inspect the staged ingestion lifecycle, the demo-safety test that blocks any paid-provider call, and the engineering case study.",
+    narrative: {
+      decisionContext: "How can a user inspect why unstructured evidence was retrieved?", findingBasis: "Illustrative example",
+      finding: "Lexical and dense retrieval can surface different passages, and visible component ranks show which method contributed to a fused result.", whyItMatters: "Rank visibility helps inspect relevance and provenance, but does not itself establish correctness.",
+      recommendation: "Review the passage, source context, available version and scope, and relevance before relying on it.", recommendationStatus: "Evidence-based interpretation",
+      limitations: "Curated questions are demonstrations, not retrieval-quality results; session filtering is not authenticated tenant isolation."
+    },
     tech: ["Python", "FastAPI", "BM25", "ONNX embeddings", "Chroma", "Next.js", "Hugging Face Spaces"],
     githubUrl: "https://github.com/cbratkovics/document-intelligence-ai", liveUrl: "https://frontend-doc-intel.vercel.app", liveLabel: "Live demo",
     evidence: [{ label: "Engineering case study", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ENGINEERING_CASE_STUDY.md" }],
@@ -156,13 +209,38 @@ export const skills = {
   "Cloud and delivery": ["AWS", "S3", "Docker", "GitHub Actions", "PostgreSQL"]
 };
 
-export const workStories = [
-  { id: "reporting-modernization", title: "Five-source reporting modernization", outcome: "A maintainable Snowflake/dbt foundation feeds production revenue reporting in Sigma.", problem: "Five differently shaped advertising feeds needed consistent reporting without changing established revenue and delivery definitions.", contribution: "I built source transformations, unified facts, Sigma-facing marts, inventory enrichment, source-specific deduplication, controlled backfills, and reusable reconciliation.", decision: "I preserved valid source differences in explicit layers so historical recovery and business validation remained traceable.", validation: "Migration checks distinguish five-platform standardization from preserved definitions and cover source/date populations, business calculations, and record-level exceptions." },
-  { id: "daily-occupancy", title: "Daily occupancy without double-counted capacity", outcome: "Completed programmatic occupancy and buy-type components were built and validated for the documented reporting grains.", problem: "Activity split across sources and buy types can multiply shared inventory-day capacity when grains are combined.", contribution: "I built the SSP components and integration; a collaborating data engineer owns the shared-capacity and charted components.", decision: "We separated sales activity from shared inventory-day capacity so additional activity groupings do not repeat the denominator.", validation: "Aggregation checks cover the documented measurable populations and detailed and aggregate reporting grains." },
-  { id: "advertiser-mappings", title: "Reviewable advertiser mappings", outcome: "Connected external advertiser data to internal reporting while keeping uncertain matches inspectable.", problem: "External advertiser names did not reliably join to internal accounts, while maximizing coverage could increase false matches.", contribution: "In the earlier BI role, I built Python/SQL workflows combining normalization, exact and fuzzy matching, confidence tiers, and exceptions for human review.", decision: "Exact matching resolved known names first; fuzzy matching handled remaining candidates without treating similarity as calibrated probability.", validation: "Retained scores, tiers, and exceptions made coverage and review status visible without presenting coverage as accuracy." },
-  { id: "applied-modeling", title: "Applied modeling for retention and inventory decisions", outcome: "Produced decision support for retention priorities, customer groups, inventory-performance gaps, and peer comparisons.", problem: "Business teams needed structured views of advertiser risk and uneven inventory utilization.", contribution: "I developed churn-risk models and K-means segmentation separately from inventory-utilization and revenue-per-unit regressions, then used peer comparisons to surface priorities.", decision: "Retention, segmentation, and inventory-performance questions remained distinct rather than being presented as one model.", validation: "Outputs were validated against business-defined criteria as analytical decision support; no measured lift or recurring adoption is attributed." },
-  { id: "operational-ai", title: "Generative AI for executive communications", outcome: "Delivered and supported applications that turn business and financial data into editable executive communications.", problem: "The application needed maintainable business-data inputs and dependable, editable output; a later stale source view interrupted valid output.", contribution: "I contributed to delivery and support, traced the incident to stale source views, coordinated correction with the data team, and validated source data and restored output.", decision: "We corrected the source dependency rather than masking the issue with prompt or interface changes.", validation: "Application output was checked after the cross-team source correction, separating supported delivery and troubleshooting from broader platform ownership." }
-] as const;
+export const workStories: Array<{ id: string; title: string; narrative: DecisionNarrative }> = [
+  { id: "reporting-modernization", title: "Five-source reporting modernization", narrative: {
+    decisionContext: "How can five advertising-platform feeds support consistent reporting without erasing valid source rules?", ambiguity: "A shared schema can conceal differences in populations, timing, deduplication, and business definitions.",
+    findingBasis: "Design conclusion", finding: "A common schema does not automatically make different sources comparable.", whyItMatters: "Business users need to know which aligned measures are trustworthy, which exceptions remain, and which differences require clarification rather than another transformation.",
+    recommendation: "Compare aligned source and date populations using agreed definitions and traceable reconciliation before calling a discrepancy missing data—or matching totals complete validation.", recommendationStatus: "Documented decision",
+    contribution: "I built Snowflake/dbt source transformations, unified facts, Sigma-facing marts, inventory enrichment, source-specific deduplication, controlled backfills, and historical recovery.", validation: "Reusable checks expose source/date populations, calculations, and record-level exceptions for stakeholder review.", deliveredOutcome: "A maintainable foundation feeds production revenue reporting in Sigma.", limitations: "Source-specific rules remain explicit rather than being flattened into false comparability."
+  }},
+  { id: "daily-occupancy", title: "Daily occupancy without double-counted capacity", narrative: {
+    decisionContext: "What utilization ratio answers the requested question at the intended reporting grain?", ambiguity: "Activity categories may overlap, while physical capacity is shared and missing capacity must not be silently treated as zero.",
+    findingBasis: "Design conclusion", finding: "Adding activity categories does not create capacity; repeating shared capacity across rows changes the meaning of utilization.", whyItMatters: "A denominator duplicated at a finer activity grain can produce an invalid rollup even when every row looks plausible.",
+    recommendation: "Define grain and measurable population, aggregate only compatible components, and calculate the ratio with the denominator appropriate to that question.", recommendationStatus: "Documented decision",
+    contribution: "I built the SSP components and integration; a collaborating data engineer owns the shared-capacity and charted components.", validation: "Checks cover documented measurable populations and detailed and aggregate grains.", deliveredOutcome: "Completed programmatic occupancy and buy-type components were built and validated for their documented grains.", limitations: "Not every numerator is additive across overlapping categories, and this does not claim every report was deployed or adopted."
+  }},
+  { id: "advertiser-mappings", title: "Reviewable advertiser mappings", narrative: {
+    decisionContext: "Which external advertisers can be linked to internal accounts without hiding uncertain identity?", ambiguity: "Names vary, and higher match coverage can introduce false attribution.",
+    findingBasis: "Design conclusion", finding: "Receiving a match is not the same as establishing a correct identity.", whyItMatters: "Exact-name matches can still be ambiguous, while similarity scores and coverage are not calibrated accuracy.",
+    recommendation: "Use supported matching rules, retain method and review information, and route suspicious or ambiguous candidates for human review before consequential attribution.", recommendationStatus: "Documented decision",
+    contribution: "In the earlier BI role, I built Python/SQL normalization, exact and fuzzy matching, confidence tiers, and review exceptions.", validation: "Retained scores, tiers, methods, and exceptions keep review status visible.", deliveredOutcome: "External advertiser data was connected to internal reporting with uncertain candidates inspectable."
+  }},
+  { id: "applied-modeling", title: "Applied modeling for retention and inventory decisions", narrative: {
+    decisionContext: "Which accounts or inventory warrant closer attention, comparison, or follow-up?", ambiguity: "Risk prediction, customer grouping, inventory performance, and intervention effects are different questions.",
+    findingBasis: "Design conclusion", finding: "Distinct business questions require distinct analytical outputs rather than one model presented as a complete decision system.", whyItMatters: "A score or segment can prioritize investigation but does not establish a causal driver or the effect of an intervention.",
+    recommendation: "Use outputs as structured prioritization inputs, and evaluate risk prediction, segmentation, peer comparison, and intervention effects separately.", recommendationStatus: "Evidence-based interpretation",
+    contribution: "I developed advertiser churn-risk models and K-means segmentation separately from inventory-utilization and revenue-per-unit regressions, then added peer comparisons.", validation: "Outputs were checked against business-defined criteria as decision support.", deliveredOutcome: "Implemented analytical views for retention priorities, customer groups, inventory gaps, and peer comparison.", limitations: "No retention lift, revenue recovery, recurring adoption, or completed intervention experiment is attributed."
+  }},
+  { id: "operational-ai", title: "Reliable inputs for AI-assisted communications", narrative: {
+    decisionContext: "Where should diagnosis begin when generated business communications become invalid?", ambiguity: "A visible output failure can originate in the interface, prompt, application, or upstream business data.",
+    findingBasis: "Observed implementation", finding: "The incident's failing dependency was stale source views, not a problem requiring a prompt or interface workaround.", whyItMatters: "Generated language cannot compensate for stale or incorrect business inputs.",
+    recommendation: "Check source freshness and business-data correctness during diagnosis, then validate output after correcting the dependency.", recommendationStatus: "Evidence-based interpretation",
+    contribution: "I supported application delivery, traced the incident, coordinated the source correction with the data team, and validated restored data and output.", validation: "Output was checked after the cross-team source correction.", deliveredOutcome: "Editable executive communications were delivered and the affected output was restored.", limitations: "This operating recommendation is not a claim that automated freshness monitoring was implemented or that I owned the entire platform."
+  }}
+];
 
 export const deliveryHighlights = [
   { icon: "calendar", value: "7+ years", label: "Enterprise analytics", description: "A continuous path from reporting foundations to modeling and maintainable data products" },

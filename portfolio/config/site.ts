@@ -4,8 +4,7 @@ export const SITE = {
   name: identity.name,
   title: `${identity.name} | ${identity.headline}`,
   shortTitle: `${identity.name} | ${identity.headline}`,
-  description:
-    "Data Scientist and Analytics Engineer with 7+ years in enterprise analytics, building predictive models, production data products, and applied AI.",
+  description: `${identity.valueProposition} ${identity.summary}`,
   url: "https://cbratkovics.dev",
 
   links: {

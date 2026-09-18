@@ -19,6 +19,10 @@ const config = await read("../config/site.ts");
 const contact = await read("../components/Contact.tsx");
 const layout = await read("../app/layout.tsx");
 const navigation = await read("../components/Navigation.tsx");
+
+const page = await read("../app/page.tsx");
+const storiesComponent = await read("../components/WorkStories.tsx");
+const projectsComponent = await read("../components/Projects.tsx");
 const sliceBetween = (start, end) => content.slice(content.indexOf(start), content.indexOf(end));
 const senior = sliceBetween('id: "senior-data-analyst"', 'id: "bi-data-analyst"');
 const bi = sliceBetween('id: "bi-data-analyst"', "export const education");
@@ -62,7 +66,7 @@ test("education is accurate, ordered, and separate from employment", () => {
 test("project structure, repositories, and capability boundaries remain scoped", () => {
   assert.equal((content.match(/featured: true/g) ?? []).length, 3);
   assert.equal((content.match(/featured: false/g) ?? []).length, 2);
-  ordered(content, ["Fantasy Football Projection Pipeline", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "NBA Stat Predictor", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
+  ordered(content, ["Fantasy Football Data Platform & Decision Lab", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "NBA Stat Predictor", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
   for (const repo of ["fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
   assert.match(content, /maintained demo defaults to local reviewed-intent\/template generation[\s\S]*legacy Python\/FastAPI Anthropic route remains optional/);
   assert.match(content, /in-memory cache with configured embeddings[\s\S]*not a production SLA[\s\S]*Redis-backed benchmark/);
@@ -76,7 +80,7 @@ test("football evidence keeps metric context and commit meanings distinct", () =
   assert.match(content, /evaluationCodeCommit: "8e22a47cfc99ba85861cccbe63732da42feb27ab"/);
   assert.match(content, /artifactBlobSha: "80fff5584a9ed50c6d895bd99232100c9b1bd77a"/);
   assert.match(content, /relativeReduction\(footballEvaluation\)\.toFixed\(1\)/);
-  assert.match(content, /historical evaluation of a frozen model—not a prospectively published 2025 forecast or a rolling-origin result/);
+  assert.match(content, /frozen-model historical evaluation, not a rolling-origin result or prospectively published forecast/);
 });
 
 test("identity, metadata, navigation, and contact use canonical sources", () => {
@@ -118,4 +122,25 @@ test("publication rules preserve professional and technical language", () => {
     "The parser extracts structured fields from uploaded documents.",
   ];
   for (const example of allowedExamples) assert.deepEqual(scanText(example), []);
+});
+
+
+test("decision narratives and stable anchors cover every card", () => {
+  assert.equal((content.match(/decisionContext:/g) ?? []).length, 11);
+  assert.equal((content.match(/findingBasis:/g) ?? []).length, 11); // interface plus ten entries
+  assert.equal((content.match(/recommendationStatus:/g) ?? []).length, 11);
+  for (const id of ["reporting-modernization", "daily-occupancy", "advertiser-mappings", "applied-modeling", "operational-ai", "fantasy-football", "sql-genius", "ai-chatbot", "nba-ml", "document-intelligence"]) assert.ok(content.includes(`id: "${id}"`));
+  assert.match(storiesComponent, /story\.narrative\.finding[\s\S]*story\.narrative\.recommendation/);
+  assert.match(projectsComponent, /project\.narrative\.finding[\s\S]*project\.narrative\.recommendation/);
+});
+
+test("render order, navigation, hero, and football platform hierarchy are explicit", () => {
+  ordered(page, ["<MinimalHero", "<WorkStories", "<Experience", "<Projects", "<Skills", "<Impact", "<Contact"]);
+  ordered(navigation, ['id: "home"', 'id: "work"', 'id: "experience"', 'id: "projects"', 'id: "skills"', 'id: "impact"', 'id: "contact"']);
+  assert.match(content, /Trustworthy data foundations\. Clear metrics\. Defensible decisions\./);
+  assert.match(content, /primaryAction: \{ label: "Explore the data platform"/);
+  assert.match(content, /secondaryAction: \{ label: "Trace a metric", url: "https:\/\/fantasy-football-ai\.vercel\.app\/data-platform#trace"/);
+  assert.match(content, /Python produces predictions and evaluation artifacts; dbt builds tested facts and marts/);
+  assert.doesNotMatch(content, /dbt (?:trains|fits) (?:the )?models?/i);
+  assert.match(content, /Model card[\s\S]*dbt documentation[\s\S]*Pinned evaluation/);
 });

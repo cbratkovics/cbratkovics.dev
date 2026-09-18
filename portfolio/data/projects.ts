@@ -137,12 +137,13 @@ export const projects: Project[] = [
     ], featured: false
   },
   {
-    id: "document-intelligence", title: "Document Intelligence | Local-First Retrieval Service",
-    summary: "A local-first retrieval service with an authoritative SQLite manifest, staged ingestion/replacement/deletion, current-version hydration, scoped lexical and hybrid retrieval, and offline evaluation.",
-    detail: "Document scope is applied to both retrieval branches, while unavailable-provider and excerpts-only outcomes are explicit. Dense retrieval, generation, and some reranking paths require configuration; citation validation checks references, not entailment, and sample tests are not a general quality benchmark.",
-    inspect: "Inspect the repository implementation and lifecycle/retrieval tests; the project documents a local walkthrough rather than claiming a verified hosted service.",
-    tech: ["Python", "SQLite", "Hybrid retrieval", "FastAPI", "Offline evaluation"],
-    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai",
+    id: "document-intelligence", title: "Document Intelligence | Hybrid Retrieval With Visible Evidence",
+    summary: "A hybrid retrieval service that shows its work: every passage reports its BM25 rank, dense rank, and reciprocal-rank-fused rank, so you can see why a result surfaced and which retriever found it.",
+    detail: "The live demo runs BM25 alongside ONNX MiniLM embeddings on a free Hugging Face Space, behind a Next.js proxy that keeps the API key server-side. It is retrieval-only by design: no LLM is called and it costs nothing to run. Uploads are size-limited, rate-limited, scoped to the visitor's session, and evicted oldest-first. The example questions are curated illustrations of where lexical and dense retrieval differ, not a quality benchmark; the repository includes an evaluation harness but publishes no retrieval-quality figures.",
+    inspect: "Try an exact-identifier question, a paraphrase question, and the fusion example where neither retriever ranks the answer first, then compare the BM25, dense, and fused columns. In the repository, inspect the staged ingestion lifecycle, the demo-safety test that blocks any paid-provider call, and the engineering case study.",
+    tech: ["Python", "FastAPI", "BM25", "ONNX embeddings", "Chroma", "Next.js", "Hugging Face Spaces"],
+    githubUrl: "https://github.com/cbratkovics/document-intelligence-ai", liveUrl: "https://frontend-doc-intel.vercel.app", liveLabel: "Live demo",
+    evidence: [{ label: "Engineering case study", url: "https://github.com/cbratkovics/document-intelligence-ai/blob/main/docs/ENGINEERING_CASE_STUDY.md" }],
     featured: false
   }
 ];

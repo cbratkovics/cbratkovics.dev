@@ -17,12 +17,17 @@ test.after(() => server?.kill());
 
 test("initial HTML exposes core content and native navigation", async () => {
   const html = await (await fetch(`http://127.0.0.1:${port}`)).text();
-  for (const text of ["7+ years in enterprise analytics", "Decisions behind the delivery", "Independent Technical Projects", "Let’s connect"]) assert.ok(html.includes(text));
+  for (const text of ["Trustworthy data foundations. Clear metrics. Defensible decisions.", "Christopher J. Bratkovics", "Data Scientist | Analytics Engineer | Applied AI", "7+ years in enterprise analytics", "Decisions behind the delivery", "Independent Technical Projects", "Let’s connect"]) assert.ok(html.includes(text));
   for (const id of ["home", "experience", "work", "projects", "skills", "impact", "contact"]) {
     assert.ok(html.includes(`href=\"#${id}\"`));
     assert.ok(html.includes(`id=\"${id}\"`));
   }
   assert.ok(html.includes("<details"));
+  assert.ok(html.indexOf('id="work"') < html.indexOf('id="experience"'));
+  assert.ok(html.indexOf('href="#work"') < html.indexOf('href="#experience"'));
+  assert.equal((html.match(/Practical recommendation|>Recommendation</g) ?? []).length >= 9, true);
+  assert.match(html, /Explore the data platform/);
+  assert.match(html, /data-platform#trace/);
   assert.ok(html.includes("Skip to main content"));
   assert.doesNotMatch(html, /mailto:|tel:|<form[\s>]/i);
 });

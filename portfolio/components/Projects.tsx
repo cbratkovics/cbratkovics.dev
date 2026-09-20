@@ -1,4 +1,5 @@
-import { ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -9,6 +10,15 @@ function ProjectLinks({ project }: { project: Project }) {
       {project.evidence?.map((item) => <a key={item.url} href={item.url} target="_blank" rel="noopener noreferrer" className="project-link"><ExternalLink className="w-4 h-4" aria-hidden="true" />{item.label}</a>)}
     </div>
   );
+}
+
+function ProjectAction({ action, primary = false }: { action: NonNullable<Project["primaryAction"]>; primary?: boolean }) {
+  const internal = action.url.startsWith("/");
+  const className = primary
+    ? "inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+    : "inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-white/20 text-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300";
+  const contents = <>{internal ? <ArrowRight className="w-4 h-4" aria-hidden="true" /> : <ExternalLink className="w-4 h-4" aria-hidden="true" />}{action.label}</>;
+  return internal ? <Link href={action.url} className={className}>{contents}</Link> : <a href={action.url} target="_blank" rel="noopener noreferrer" className={className}>{contents}</a>;
 }
 
 function ProjectCard({ project, flagship = false }: { project: Project; flagship?: boolean }) {
@@ -23,7 +33,7 @@ function ProjectCard({ project, flagship = false }: { project: Project; flagship
           <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/5 p-4"><p className="text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-2">{project.narrative.findingBasis === "Measured evaluation" ? "Measured finding" : project.narrative.findingBasis === "Illustrative example" ? "Illustrated finding" : "Key finding"}</p><p className="text-gray-100 leading-relaxed">{project.narrative.finding}</p><p className="text-gray-400 text-sm mt-2 leading-relaxed">{project.narrative.whyItMatters}</p></div>
           <div className="rounded-lg border border-purple-400/20 bg-purple-400/5 p-4"><p className="text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2">{project.narrative.recommendationStatus === "Proposed next step" ? "Proposed next step" : "Practical recommendation"}</p><p className="text-gray-100 leading-relaxed">{project.narrative.recommendation}</p></div>
         </div>
-        {project.primaryAction && <div className="flex flex-wrap gap-3 mt-5"><a href={project.primaryAction.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"><ExternalLink className="w-4 h-4" aria-hidden="true" />{project.primaryAction.label}</a>{project.secondaryAction && <a href={project.secondaryAction.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-white/20 text-gray-100"><ExternalLink className="w-4 h-4" aria-hidden="true" />{project.secondaryAction.label}</a>}</div>}
+        {project.primaryAction && <div className="flex flex-wrap gap-3 mt-5"><ProjectAction action={project.primaryAction} primary />{project.secondaryAction && <ProjectAction action={project.secondaryAction} />}</div>}
       </div>
       <div className={`flex flex-col ${flagship ? "lg:border-l lg:border-white/10 lg:pl-10 mt-6 lg:mt-0" : "mt-5"}`}>
         <p className="text-sm text-gray-300 leading-relaxed"><span className="text-white font-semibold">What to inspect:</span> {project.inspect}</p>

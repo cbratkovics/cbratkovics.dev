@@ -64,10 +64,10 @@ test("education is accurate, ordered, and separate from employment", () => {
 });
 
 test("project structure, repositories, and capability boundaries remain scoped", () => {
-  assert.equal((content.match(/featured: true/g) ?? []).length, 3);
+  assert.equal((content.match(/featured: true/g) ?? []).length, 4);
   assert.equal((content.match(/featured: false/g) ?? []).length, 2);
-  ordered(content, ["Fantasy Football Data Platform & Decision Lab", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "NBA Stat Predictor", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
-  for (const repo of ["fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
+  ordered(content, ["EV Charging Data: Unified Schema", "Fantasy Football Data Platform & Decision Lab", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "NBA Stat Predictor", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
+  for (const repo of ["ev-charging-data-unified-schema", "fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
   assert.match(content, /maintained demo defaults to local reviewed-intent\/template generation[\s\S]*legacy Python\/FastAPI Anthropic route remains optional/);
   assert.match(content, /in-memory cache with configured embeddings[\s\S]*not a production SLA[\s\S]*Redis-backed benchmark/);
 });
@@ -126,17 +126,17 @@ test("publication rules preserve professional and technical language", () => {
 
 
 test("decision narratives and stable anchors cover every card", () => {
-  assert.equal((content.match(/decisionContext:/g) ?? []).length, 11);
-  assert.equal((content.match(/findingBasis:/g) ?? []).length, 11); // interface plus ten entries
-  assert.equal((content.match(/recommendationStatus:/g) ?? []).length, 11);
-  for (const id of ["reporting-modernization", "daily-occupancy", "advertiser-mappings", "applied-modeling", "operational-ai", "fantasy-football", "sql-genius", "ai-chatbot", "nba-ml", "document-intelligence"]) assert.ok(content.includes(`id: "${id}"`));
+  assert.equal((content.match(/decisionContext:/g) ?? []).length, 12);
+  assert.equal((content.match(/findingBasis:/g) ?? []).length, 12); // interface plus eleven entries
+  assert.equal((content.match(/recommendationStatus:/g) ?? []).length, 12);
+  for (const id of ["reporting-modernization", "daily-occupancy", "advertiser-mappings", "applied-modeling", "operational-ai", "ev-charging-unified-schema", "fantasy-football", "sql-genius", "ai-chatbot", "nba-ml", "document-intelligence"]) assert.ok(content.includes(`id: "${id}"`));
   assert.match(storiesComponent, /story\.narrative\.finding[\s\S]*story\.narrative\.recommendation/);
   assert.match(projectsComponent, /project\.narrative\.finding[\s\S]*project\.narrative\.recommendation/);
 });
 
 test("render order, navigation, hero, and football platform hierarchy are explicit", () => {
-  ordered(page, ["<MinimalHero", "<WorkStories", "<Experience", "<Projects", "<Skills", "<Impact", "<Contact"]);
-  ordered(navigation, ['id: "home"', 'id: "work"', 'id: "experience"', 'id: "projects"', 'id: "skills"', 'id: "impact"', 'id: "contact"']);
+  ordered(page, ["<MinimalHero", "<WorkStories", "<Projects", "<Experience", "<Skills", "<Impact", "<Contact"]);
+  ordered(navigation, ['id: "home"', 'id: "work"', 'id: "projects"', 'id: "experience"', 'id: "skills"', 'id: "impact"', 'id: "contact"']);
   assert.match(content, /Trustworthy data foundations\. Clear metrics\. Defensible decisions\./);
   assert.match(content, /primaryAction: \{ label: "Explore the data platform"/);
   assert.match(content, /secondaryAction: \{ label: "Trace a metric", url: "https:\/\/fantasy-football-ai\.vercel\.app\/data-platform#trace"/);

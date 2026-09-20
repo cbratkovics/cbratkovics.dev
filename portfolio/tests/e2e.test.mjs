@@ -24,10 +24,12 @@ test("initial HTML exposes core content and native navigation", async () => {
   }
   assert.ok(html.includes("<details"));
   assert.ok(html.indexOf('id="work"') < html.indexOf('id="experience"'));
-  assert.ok(html.indexOf('href="#work"') < html.indexOf('href="#experience"'));
+  assert.ok(html.indexOf('id="projects"') < html.indexOf('id="experience"'));
+  assert.ok(html.indexOf('href="#projects"') < html.indexOf('href="#experience"'));
   assert.equal((html.match(/Practical recommendation|>Recommendation</g) ?? []).length >= 9, true);
   assert.match(html, /Explore the data platform/);
   assert.match(html, /data-platform#trace/);
+  assert.match(html, /href="\/projects\/ev-charging-data-unified-schema"/);
   assert.ok(html.includes("Skip to main content"));
   assert.doesNotMatch(html, /mailto:|tel:|<form[\s>]/i);
 });
@@ -40,6 +42,16 @@ test("metadata and discovery routes describe the canonical page", async () => {
   assert.match(robots, /Sitemap: https:\/\/cbratkovics\.dev\/sitemap\.xml/);
   const sitemap = await (await fetch(`http://127.0.0.1:${port}/sitemap.xml`)).text();
   assert.match(sitemap, /<loc>https:\/\/cbratkovics\.dev<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/cbratkovics\.dev\/projects\/ev-charging-data-unified-schema<\/loc>/);
   const social = await fetch(`http://127.0.0.1:${port}/opengraph-image`);
   assert.equal(social.headers.get("content-type"), "image/png");
+});
+
+test("EV charging case study exposes scoped evidence and metadata", async () => {
+  const response = await fetch(`http://127.0.0.1:${port}/projects/ev-charging-data-unified-schema`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  for (const text of ["EV Charging Data: Unified Schema", "As of v0.1.0", "440,575", "357,606", "82,969", "Where the data proved the plan wrong", "Claude Code"]) assert.ok(html.includes(text));
+  assert.match(html, /<title>EV Charging Data: Unified Schema \| Christopher J\. Bratkovics<\/title>/);
+  assert.match(html, /rel="canonical" href="https:\/\/cbratkovics\.dev\/projects\/ev-charging-data-unified-schema"/);
 });

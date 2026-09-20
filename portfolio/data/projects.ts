@@ -109,6 +109,30 @@ export const relativeReduction = (evidence: QuantitativeEvidence) =>
 
 export const projects: Project[] = [
   {
+    id: "ev-charging-unified-schema", title: "EV Charging Data: Unified Schema",
+    summary: "Three public charging datasets in incompatible shapes conformed into one tested dbt schema, with explicit contracts, quarantine, reconciliation, denominator analysis, and evidence-backed findings.",
+    detail: "Built to make every published number traceable from raw files through the reporting layer. This independent project uses public data; as of v0.1.0, it lands 440,575 rows, accepts 357,606 as sessions, and retains 82,969 quarantined rows with explicit reasons.",
+    inspect: "Inspect the source contracts, bronze-to-gold lineage, quarantine, reconciliation, claim artifacts, and the bounded findings and recommendations.",
+    tech: ["dbt", "DuckDB", "SQL", "Python", "Data Quality", "Reconciliation"],
+    githubUrl: "https://github.com/cbratkovics/ev-charging-data-unified-schema",
+    primaryAction: { label: "Read case study", url: "/projects/ev-charging-data-unified-schema" },
+    secondaryAction: { label: "Explore dbt lineage", url: "https://cbratkovics.github.io/ev-charging-data-unified-schema/" },
+    narrative: {
+      decisionContext: "How can incompatible public charging feeds support defensible, reproducible utilization decisions?",
+      findingBasis: "Measured evaluation",
+      finding: "In Boulder, 45.1% of connected time is idle after charging, but only up to 12.4% is idle while every inferred port is occupied.",
+      whyItMatters: "The headline idle figure overstates what an idle fee could recover by 3.6 times, and the smaller figure remains a ceiling.",
+      recommendation: "Quote the smaller figure as ‘up to,’ pilot at multi-port stations around midday, and revisit the recommendation if queue data becomes available.",
+      recommendationStatus: "Evidence-based interpretation",
+      validation: "Contracts, unit tests, raw-to-gold reconciliation, deterministic rebuild checks, and committed claim artifacts keep the published numbers inspectable.",
+      limitations: "No source publishes station port counts. Inferred port counts are lower bounds, so published utilization is an upper bound. All figures are scoped to v0.1.0."
+    },
+    evidence: [
+      { label: "dbt docs and lineage", url: "https://cbratkovics.github.io/ev-charging-data-unified-schema/" },
+      { label: "Findings", url: "https://github.com/cbratkovics/ev-charging-data-unified-schema/blob/main/docs/FINDINGS.md" }
+    ], featured: true
+  },
+  {
     id: "fantasy-football", title: "Fantasy Football Data Platform & Decision Lab",
     summary: "A Python and dbt/DuckDB workflow connecting time-aware predictions with tested facts, reconciled evaluation marts, and inspectable decision support.",
     detail: `Python produces predictions and evaluation artifacts; dbt builds tested facts and marts from statistics and artifacts; the API and product expose those distinct provenance paths. The frozen-model evaluation measured ${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than its baseline across ${footballEvaluation.population}.`,

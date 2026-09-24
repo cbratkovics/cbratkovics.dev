@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { SITE } from "@/config/site";
+import { caseStudyMetadata } from "@/components/case-study/metadata";
 import EvidenceLinks, { type EvidenceLink } from "@/components/case-study/EvidenceLinks";
 import Section from "@/components/case-study/Section";
 import FindingBlock from "@/components/case-study/FindingBlock";
@@ -10,13 +10,7 @@ const title = "EV Charging Data: Unified Schema | Christopher J. Bratkovics";
 const description = "A dbt and DuckDB case study integrating three incompatible public EV charging datasets into a tested schema with contracts, quarantine, reconciliation, intentional utilization metrics, and evidence-backed findings.";
 const path = "/projects/ev-charging-data-unified-schema";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: path },
-  openGraph: { title, description, type: "article", url: path, siteName: SITE.shortTitle },
-  twitter: { card: "summary_large_image", title, description },
-};
+export const metadata: Metadata = caseStudyMetadata({ title, description, path });
 
 const links: EvidenceLink[] = [
   { label: "Repository", href: "https://github.com/cbratkovics/ev-charging-data-unified-schema", icon: Github },

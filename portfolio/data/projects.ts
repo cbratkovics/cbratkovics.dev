@@ -156,6 +156,25 @@ export const projects: Project[] = [
     ], featured: true
   },
   {
+    id: "nba-ml", title: "NBA Stat Predictor",
+    summary: "A LightGBM batch pipeline with point-in-time features, GitHub Actions, Hugging Face artifacts, Next.js artifact-reading pages, season replay reconciliation, and a read-only tool-grounded brief.",
+    detail: "The holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 minutes with baseline available). The distinct all-replay population does not beat its baseline, and post-game minutes eligibility is not pregame knowledge.",
+    inspect: "Inspect cohort-aware metrics, replay reconciliation, and the read-only tool-grounded brief. Published replay differences are +0.0021 points, +0.0008 rebounds, and +0.0010 assists against a 0.05 tolerance; the restricted replay and holdout cohorts have different eligibility rules.",
+    narrative: {
+      decisionContext: "Does a favorable restricted-cohort score justify the model for the full pregame population?", findingBasis: "Measured evaluation",
+      finding: "The restricted eligible cohort improves on its baseline, while the distinct all-replay population does not.", whyItMatters: "Post-game minutes eligibility is unavailable at the pregame decision point, so mixing populations can reverse the recommendation.",
+      recommendation: "Compare like-for-like populations using decision-time information, and prefer the supported baseline where the comparison does not justify the model.", recommendationStatus: "Evidence-based interpretation",
+      limitations: "This is a conclusion about the scoped evaluations, not every target or possible model."
+    },
+    tech: ["Python", "LightGBM", "GitHub Actions", "Hugging Face", "Next.js"],
+    githubUrl: "https://github.com/cbratkovics/nba-ai-ml", liveUrl: "https://nba-ai-ml.vercel.app", liveLabel: "Project overview",
+    evidence: [
+      { label: "Replay", url: "https://nba-ai-ml.vercel.app/replay" },
+      { label: "Agent brief", url: "https://nba-ai-ml.vercel.app/brief" },
+      { label: "Reconciliation notes", url: "https://github.com/cbratkovics/nba-ai-ml/blob/master/docs/reconciliation.md" }
+    ], featured: true
+  },
+  {
     id: "sql-genius", title: "SQL Genius AI | SQL Analytics Playground",
     summary: "An inspectable browser analytics workflow: explore a synthetic sample schema, draft or edit SQL, explicitly run an accepted read-only query in SQLite, preview bounded results, and export CSV.",
     detail: "The maintained demo defaults to local reviewed-intent/template generation with a conservative schema fallback, separate generation and execution, and synthetic fixtures. A legacy Python/FastAPI Anthropic route remains optional for private compatibility; the browser demo does not call it by default.",
@@ -168,7 +187,7 @@ export const projects: Project[] = [
     },
     tech: ["TypeScript", "Next.js", "Browser SQLite", "Local templates", "Read-only policy"],
     githubUrl: "https://github.com/cbratkovics/sql-genius-ai", liveUrl: "https://sql-genius-ai.vercel.app/demo", liveLabel: "Open playground",
-    evidence: [{ label: "Implementation evidence", url: "https://github.com/cbratkovics/sql-genius-ai/blob/main/docs/PORTFOLIO_EVIDENCE.md" }], featured: true
+    evidence: [{ label: "Implementation evidence", url: "https://github.com/cbratkovics/sql-genius-ai/blob/main/docs/PORTFOLIO_EVIDENCE.md" }], featured: false
   },
   {
     id: "ai-chatbot", title: "AI Chat System | Multi-Provider LLM Gateway",
@@ -186,25 +205,6 @@ export const projects: Project[] = [
     evidence: [
       { label: "System evaluations", url: "https://chatbot-ai-system.vercel.app/evals" },
       { label: "Committed benchmark", url: "https://github.com/cbratkovics/chatbot-ai-system/blob/main/evals/results/latest.md" }
-    ], featured: true
-  },
-  {
-    id: "nba-ml", title: "NBA Stat Predictor",
-    summary: "A LightGBM batch pipeline with point-in-time features, GitHub Actions, Hugging Face artifacts, Next.js artifact-reading pages, season replay reconciliation, and a read-only tool-grounded brief.",
-    detail: "The holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 minutes with baseline available). The distinct all-replay population does not beat its baseline, and post-game minutes eligibility is not pregame knowledge.",
-    inspect: "Inspect cohort-aware metrics, replay reconciliation, and the read-only tool-grounded brief. Published replay differences are +0.0021 points, +0.0008 rebounds, and +0.0010 assists against a 0.05 tolerance; the restricted replay and holdout cohorts have different eligibility rules.",
-    narrative: {
-      decisionContext: "Does a favorable restricted-cohort score justify the model for the full pregame population?", findingBasis: "Measured evaluation",
-      finding: "The restricted eligible cohort improves on its baseline, while the distinct all-replay population does not.", whyItMatters: "Post-game minutes eligibility is unavailable at the pregame decision point, so mixing populations can reverse the recommendation.",
-      recommendation: "Compare like-for-like populations using decision-time information, and prefer the supported baseline where the comparison does not justify the model.", recommendationStatus: "Evidence-based interpretation",
-      limitations: "This is a conclusion about the scoped evaluations, not every target or possible model."
-    },
-    tech: ["Python", "LightGBM", "GitHub Actions", "Hugging Face", "Next.js"],
-    githubUrl: "https://github.com/cbratkovics/nba-ai-ml", liveUrl: "https://nba-ai-ml.vercel.app", liveLabel: "Project overview",
-    evidence: [
-      { label: "Replay", url: "https://nba-ai-ml.vercel.app/replay" },
-      { label: "Agent brief", url: "https://nba-ai-ml.vercel.app/brief" },
-      { label: "Reconciliation notes", url: "https://github.com/cbratkovics/nba-ai-ml/blob/master/docs/reconciliation.md" }
     ], featured: false
   },
   {

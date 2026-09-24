@@ -64,9 +64,12 @@ test("education is accurate, ordered, and separate from employment", () => {
 });
 
 test("project structure, repositories, and capability boundaries remain scoped", () => {
-  assert.equal((content.match(/featured: true/g) ?? []).length, 4);
-  assert.equal((content.match(/featured: false/g) ?? []).length, 2);
-  ordered(content, ["EV Charging Data: Unified Schema", "Fantasy Football Data Platform & Decision Lab", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "NBA Stat Predictor", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
+  // Tier contract (matches the resume's Selected Independent Projects lineup): EV Charging is the
+  // flagship; Fantasy Football and NBA are featured; SQL Genius, AI Chat, and Document Intelligence
+  // are additional work.
+  assert.equal((content.match(/featured: true/g) ?? []).length, 3);
+  assert.equal((content.match(/featured: false/g) ?? []).length, 3);
+  ordered(content, ["EV Charging Data: Unified Schema", "Fantasy Football Data Platform & Decision Lab", "NBA Stat Predictor", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
   for (const repo of ["ev-charging-data-unified-schema", "fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
   assert.match(content, /maintained demo defaults to local reviewed-intent\/template generation[\s\S]*legacy Python\/FastAPI Anthropic route remains optional/);
   assert.match(content, /in-memory cache with configured embeddings[\s\S]*not a production SLA[\s\S]*Redis-backed benchmark/);

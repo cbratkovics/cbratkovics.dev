@@ -67,10 +67,10 @@ test("project structure, repositories, and capability boundaries remain scoped",
   // Tier contract (matches the resume's Selected Independent Projects lineup): EV Charging is the
   // flagship; Fantasy Football and NBA are featured; SQL Genius, AI Chat, and Document Intelligence
   // are additional work.
-  assert.equal((content.match(/featured: true/g) ?? []).length, 3);
+  assert.equal((content.match(/featured: true/g) ?? []).length, 4);
   assert.equal((content.match(/featured: false/g) ?? []).length, 3);
-  ordered(content, ["EV Charging Data: Unified Schema", "Fantasy Football Data Platform & Decision Lab", "NBA Stat Predictor", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
-  for (const repo of ["ev-charging-data-unified-schema", "fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
+  ordered(content, ["EV Charging Data: Unified Schema", "Entity Resolution: Rules vs. Calibrated Classifier", "Fantasy Football Data Platform & Decision Lab", "NBA Stat Predictor", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "Document Intelligence | Hybrid Retrieval With Visible Evidence"]);
+  for (const repo of ["ev-charging-data-unified-schema", "entity-resolution", "fantasy-football-ai", "sql-genius-ai", "chatbot-ai-system", "nba-ai-ml", "document-intelligence-ai"]) assert.match(content, new RegExp(`github\\.com/cbratkovics/${repo}`));
   assert.match(content, /maintained demo defaults to local reviewed-intent\/template generation[\s\S]*legacy Python\/FastAPI Anthropic route remains optional/);
   assert.match(content, /in-memory cache with configured embeddings[\s\S]*not a production SLA[\s\S]*Redis-backed benchmark/);
 });
@@ -129,10 +129,10 @@ test("publication rules preserve professional and technical language", () => {
 
 
 test("decision narratives and stable anchors cover every card", () => {
-  assert.equal((content.match(/decisionContext:/g) ?? []).length, 12);
-  assert.equal((content.match(/findingBasis:/g) ?? []).length, 12); // interface plus eleven entries
-  assert.equal((content.match(/recommendationStatus:/g) ?? []).length, 12);
-  for (const id of ["reporting-modernization", "daily-occupancy", "advertiser-mappings", "applied-modeling", "operational-ai", "ev-charging-unified-schema", "fantasy-football", "sql-genius", "ai-chatbot", "nba-ml", "document-intelligence"]) assert.ok(content.includes(`id: "${id}"`));
+  assert.equal((content.match(/decisionContext:/g) ?? []).length, 13);
+  assert.equal((content.match(/findingBasis:/g) ?? []).length, 13); // interface plus twelve entries
+  assert.equal((content.match(/recommendationStatus:/g) ?? []).length, 13);
+  for (const id of ["reporting-modernization", "daily-occupancy", "advertiser-mappings", "applied-modeling", "operational-ai", "ev-charging-unified-schema", "entity-resolution", "fantasy-football", "sql-genius", "ai-chatbot", "nba-ml", "document-intelligence"]) assert.ok(content.includes(`id: "${id}"`));
   assert.match(storiesComponent, /story\.narrative\.finding[\s\S]*story\.narrative\.recommendation/);
   assert.match(projectsComponent, /project\.narrative\.finding[\s\S]*project\.narrative\.recommendation/);
 });
@@ -147,3 +147,20 @@ test("render order, navigation, hero, and football platform hierarchy are explic
   assert.doesNotMatch(content, /dbt (?:trains|fits) (?:the )?models?/i);
   assert.match(content, /Model card[\s\S]*dbt documentation[\s\S]*Pinned evaluation/);
 });
+
+test("entity resolution keeps labelled-fold hedges and every cited figure traces to an artifact", async () => {
+  const entry = sliceBetween('id: "entity-resolution"', 'id: "fantasy-football"');
+  const page = await read("../app/projects/entity-resolution/page.tsx").catch(() => "");
+  for (const term of ["labelled test fold", "Unlinked records are unlabelled", "coverage is never reported as accuracy", "owner-run", "unverified accepts", "All figures scoped to v0.1.0"]) assert.ok(entry.includes(term), `missing hedge: ${term}`);
+  assert.doesNotMatch(entry, /known non-match/i);
+  const citations = content.slice(content.indexOf("const entityResolutionCommit"), content.indexOf("export const projects"));
+  assert.match(citations, /const entityResolutionCommit = "f50d764359895ab3a4d9945ed2a8b37d77bd681c"/); // tag v0.1.0
+  assert.ok(citations.includes("blob/${entityResolutionCommit}/${artifact}"));
+  const figures = [...citations.matchAll(/entityResolutionArtifact\("([^"]+)", "([^"]+)", "([^"]+)"\)/g)];
+  assert.ok(figures.length >= 20);
+  for (const [, figure, artifact] of figures) {
+    assert.ok(entry.includes(figure) || page.includes(figure), `cited figure not used in copy: ${figure}`);
+    assert.match(artifact, /^artifacts\//);
+  }
+});
+

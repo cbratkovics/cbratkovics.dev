@@ -38,6 +38,13 @@ export interface QuantitativeEvidence {
   verifiedOn: string;
 }
 
+export interface ArtifactCitation {
+  figure: string;
+  artifact: string;
+  key: string;
+  url: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -53,6 +60,8 @@ export interface Project {
   secondaryAction?: { label: string; url: string };
   narrative: DecisionNarrative;
   metric?: QuantitativeEvidence;
+  /** Every figure in the entry's copy or case-study page, traced to a committed artifact key. */
+  citations?: ArtifactCitation[];
   featured: boolean;
 }
 
@@ -107,6 +116,37 @@ const footballEvaluation: QuantitativeEvidence = {
 export const relativeReduction = (evidence: QuantitativeEvidence) =>
   ((evidence.baseline.value - evidence.value) / evidence.baseline.value) * 100;
 
+const entityResolutionCommit = "f50d764359895ab3a4d9945ed2a8b37d77bd681c"; // tag v0.1.0
+const entityResolutionArtifact = (figure: string, artifact: string, key: string): ArtifactCitation => ({
+  figure, artifact, key,
+  url: `https://github.com/cbratkovics/entity-resolution/blob/${entityResolutionCommit}/${artifact}`
+});
+
+// Verified on 2026-09-24 against the v0.1.0 artifacts. Card and case-study figures round the cited values.
+const entityResolutionCitations: ArtifactCitation[] = [
+  entityResolutionArtifact("482,514", "artifacts/manifest.json", "counts.musicbrainz.sampled"),
+  entityResolutionArtifact("241,752", "artifacts/blocking_report.json", "pair_completeness.truth_pairs"),
+  entityResolutionArtifact("96.3%", "artifacts/blocking_report.json", "pair_completeness.union"),
+  entityResolutionArtifact("96.2%", "artifacts/blocking_report.json", "pair_completeness.after_cap"),
+  entityResolutionArtifact("cap of 200", "artifacts/blocking_report.json", "candidate_cap_per_a"),
+  entityResolutionArtifact("240 truth pairs", "artifacts/blocking_report.json", "pair_completeness.truth_pairs_lost_to_cap"),
+  entityResolutionArtifact("7.6M candidate pairs", "artifacts/blocking_report.json", "candidate_pairs_after_cap"),
+  entityResolutionArtifact("0.9946", "artifacts/eval_rules_v1.json", "metrics.at_auto_accept.precision"),
+  entityResolutionArtifact("0.931", "artifacts/eval_rules_v1.json", "metrics.at_auto_accept.recall_labelled"),
+  entityResolutionArtifact("0.962", "artifacts/eval_rules_v1.json", "metrics.at_auto_accept.f1"),
+  entityResolutionArtifact("0.9993", "artifacts/eval_learned_v1.json", "metrics.at_auto_accept.precision"),
+  entityResolutionArtifact("0.850", "artifacts/eval_learned_v1.json", "metrics.at_auto_accept.recall_labelled"),
+  entityResolutionArtifact("0.919", "artifacts/eval_learned_v1.json", "metrics.at_auto_accept.f1"),
+  entityResolutionArtifact("25,076", "artifacts/eval_rules_v1.json", "metrics.ambiguity_rule.review_queue"),
+  entityResolutionArtifact("6,016", "artifacts/eval_learned_v1.json", "metrics.ambiguity_rule.review_queue"),
+  entityResolutionArtifact("4,501", "artifacts/eval_rules_v1.json", "metrics.unverified_accepts.count"),
+  entityResolutionArtifact("0.50 unlinked share", "artifacts/manifest.json", "sample.thresholds.a.unlinked_share_actual"),
+  entityResolutionArtifact("13.8 GiB", "artifacts/manifest.json", "runtime.data_dir_bytes_peak"),
+  entityResolutionArtifact("242,542", "artifacts/profile/musicbrainz.json", "truth.a_records_with_link_by_primary_type.Album"),
+  entityResolutionArtifact("2,324,821", "artifacts/profile/musicbrainz.json", "records.albums"),
+  entityResolutionArtifact("overconfident", "artifacts/eval_learned_v1.json", "metrics.calibration.decision_level.ece")
+];
+
 export const projects: Project[] = [
   {
     id: "ev-charging-unified-schema", title: "EV Charging Data: Unified Schema",
@@ -131,6 +171,32 @@ export const projects: Project[] = [
       { label: "dbt docs and lineage", url: "https://cbratkovics.github.io/ev-charging-data-unified-schema/" },
       { label: "Findings", url: "https://github.com/cbratkovics/ev-charging-data-unified-schema/blob/main/docs/FINDINGS.md" }
     ], featured: true
+  },
+  {
+    id: "entity-resolution", title: "Entity Resolution: Rules vs. Calibrated Classifier",
+    summary: "482K sampled MusicBrainz album release groups matched against Discogs masters and scored against labelled ground truth, with blocking completeness, tiered decisions, review-queue cost, and an auditable mapping table.",
+    detail: "482,514 sampled MusicBrainz album release groups against all Discogs masters, with 241,752 in-scope truth pairs from MusicBrainz’s own Discogs links. Multi-key blocking retains 96.2% of truth pairs after a per-record cap of 200, leaving 7.6M candidate pairs. Three methods share one normaliser: an exact-match rule, a weighted-score rules baseline, and one scikit-learn classifier calibrated on a held-out fold. A dbt bronze/silver/gold warehouse on DuckDB carries the mapping; a CI number checker fails the build when any cited figure lacks a matching artifact key.",
+    inspect: "The blocking report (pair completeness before and after the per-record cap), the per-method evaluation artifacts, the tier semantics, the committed test-fold mapping table, the five decision records, and the number checker that verifies every cited figure.",
+    tech: ["Python", "scikit-learn", "dbt", "DuckDB", "Record linkage", "Calibration"],
+    githubUrl: "https://github.com/cbratkovics/entity-resolution",
+    primaryAction: { label: "Read case study", url: "/projects/entity-resolution" },
+    secondaryAction: { label: "Explore the results site", url: "https://cbratkovics.github.io/entity-resolution/" },
+    narrative: {
+      decisionContext: "When does a learned matcher earn its place over a well-designed rules baseline?",
+      findingBasis: "Measured evaluation",
+      finding: "On the labelled test fold, weighted rules reached 0.962 F1. The isotonic-calibrated classifier raised auto-accept precision from 0.9946 to 0.9993 and cut the review queue from 25,076 to 6,016 pairs, at lower recall (0.850 vs. 0.931).",
+      whyItMatters: "The learned model’s contribution was calibration and a smaller review queue, not higher accuracy. Unlinked records are unlabelled, so coverage is never reported as accuracy.",
+      recommendation: "Keep the rules baseline as the reference. Adopt the classifier where reviewer time is the binding cost and lower recall is acceptable, and report unverified accepts separately from every accuracy figure.",
+      recommendationStatus: "Evidence-based interpretation",
+      validation: "Folds are split by MusicBrainz record, calibration uses its own fold, and a too-good-to-be-true audit was run before the results were accepted. Committed artifacts pass a reproducibility check.",
+      limitations: "The full build is owner-run; its ~13.8 GiB data peak does not fit a hosted runner, so CI verifies committed artifacts only. The methods use different tier thresholds, so recall and coverage differ. The learned model’s decision-level calibration remains overconfident. 4,501 rules accepts on unlabelled records are excluded from every accuracy figure. All figures scoped to v0.1.0."
+    },
+    evidence: [
+      { label: "Results site", url: "https://cbratkovics.github.io/entity-resolution/" },
+      { label: "Findings", url: "https://github.com/cbratkovics/entity-resolution/blob/main/docs/FINDINGS.md" },
+      { label: "Methods card", url: "https://github.com/cbratkovics/entity-resolution/blob/main/docs/METHODS_CARD.md" }
+    ],
+    citations: entityResolutionCitations, featured: true
   },
   {
     id: "fantasy-football", title: "Fantasy Football Data Platform & Decision Lab",

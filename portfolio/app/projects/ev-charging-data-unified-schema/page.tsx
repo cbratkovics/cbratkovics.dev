@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { SITE } from "@/config/site";
+import EvidenceLinks, { type EvidenceLink } from "@/components/case-study/EvidenceLinks";
+import Section from "@/components/case-study/Section";
+import FindingBlock from "@/components/case-study/FindingBlock";
 
 const title = "EV Charging Data: Unified Schema | Christopher J. Bratkovics";
 const description = "A dbt and DuckDB case study integrating three incompatible public EV charging datasets into a tested schema with contracts, quarantine, reconciliation, intentional utilization metrics, and evidence-backed findings.";
@@ -15,23 +18,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
 };
 
-const links = [
+const links: EvidenceLink[] = [
   { label: "Repository", href: "https://github.com/cbratkovics/ev-charging-data-unified-schema", icon: Github },
   { label: "dbt docs and lineage", href: "https://cbratkovics.github.io/ev-charging-data-unified-schema/", icon: ExternalLink },
   { label: "Findings", href: "https://github.com/cbratkovics/ev-charging-data-unified-schema/blob/main/docs/FINDINGS.md", icon: ExternalLink },
 ];
-
-function EvidenceLinks() {
-  return <div className="flex flex-wrap gap-3" aria-label="Project evidence links">{links.map(({ label, href, icon: Icon }) => <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 text-gray-100 hover:border-cyan-300/60 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"><Icon className="w-4 h-4" aria-hidden="true" />{label}<span className="sr-only"> (opens in a new tab)</span></a>)}</div>;
-}
-
-function Section({ title: heading, children }: { title: string; children: React.ReactNode }) {
-  return <section className="case-study-section"><h2>{heading}</h2>{children}</section>;
-}
-
-function FindingBlock({ title: heading, children, why, recommendation }: { title: string; children: React.ReactNode; why: React.ReactNode; recommendation: React.ReactNode }) {
-  return <article className="glassmorphism rounded-xl p-6 md:p-8"><h3 className="text-2xl font-semibold text-white">{heading}</h3><div className="case-study-finding"><div><h4>Found</h4>{children}</div><div><h4>Why it matters</h4>{why}</div><div><h4>What I’d tell the decision-maker</h4>{recommendation}</div></div></article>;
-}
 
 export default function EvChargingCaseStudy() {
   return <>
@@ -45,7 +36,7 @@ export default function EvChargingCaseStudy() {
           <h1 className="text-4xl md:text-6xl font-bold text-white">EV Charging Data: Unified Schema</h1>
           <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mt-6"><strong>Three public datasets in three incompatible shapes, conformed into one tested dbt schema, with every number traceable to evidence.</strong></p>
           <p className="text-cyan-300 font-semibold mt-5">As of v0.1.0</p>
-          <div className="mt-6"><EvidenceLinks /></div>
+          <div className="mt-6"><EvidenceLinks links={links} /></div>
         </header>
 
         <div className="case-study-prose">
@@ -78,7 +69,7 @@ export default function EvChargingCaseStudy() {
 
           <Section title="Where the data proved the plan wrong"><ul><li><strong>Daylight-saving resolution:</strong> I assumed the database resolved ambiguous daylight-saving times to the first occurrence. An empirical test showed it uses the second.</li><li><strong>A phantom port:</strong> rounding a session end by up to thirty seconds created a port that did not exist at a single-port station. I caught it because two reports disagreed.</li><li><strong>A false reproducibility claim:</strong> after release, a reproducibility claim turned out to be false for two tables, because a non-deterministic pick was choosing station attributes. It now uses a majority rule with a tie-break, and a test that compares two independent builds byte for byte.</li></ul></Section>
 
-          <Section title="How it was built"><p>The project was AI-assisted, using Claude Code. It worked under a written brief with phase-gated review, which means I approved or amended every phase. The brief and sixteen decision records are in the repository.</p><p>It is an independent project on open data and contains no employer code, data, or business rules.</p><p><strong>Stack:</strong> Python, SQL, dbt-core, DuckDB, pytest, GitHub Actions, GitHub Pages.</p><div className="mt-7"><EvidenceLinks /></div></Section>
+          <Section title="How it was built"><p>The project was AI-assisted, using Claude Code. It worked under a written brief with phase-gated review, which means I approved or amended every phase. The brief and sixteen decision records are in the repository.</p><p>It is an independent project on open data and contains no employer code, data, or business rules.</p><p><strong>Stack:</strong> Python, SQL, dbt-core, DuckDB, pytest, GitHub Actions, GitHub Pages.</p><div className="mt-7"><EvidenceLinks links={links} /></div></Section>
         </div>
       </article>
     </main>

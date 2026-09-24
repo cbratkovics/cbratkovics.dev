@@ -162,10 +162,10 @@ export const projects: Project[] = [
       findingBasis: "Measured evaluation",
       finding: "In Boulder, 45.1% of connected time is idle after charging, but only up to 12.4% is idle while every inferred port is occupied.",
       whyItMatters: "The headline idle figure overstates what an idle fee could recover by 3.6 times, and the smaller figure remains a ceiling.",
-      recommendation: "Quote the smaller figure as ‘up to,’ pilot at multi-port stations around midday, and revisit the recommendation if queue data becomes available.",
+      recommendation: "Quote the smaller figure as ‘up to.’ Use it only to prioritize investigation at multi-port stations in the late-morning-to-mid-afternoon hours, and validate port inventory and collect queue evidence before claiming constrained demand or choosing an intervention.",
       recommendationStatus: "Evidence-based interpretation",
       validation: "Contracts, unit tests, raw-to-gold reconciliation, deterministic rebuild checks, and committed claim artifacts keep the published numbers inspectable.",
-      limitations: "No source publishes station port counts. Inferred port counts are lower bounds, so published utilization is an upper bound. All figures are scoped to v0.1.0."
+      limitations: "No source publishes station port counts. Inferred port counts are lower bounds, so published utilization is an upper bound. Utilization figures are within-source only; the sources differ in operator, place, and period and are not compared. All figures are scoped to v0.1.0."
     },
     evidence: [
       { label: "dbt docs and lineage", url: "https://cbratkovics.github.io/ev-charging-data-unified-schema/" },

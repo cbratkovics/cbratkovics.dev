@@ -36,7 +36,7 @@ export default function EvChargingCaseStudy() {
         <div className="case-study-prose">
           <Section title="The problem">
             <p>Consolidating differently shaped data feeds into one reliable reporting model is a pattern I work with professionally. I wanted a public example of it that anyone could inspect, so I built one on open data.</p>
-            <p>The project uses three public operators’ charging-session logs. Each one has its own problems:</p>
+            <p>The project uses three public sources’ charging-session logs. Each one has its own problems:</p>
             <ul><li><strong>Boulder, Colorado:</strong> one file holds two overlapping deliveries, and the timestamps come in mixed formats.</li><li><strong>Cary, North Carolina:</strong> timestamps are in true UTC, but there is no end time.</li><li><strong>UK Department for Transport:</strong> the release is split across four files whose headers, date formats, and duration units disagree.</li></ul>
             <p>None of the three publishes how many ports each station has. That means the denominator of every utilization figure has to be inferred.</p>
           </Section>
@@ -55,8 +55,9 @@ export default function EvChargingCaseStudy() {
           </Section>
 
           <Section title="What the data said">
-            <div className="space-y-6">
-              <FindingBlock title="Idle time is large, but most of it blocks nobody" why={<p>The headline idle figure overstates what an idle fee could recover by 3.6 times, and even the smaller number is a ceiling.</p>} recommendation={<ul><li>Quote the smaller figure, and say “up to.”</li><li>Pilot at multi-port stations around midday.</li><li>Queue data would change my view.</li></ul>}><ul><li>In Boulder, 45.1% of connected time is idle after charging ends.</li><li>Only up to 12.4% of connected time is idle while every inferred port was occupied.</li><li>That is up to 28% of the idle total.</li></ul></FindingBlock>
+            <p>Utilization figures are within-source only; the sources differ in operator, place, and period and are not compared.</p>
+            <div className="space-y-6 mt-6">
+              <FindingBlock title="Idle time is large, but most of it blocks nobody" why={<p>The headline idle figure overstates what an idle fee could recover by 3.6 times, and even the smaller number is a ceiling.</p>} recommendation={<ul><li>Do not recommend a system-wide idle fee from the headline idle share.</li><li>Quote the full-occupancy figure as “up to,” and use it only to prioritize late-morning-to-mid-afternoon investigation at multi-port stations.</li><li>Validate actual port inventory and collect queue or turned-away-driver evidence before claiming constrained demand or choosing an intervention.</li></ul>}><ul><li>In Boulder, 45.1% of connected time is idle after charging ends.</li><li>Only up to 12.4% of connected time is idle while every inferred port was occupied.</li><li>That is up to 28% of the idle total.</li></ul></FindingBlock>
               <FindingBlock title="A publisher’s stated rule didn’t describe its own exclusions" why={<p>The publisher’s stated explanation does not fully describe the contents of the excluded file.</p>} recommendation={<p>Treat the publisher’s split as a label, keep every row, and apply one explicit rule of your own.</p>}><p>The UK publisher says it excluded zero-energy and very short sessions. Of the 48,619 rows in its excluded file:</p><ul><li>20,699 meet that rule.</li><li>17,677 are ordinary sessions excluded for unstated reasons.</li><li>9,258 are duplicates of events moved to another release.</li></ul></FindingBlock>
             </div>
           </Section>

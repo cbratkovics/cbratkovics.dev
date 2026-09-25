@@ -144,7 +144,12 @@ const entityResolutionCitations: ArtifactCitation[] = [
   entityResolutionArtifact("13.8 GiB", "artifacts/manifest.json", "runtime.data_dir_bytes_peak"),
   entityResolutionArtifact("242,542", "artifacts/profile/musicbrainz.json", "truth.a_records_with_link_by_primary_type.Album"),
   entityResolutionArtifact("2,324,821", "artifacts/profile/musicbrainz.json", "records.albums"),
-  entityResolutionArtifact("overconfident", "artifacts/eval_learned_v1.json", "metrics.calibration.decision_level.ece")
+  entityResolutionArtifact("overconfident", "artifacts/eval_learned_v1.json", "metrics.calibration.decision_level.ece"),
+  entityResolutionArtifact("five keys", "artifacts/blocking_report.json", "keys"), // five entries
+  entityResolutionArtifact("Three methods", "artifacts/manifest.json", "methods"), // exact_v1, rules_v1, learned_v1
+  entityResolutionArtifact("about a quarter", "artifacts/eval_learned_v1.json", "metrics.ambiguity_rule.review_queue"), // 6,016 / 25,076 = 0.24
+  entityResolutionArtifact("0.2.0", "artifacts/manifest.json", "feature_version"),
+  entityResolutionArtifact("One-to-many links", "artifacts/truth_audit.json", "in_sample.one_to_many_a") // 465; one_to_many_b = 792
 ];
 
 export const projects: Project[] = [
@@ -184,7 +189,7 @@ export const projects: Project[] = [
     narrative: {
       decisionContext: "When does a learned matcher earn its place over a well-designed rules baseline?",
       findingBasis: "Measured evaluation",
-      finding: "On the labelled test fold, weighted rules reached 0.962 F1. The isotonic-calibrated classifier raised auto-accept precision from 0.9946 to 0.9993 and cut the review queue from 25,076 to 6,016 pairs, at lower recall (0.850 vs. 0.931).",
+      finding: "On the labelled test fold, weighted rules reached 0.962 F1. The isotonic-calibrated classifier raised auto-accept precision from 0.9946 to 0.9993 and cut the review queue from 25,076 to 6,016 records, at lower recall (0.850 vs. 0.931).",
       whyItMatters: "The learned model’s contribution was calibration and a smaller review queue, not higher accuracy. Unlinked records are unlabelled, so coverage is never reported as accuracy.",
       recommendation: "Keep the rules baseline as the reference. Adopt the classifier where reviewer time is the binding cost and lower recall is acceptable, and report unverified accepts separately from every accuracy figure.",
       recommendationStatus: "Evidence-based interpretation",

@@ -69,7 +69,7 @@ test("entity resolution case study exposes scoped evidence and metadata", async 
   const response = await fetch(`http://127.0.0.1:${port}/projects/entity-resolution`);
   assert.equal(response.status, 200);
   const html = await response.text();
-  for (const text of ["Entity Resolution: Rules vs. Calibrated Classifier", "Independent project · Data science / Record linkage", "As of v0.1.0", "482,514", "241,752", "25,076", "6,016", "4,501", "unlinked record is not evidence of a non-match", "owner-run", "Where the data proved the plan wrong", "Claude Code", "Methods card"]) assert.ok(html.includes(text), `missing: ${text}`);
+  for (const text of ["Entity Resolution: Rules vs. Calibrated Classifier", "Independent project · Data science / Record linkage", "As of v0.1.0", "482,514", "241,752", "25,076", "6,016", "4,501", "unlinked record is not evidence of a non-match", "owner-run", "Where the data proved the plan wrong", "Claude Code", "Methods card", "Three methods, one labelled truth set", "Independent project on CC0 data; MIT licence; no employer code, data, or business rules.", "Every figure on this page resolves to a", "https://github.com/cbratkovics/entity-resolution/tree/f50d764359895ab3a4d9945ed2a8b37d77bd681c/artifacts"]) assert.ok(html.includes(text), `missing: ${text}`);
   assert.doesNotMatch(html, /known non-match/i);
   assert.match(html, /href="\/#work"/);
   assert.match(html, /<title>Entity Resolution: Rules vs\. Calibrated Classifier \| Christopher J\. Bratkovics<\/title>/);

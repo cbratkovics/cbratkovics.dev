@@ -9,6 +9,7 @@ import FindingBlock from "@/components/case-study/FindingBlock";
 const title = "Entity Resolution: Rules vs. Calibrated Classifier | Christopher J. Bratkovics";
 const description = "A record-linkage case study matching MusicBrainz album release groups to Discogs masters against labelled ground truth: blocking completeness, a weighted rules baseline versus an isotonic-calibrated classifier, tiered decisions, review-queue cost, and coverage reported separately from accuracy.";
 const path = "/projects/entity-resolution";
+const artifactsUrl = "https://github.com/cbratkovics/entity-resolution/tree/f50d764359895ab3a4d9945ed2a8b37d77bd681c/artifacts"; // tag v0.1.0, the commit pinned in projects.ts citations
 
 export const metadata: Metadata = caseStudyMetadata({ title, description, path });
 
@@ -29,8 +30,9 @@ export default function EntityResolutionCaseStudy() {
         <header className="max-w-4xl mb-14">
           <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">Independent project · Data science / Record linkage</p>
           <h1 className="text-4xl md:text-6xl font-bold text-white">Entity Resolution: Rules vs. Calibrated Classifier</h1>
-          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mt-6"><strong>Two matchers, one labelled truth set, and an honest answer to whether the learned model was worth it.</strong></p>
+          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mt-6"><strong>Three methods, one labelled truth set, and an honest answer to whether the learned model was worth it.</strong></p>
           <p className="text-cyan-300 font-semibold mt-5">As of v0.1.0</p>
+          <p className="text-gray-300 mt-2">Every figure on this page resolves to a <a href={artifactsUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline decoration-cyan-300/40 underline-offset-4 hover:text-white">committed artifact at v0.1.0<span className="sr-only"> (opens in a new tab)</span></a>.</p>
           <div className="mt-6"><EvidenceLinks links={links} /></div>
         </header>
 
@@ -70,7 +72,7 @@ export default function EntityResolutionCaseStudy() {
 
           <Section title="Where the data proved the plan wrong"><ul><li><strong>Various-artists credits:</strong> the first feature version treated “Various Artists” credits as ordinary artist names and mismatched compilations. Canonicalising them to one token (ADR 0004, feature version 0.2.0) fixed it, and the earlier stages were re-run with sample membership and counts unchanged.</li><li><strong>The candidate cap has a price:</strong> the per-record cap of 200 dropped 240 truth pairs. They are counted in the blocking report rather than absorbed into “recall”.</li><li><strong>Calibration was still overconfident:</strong> the classifier’s pair-level probabilities were calibrated, but decision-level confidence, the probability of the <em>chosen</em> candidate, remained overconfident because selecting the maximum inflates it. The findings name this rather than smoothing it over.</li><li><strong>The hosted runner couldn’t hold the data:</strong> the planned full-build CI workflow was replaced by a verify-only workflow after measuring the data peak.</li></ul></Section>
 
-          <Section title="How it was built"><p>The project was AI-assisted, using Claude Code under a written brief with phase-gated review, which means I approved or amended every phase. The brief and five decision records are in the repository, and the brief says so.</p><p>It is an independent project on CC0 data under an MIT licence and contains no employer code, data, or business rules.</p><p><strong>Stack:</strong> Python, SQL, scikit-learn, dbt-core, DuckDB, uv, pytest, GitHub Actions, GitHub Pages.</p><div className="mt-7"><EvidenceLinks links={links} /></div></Section>
+          <Section title="How it was built"><p>The project was AI-assisted, using Claude Code under a written brief with phase-gated review, which means I approved or amended every phase. The brief and five decision records are in the repository, and the brief says so.</p><p>Independent project on CC0 data; MIT licence; no employer code, data, or business rules.</p><p><strong>Stack:</strong> Python, SQL, scikit-learn, dbt-core, DuckDB, uv, pytest, GitHub Actions, GitHub Pages.</p><div className="mt-7"><EvidenceLinks links={links} /></div></Section>
         </div>
       </article>
     </main>

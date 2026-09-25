@@ -30,6 +30,12 @@ test("initial HTML exposes core content and native navigation", async () => {
   assert.match(html, /Explore the data platform/);
   assert.match(html, /data-platform#trace/);
   assert.match(html, /href="\/projects\/ev-charging-data-unified-schema"/);
+  assert.match(html, /href="\/projects\/entity-resolution"/);
+  // Tier contract: EV Charging is the flagship; Entity Resolution, Fantasy Football, and NBA are
+  // featured; SQL Genius, AI Chat, and Document Intelligence render under "Additional work".
+  const tierOrder = ["Flagship evidence", "EV Charging Data: Unified Schema", "Entity Resolution: Rules vs. Calibrated Classifier", "Fantasy Football Data Platform &amp; Decision Lab", "NBA Stat Predictor", "Additional work", "SQL Genius AI | SQL Analytics Playground", "AI Chat System | Multi-Provider LLM Gateway", "Document Intelligence | Hybrid Retrieval With Visible Evidence"].map((text) => html.indexOf(text));
+  assert.ok(tierOrder.every((position) => position >= 0), `missing tier text at ${tierOrder.indexOf(-1)}`);
+  assert.deepEqual([...tierOrder].sort((a, b) => a - b), tierOrder);
   assert.ok(html.includes("Skip to main content"));
   assert.doesNotMatch(html, /mailto:|tel:|<form[\s>]/i);
 });
@@ -43,6 +49,7 @@ test("metadata and discovery routes describe the canonical page", async () => {
   const sitemap = await (await fetch(`http://127.0.0.1:${port}/sitemap.xml`)).text();
   assert.match(sitemap, /<loc>https:\/\/cbratkovics\.dev<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/cbratkovics\.dev\/projects\/ev-charging-data-unified-schema<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/cbratkovics\.dev\/projects\/entity-resolution<\/loc>/);
   const social = await fetch(`http://127.0.0.1:${port}/opengraph-image`);
   assert.equal(social.headers.get("content-type"), "image/png");
 });
@@ -51,7 +58,22 @@ test("EV charging case study exposes scoped evidence and metadata", async () => 
   const response = await fetch(`http://127.0.0.1:${port}/projects/ev-charging-data-unified-schema`);
   assert.equal(response.status, 200);
   const html = await response.text();
-  for (const text of ["EV Charging Data: Unified Schema", "As of v0.1.0", "440,575", "357,606", "82,969", "Where the data proved the plan wrong", "Claude Code"]) assert.ok(html.includes(text));
+  for (const text of ["EV Charging Data: Unified Schema", "As of v0.1.0", "440,575", "357,606", "82,969", "Where the data proved the plan wrong", "Claude Code", "three public sources’ charging-session logs", "within-source only", "Validate actual port inventory"]) assert.ok(html.includes(text), `missing: ${text}`);
   assert.match(html, /<title>EV Charging Data: Unified Schema \| Christopher J\. Bratkovics<\/title>/);
   assert.match(html, /rel="canonical" href="https:\/\/cbratkovics\.dev\/projects\/ev-charging-data-unified-schema"/);
+  assert.match(html, /property="og:image" content="https:\/\/cbratkovics\.dev\/opengraph-image/);
+  assert.match(html, /name="twitter:image" content="https:\/\/cbratkovics\.dev\/opengraph-image/);
+});
+
+test("entity resolution case study exposes scoped evidence and metadata", async () => {
+  const response = await fetch(`http://127.0.0.1:${port}/projects/entity-resolution`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  for (const text of ["Entity Resolution: Rules vs. Calibrated Classifier", "Independent project · Data science / Record linkage", "As of v0.1.0", "482,514", "241,752", "25,076", "6,016", "4,501", "unlinked record is not evidence of a non-match", "owner-run", "Where the data proved the plan wrong", "Claude Code", "Methods card", "Three methods, one labelled truth set", "Independent project on CC0 data; MIT licence; no employer code, data, or business rules.", "Every figure on this page resolves to a", "https://github.com/cbratkovics/entity-resolution/tree/f50d764359895ab3a4d9945ed2a8b37d77bd681c/artifacts"]) assert.ok(html.includes(text), `missing: ${text}`);
+  assert.doesNotMatch(html, /known non-match/i);
+  assert.match(html, /href="\/#work"/);
+  assert.match(html, /<title>Entity Resolution: Rules vs\. Calibrated Classifier \| Christopher J\. Bratkovics<\/title>/);
+  assert.match(html, /rel="canonical" href="https:\/\/cbratkovics\.dev\/projects\/entity-resolution"/);
+  assert.match(html, /property="og:image" content="https:\/\/cbratkovics\.dev\/opengraph-image/);
+  assert.match(html, /name="twitter:image" content="https:\/\/cbratkovics\.dev\/opengraph-image/);
 });

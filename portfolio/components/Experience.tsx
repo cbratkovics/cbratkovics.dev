@@ -12,7 +12,7 @@ export default function Experience() {
             Experience
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Progression from business-critical reporting into applied modeling, operational AI, and production data-product ownership
+            Enterprise analytics experience building reliable reporting foundations, reusable models, and business-facing data products
           </p>
         </div>
 

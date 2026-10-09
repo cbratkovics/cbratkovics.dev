@@ -1,12 +1,12 @@
-# Christopher J. Bratkovics | Data & Analytics Portfolio
+# Christopher J. Bratkovics | Analytics Engineering Portfolio
 
-**Data Scientist | Analytics Engineer | Applied AI**
+**Analytics Engineer | Data Modeling, Quality & Automation**
 
-## Trustworthy data foundations. Clear metrics. Defensible decisions.
+## Reliable data. Better decisions.
 
-I turn fragmented data and ambiguous business questions into reliable reporting, reusable data models, and evidence-backed decision support.
+Analytics Engineer with 7+ years in enterprise analytics, building Snowflake/dbt data models, production pipelines, and business-facing data products. I combine hands-on development with source reconciliation, business-rule validation, and applied data science to turn messy source data into reliable reporting and decision support.
 
-With 7+ years in enterprise analytics, my work connects SQL and Python development, Snowflake/dbt modeling, source reconciliation, applied data science, and practical AI applications. I focus on understanding what a result means, validating how it was produced, and explaining what action the evidence supports.
+**Core stack:** SQL, dbt, Snowflake, Python, Sigma. **Supporting depth:** Applied Data Science & AI.
 
 [Explore the portfolio](https://cbratkovics.dev) · [Selected professional work](https://cbratkovics.dev/#work) · [Independent projects](https://cbratkovics.dev/#projects)
 
@@ -34,15 +34,22 @@ Professional case studies describe employer work separately from the independent
 
 ## Independent projects
 
-Each project explores a different part of building useful, trustworthy analytical systems.
+The four featured projects lead with integration, reusable models, data quality, and reconciled reporting. Modeling results provide supporting evidence with their populations and limitations intact.
 
-| Project | Focus and decision question |
+| Featured project | Engineering focus and supporting evidence |
 | --- | --- |
-| [Fantasy Football Data Platform & Decision Lab](https://github.com/cbratkovics/fantasy-football-ai) | **Metric traceability and analytical architecture.** How do predictions, tested dbt/DuckDB facts, and evaluation artifacts remain consistent enough to support a decision? |
-| [SQL Genius AI](https://github.com/cbratkovics/sql-genius-ai) | **Inspectable analytics and controlled automation.** How can schema context, editable SQL, and explicit execution keep a generated query open to review? |
-| [AI Chat System](https://github.com/cbratkovics/chatbot-ai-system) | **The error cost of automation.** When does semantic response reuse save useful work, and when does it return an answer to the wrong question? |
-| [NBA Stat Predictor](https://github.com/cbratkovics/nba-ai-ml) | **Population-aware model evaluation.** Does a favorable result in a restricted cohort justify using the model for the broader decision population? |
-| [Document Intelligence](https://github.com/cbratkovics/document-intelligence-ai) | **Visible retrieval evidence.** How can users inspect which retrieval method surfaced a passage and whether its source context supports their question? |
+| [EV Charging Data: Unified Schema](https://github.com/cbratkovics/ev-charging-data-unified-schema) | Three public sources in a bronze/silver/gold dbt/DuckDB warehouse with explicit grains, source contracts, reason-coded quarantine, timestamp validation, and reconciled incremental loads. Idle time at full inferred occupancy is an upper bound of 12.4% of Boulder connected time, not measured waiting demand. [Case study](https://cbratkovics.dev/projects/ev-charging-data-unified-schema) · [dbt lineage](https://cbratkovics.github.io/ev-charging-data-unified-schema/) |
+| [Entity Resolution: Rules vs. Calibrated Classifier](https://github.com/cbratkovics/entity-resolution) | Python linkage for 482K sampled MusicBrainz release groups against Discogs, with dbt/DuckDB marts reconciling match quality, coverage, and review queues to artifacts. Labelled-test precision increased from 99.46% to 99.93% and review cases fell from 25,076 to 6,016 at differing thresholds and lower recall. [Case study](https://cbratkovics.dev/projects/entity-resolution) · [Methods](https://github.com/cbratkovics/entity-resolution/blob/main/docs/METHODS_CARD.md) |
+| [Fantasy Football Data Platform & Decision Lab](https://github.com/cbratkovics/fantasy-football-ai) | SCD2 player history, incremental restatement, contracts, and evaluation marts reconciled to versioned Python artifacts. The implementation at b03b618 has 26 models and 97 data tests, with local DuckDB development and MotherDuck transformation. Frozen per-position random forests reduced 2025 historical out-of-sample MAE by 6.5% versus a causal trailing-mean baseline (4.4909 vs. 4.8046 PPR points; 5,914 player-weeks). |
+| [NBA Stat Predictor](https://github.com/cbratkovics/nba-ai-ml) | Locally validated dbt/DuckDB evaluation marts reconcile player-game residuals with versioned replay artifacts. LightGBM improved MAE about 2–3% on the restricted 2025–26 holdout with 10+ observed minutes and both baselines available; the last-10 baseline won across the broader replay population. A completed MotherDuck deployment is not established. |
+
+### Additional work
+
+| Project | Supporting depth |
+| --- | --- |
+| [SQL Genius AI](https://github.com/cbratkovics/sql-genius-ai) | Inspectable SQL generation and explicit read-only execution against synthetic fixtures. |
+| [AI Chat System](https://github.com/cbratkovics/chatbot-ai-system) | Application integration and scoped local evaluation of semantic response reuse, including false-positive costs. |
+| [Document Intelligence](https://github.com/cbratkovics/document-intelligence-ai) | Retrieval-only BM25 and dense search with visible component ranks; curated demonstrations are not quality measurements. |
 
 ### Explore the football data platform
 

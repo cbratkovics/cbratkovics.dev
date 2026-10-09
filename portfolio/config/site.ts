@@ -2,9 +2,9 @@ import { identity } from "@/data/projects";
 
 export const SITE = {
   name: identity.name,
-  title: `${identity.name} | ${identity.headline}`,
-  shortTitle: `${identity.name} | ${identity.headline}`,
-  description: `${identity.valueProposition} ${identity.summary}`,
+  title: `${identity.name} | ${identity.role}`,
+  shortTitle: `${identity.name} | ${identity.role}`,
+  description: identity.description,
   url: "https://cbratkovics.dev",
 
   links: {
@@ -19,7 +19,7 @@ export const SITE = {
 
   author: {
     name: identity.name,
-    jobTitle: identity.headline
+    jobTitle: identity.role
   }
 } as const;
 

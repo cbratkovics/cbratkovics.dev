@@ -36,12 +36,13 @@ function ordered(haystack, terms) {
 
 test("identity and exactly two approved employer roles remain canonical", () => {
   assert.match(content, /name: "Christopher J\. Bratkovics"/);
-  assert.match(content, /headline: "Data Scientist \| Analytics Engineer \| Applied AI"/);
+  assert.match(content, /role: "Analytics Engineer"/);
+  assert.match(content, /headline: "Analytics Engineer \| Data Modeling, Quality & Automation"/);
   assert.match(content, /eyebrow: "7\+ years in enterprise analytics"/);
   assert.match(hero, /identity\.(?:name|headline|summary|eyebrow)/);
   assert.equal((content.match(/company: "OUTFRONT Media"/g) ?? []).length, 2);
-  assert.match(senior, /Senior Data Analyst \(Data Science \/ Analytics Engineering\)[\s\S]*April 2022–Present/);
-  assert.match(bi, /Business Intelligence Data Analyst \(Data Architecture \/ Data Science\)[\s\S]*July 2019–April 2022/);
+  assert.match(senior, /Senior Data Analyst \/ Analytics Engineer[\s\S]*April 2022–Present/);
+  assert.match(bi, /Business Intelligence Data Analyst[\s\S]*July 2019–April 2022/);
 });
 
 test("senior role has seven approved ordered accomplishment areas", () => {
@@ -78,6 +79,9 @@ test("project structure, repositories, and capability boundaries remain scoped",
 test("football evidence keeps metric context and commit meanings distinct", () => {
   assert.match(content, /value: 4\.4909[\s\S]*value: 4\.8046/);
   assert.match(content, /5,914 player-weeks[\s\S]*2025 season[\s\S]*Historical out-of-sample season evaluation of a frozen artifact/);
+  assert.match(content, /sourceArtifact: "eval-20260911-20260911-asof_v1-d333de20-rf-oos2025\.json"/);
+  assert.match(content, /sourceUrl: "https:\/\/github\.com\/cbratkovics\/fantasy-football-ai\/blob\/df3e7e6dbae3446da15535176d1dee9f4f045433\/artifacts\/eval\/eval-20260911-20260911-asof_v1-d333de20-rf-oos2025\.json"/);
+  assert.match(content, /verifiedOn: "2026-09-12"/);
   assert.match(content, /modelVersion: "20260911-asof_v1-d333de20"/);
   assert.match(content, /artifactCommit: "df3e7e6dbae3446da15535176d1dee9f4f045433"/);
   assert.match(content, /evaluationCodeCommit: "8e22a47cfc99ba85861cccbe63732da42feb27ab"/);
@@ -88,7 +92,7 @@ test("football evidence keeps metric context and commit meanings distinct", () =
 
 test("identity, metadata, navigation, and contact use canonical sources", () => {
   assert.match(config, /identity\.name/);
-  assert.match(config, /identity\.headline/);
+  assert.match(config, /jobTitle: identity\.role/);
   assert.match(contact, /SITE\.links\.github/);
   assert.match(contact, /SITE\.links\.linkedin/);
   assert.match(contact, /SITE\.author\.name/);
@@ -127,7 +131,6 @@ test("publication rules preserve professional and technical language", () => {
   for (const example of allowedExamples) assert.deepEqual(scanText(example), []);
 });
 
-
 test("decision narratives and stable anchors cover every card", () => {
   assert.equal((content.match(/decisionContext:/g) ?? []).length, 13);
   assert.equal((content.match(/findingBasis:/g) ?? []).length, 13); // interface plus twelve entries
@@ -140,7 +143,7 @@ test("decision narratives and stable anchors cover every card", () => {
 test("render order, navigation, hero, and football platform hierarchy are explicit", () => {
   ordered(page, ["<MinimalHero", "<WorkStories", "<Projects", "<Experience", "<Skills", "<Impact", "<Contact"]);
   ordered(navigation, ['id: "home"', 'id: "work"', 'id: "projects"', 'id: "experience"', 'id: "skills"', 'id: "impact"', 'id: "contact"']);
-  assert.match(content, /Trustworthy data foundations\. Clear metrics\. Defensible decisions\./);
+  assert.match(content, /Reliable data\. Better decisions\./);
   assert.match(content, /primaryAction: \{ label: "Explore the data platform"/);
   assert.match(content, /secondaryAction: \{ label: "Trace a metric", url: "https:\/\/fantasy-football-ai\.vercel\.app\/data-platform#trace"/);
   assert.match(content, /Python produces predictions and evaluation artifacts; dbt builds tested facts and marts/);
@@ -164,3 +167,90 @@ test("entity resolution keeps labelled-fold hedges and every cited figure traces
   }
 });
 
+
+test("approved employment accomplishments retain their full wording and order", () => {
+  const actual = [...content.matchAll(/\{ label: "([^"]+)", text: "([^"]+)" \}/g)].map(([, label, text]) => [label, text]);
+  assert.deepEqual(actual, [
+    [
+      "Production data foundation",
+      "Built the Snowflake/dbt data foundation for production revenue reporting across five advertising platforms, integrating source-specific schemas, deduplication, data enrichments, and backfills into Sigma-facing marts."
+    ],
+    [
+      "Reporting migration",
+      "Migrated legacy reporting logic as layered source transformations, unified fact models, and Sigma-facing marts, preserving established business definitions through the data-platform migration."
+    ],
+    [
+      "Daily occupancy modeling",
+      "Built and validated daily programmatic occupancy and buy-type models; designed separate sales-activity and shared-capacity components to preserve metric meaning across detailed and aggregate reporting."
+    ],
+    [
+      "Inventory modeling & peer analysis",
+      "Implemented regression models for inventory utilization and revenue per unit; combined model outputs with cross-market peer comparisons to identify performance gaps and support yield-management analysis."
+    ],
+    [
+      "Retention & segmentation",
+      "Developed Python churn-risk models and K-means customer segmentation to identify advertiser-retention priorities and account-growth opportunities against business-defined targeting criteria."
+    ],
+    [
+      "Generative AI delivery",
+      "Delivered generative AI applications for editable executive financial communications; supported production troubleshooting and partnered with the data team on source-data and output validation."
+    ],
+    [
+      "Cross-functional delivery",
+      "Partnered with business stakeholders, vendors, and engineers on requirements, troubleshooting, user acceptance testing, and documentation to deliver maintainable data products at scale."
+    ],
+    [
+      "Python ETL & automation",
+      "Automated recurring reporting with Python ETL, replacing manual data preparation with repeatable extraction, transformation, and reporting workflows."
+    ],
+    [
+      "Dimensional modeling & KPIs",
+      "Designed fact and dimension tables and defined KPIs, creating reusable data structures for consistent executive reporting across business lines."
+    ],
+    [
+      "Advertiser entity resolution",
+      "Built Python/SQL entity-resolution workflows linking external advertisers to internal accounts through name normalization, exact and fuzzy matching, confidence tiers, and exceptions for human review."
+    ],
+    [
+      "Applied machine learning",
+      "Authored and presented an applied machine-learning use case in 2021 for advertising-inventory optimization and customer-value projection with external data-science specialists."
+    ],
+    [
+      "Production release coordination",
+      "Coordinated the transition of business reporting from development to production, aligning stakeholders on release sequencing and phased rollout options to minimize disruption to active users."
+    ]
+  ]);
+});
+
+test("engineering identity and supporting expertise stay distinct across entry points", async () => {
+  const social = await read("../app/opengraph-image.tsx");
+  const readme = await read("../../README.md");
+  assert.match(hero, /<h1[^>]*>\{identity\.role\}<\/h1>/);
+  assert.equal((hero.match(/<h1/g) ?? []).length, 1);
+  for (const field of ["name", "role", "specialty", "tagline", "coreStack", "supportingExpertise"]) {
+    assert.ok(hero.includes(`identity.${field}`));
+    assert.ok(social.includes(`identity.${field}`));
+  }
+  assert.match(content, /coreStack: \["SQL", "dbt", "Snowflake", "Python", "Sigma"\]/);
+  assert.match(content, /supportingExpertise: "Applied Data Science & AI"/);
+  assert.match(config, /title: `\$\{identity.name\} \| \$\{identity.role\}`/);
+  assert.match(config, /description: identity.description/);
+  const obsolete = /(?:Data Scientist\s*[|·]\s*Analytics Engineer|Analytics Engineer\s*[|·]\s*Data Scientist)/i;
+  assert.doesNotMatch([content, hero, config, layout, social, readme].join("\n"), obsolete);
+  ordered(readme, ["EV Charging Data: Unified Schema", "Entity Resolution: Rules vs. Calibrated Classifier", "Fantasy Football Data Platform & Decision Lab", "NBA Stat Predictor", "SQL Genius AI", "AI Chat System", "Document Intelligence"]);
+});
+
+test("skills and professional attribution preserve engineering scope", () => {
+  ordered(content.slice(content.indexOf("export const skills")), ["Core analytics engineering", "Data modeling & reliability", "Platforms & development", "Applied data science", "Applied AI & applications"]);
+  for (const term of ["Data contracts", "Incremental processing", "SCD2", "Airflow", "Snowflake Notebooks", "A/B testing analysis"]) assert.ok(content.includes(term));
+  assert.match(content, /I built the SSP components and integration; a collaborating data engineer owns the shared-capacity and charted components/);
+  assert.match(content, /not a claim that automated freshness monitoring was implemented/);
+  const nba = sliceBetween('id: "nba-ml"', 'id: "sql-genius"');
+  assert.match(nba, /locally validated on DuckDB/);
+  assert.match(nba, /both baselines available/);
+  assert.match(nba, /last-10 baseline wins across the broader replay population/);
+  assert.match(nba, /Post-game minutes eligibility is not pregame knowledge/);
+  const ev = sliceBetween('id: "ev-charging-unified-schema"', 'id: "entity-resolution"');
+  assert.match(ev, /within-source only/);
+  assert.match(ev, /does not measure waiting demand, recovered revenue, or the effect of an idle fee/);
+});

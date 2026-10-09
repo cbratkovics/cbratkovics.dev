@@ -1,10 +1,15 @@
 export const identity = {
   name: "Christopher J. Bratkovics",
-  headline: "Data Scientist | Analytics Engineer | Applied AI",
+  role: "Analytics Engineer",
+  headline: "Analytics Engineer | Data Modeling, Quality & Automation",
+  specialty: "Data Modeling, Quality & Automation",
   eyebrow: "7+ years in enterprise analytics",
-  valueProposition: "Trustworthy data foundations. Clear metrics. Defensible decisions.",
+  tagline: "Reliable data. Better decisions.",
+  coreStack: ["SQL", "dbt", "Snowflake", "Python", "Sigma"],
+  supportingExpertise: "Applied Data Science & AI",
+  description: "Analytics Engineer building reliable data models, trusted metrics, and automated workflows with SQL, dbt, Snowflake, and Python, with applied data science and AI depth.",
   summary:
-    "I integrate messy sources, define business logic, validate results, and automate recurring workflows, connecting analytics engineering with applied data science and AI."
+    "I build Snowflake/dbt data models, production pipelines, and business-facing data products. My work combines source reconciliation, business-rule validation, and applied data science to turn fragmented data into reliable reporting and decision support."
 } as const;
 
 export interface DecisionNarrative {
@@ -70,8 +75,8 @@ export interface EducationEntry { credential: string; institution: string; date:
 
 export const experience: ExperienceRole[] = [
   {
-    id: "senior-data-analyst", title: "Senior Data Analyst (Data Science / Analytics Engineering)", company: "OUTFRONT Media", period: "April 2022–Present",
-    summary: "Built production reporting systems, developed Python models, and delivered business-facing AI applications. Translated fragmented advertising data and complex business rules into reusable data products for revenue reporting, customer retention, and inventory-performance analysis.",
+    id: "senior-data-analyst", title: "Senior Data Analyst / Analytics Engineer", company: "OUTFRONT Media", period: "April 2022–Present",
+    summary: "Built Snowflake/dbt reporting foundations, reusable data models, and validated business metrics across advertising platforms, with additional work in predictive modeling and business-data-grounded AI applications.",
     milestones: [
       { label: "Production data foundation", text: "Built the Snowflake/dbt data foundation for production revenue reporting across five advertising platforms, integrating source-specific schemas, deduplication, data enrichments, and backfills into Sigma-facing marts." },
       { label: "Reporting migration", text: "Migrated legacy reporting logic as layered source transformations, unified fact models, and Sigma-facing marts, preserving established business definitions through the data-platform migration." },
@@ -83,7 +88,7 @@ export const experience: ExperienceRole[] = [
     ]
   },
   {
-    id: "bi-data-analyst", title: "Business Intelligence Data Analyst (Data Architecture / Data Science)", company: "OUTFRONT Media", period: "July 2019–April 2022",
+    id: "bi-data-analyst", title: "Business Intelligence Data Analyst", company: "OUTFRONT Media", period: "July 2019–April 2022",
     summary: "Built the data pipelines and analytical models behind recurring executive reporting, combining Python automation, dimensional modeling, and KPI design with applied machine-learning collaboration.",
     milestones: [
       { label: "Python ETL & automation", text: "Automated recurring reporting with Python ETL, replacing manual data preparation with repeatable extraction, transformation, and reporting workflows." },
@@ -155,7 +160,7 @@ const entityResolutionCitations: ArtifactCitation[] = [
 export const projects: Project[] = [
   {
     id: "ev-charging-unified-schema", title: "EV Charging Data: Unified Schema",
-    summary: "Three public charging datasets in incompatible shapes conformed into one tested dbt schema, with explicit contracts, quarantine, reconciliation, denominator analysis, and evidence-backed findings.",
+    summary: "Unified three public charging datasets in a bronze/silver/gold dbt warehouse on DuckDB, with explicit grains, source contracts, reason-coded quarantine, timestamp validation, and reconciled incremental loads.",
     detail: "Built to make every published number traceable from raw files through the reporting layer. This independent project uses public data; as of v0.1.0, it lands 440,575 rows, accepts 357,606 as sessions, and retains 82,969 quarantined rows with explicit reasons.",
     inspect: "Inspect the source contracts, bronze-to-gold lineage, quarantine, reconciliation, claim artifacts, and the bounded findings and recommendations.",
     tech: ["dbt", "DuckDB", "SQL", "Python", "Data Quality", "Reconciliation"],
@@ -166,7 +171,7 @@ export const projects: Project[] = [
       decisionContext: "How can incompatible public charging feeds support defensible, reproducible utilization decisions?",
       findingBasis: "Measured evaluation",
       finding: "In Boulder, 45.1% of connected time is idle after charging, but only up to 12.4% is idle while every inferred port is occupied.",
-      whyItMatters: "The headline idle figure overstates what an idle fee could recover by 3.6 times, and the smaller figure remains a ceiling.",
+      whyItMatters: "Idle time at full inferred occupancy is an upper bound of 12.4% of Boulder connected time. It does not measure waiting demand, recovered revenue, or the effect of an idle fee.",
       recommendation: "Quote the smaller figure as ‘up to.’ Use it only to prioritize investigation at multi-port stations in the late-morning-to-mid-afternoon hours, and validate port inventory and collect queue evidence before claiming constrained demand or choosing an intervention.",
       recommendationStatus: "Evidence-based interpretation",
       validation: "Contracts, unit tests, raw-to-gold reconciliation, deterministic rebuild checks, and committed claim artifacts keep the published numbers inspectable.",
@@ -179,7 +184,7 @@ export const projects: Project[] = [
   },
   {
     id: "entity-resolution", title: "Entity Resolution: Rules vs. Calibrated Classifier",
-    summary: "482K sampled MusicBrainz album release groups matched against Discogs masters and scored against labelled ground truth, with blocking completeness, tiered decisions, review-queue cost, and an auditable mapping table.",
+    summary: "Built Python record linkage for 482K sampled MusicBrainz release groups against Discogs, with multi-key blocking and dbt/DuckDB marts reconciling match quality, coverage, and review queues to committed artifacts.",
     detail: "482,514 sampled MusicBrainz album release groups against all Discogs masters, with 241,752 in-scope truth pairs from MusicBrainz’s own Discogs links. Multi-key blocking retains 96.2% of truth pairs after a per-record cap of 200, leaving 7.6M candidate pairs. Three methods share one normaliser: an exact-match rule, a weighted-score rules baseline, and one scikit-learn classifier calibrated on a held-out fold. A dbt bronze/silver/gold warehouse on DuckDB carries the mapping; a CI number checker fails the build when any cited figure lacks a matching artifact key.",
     inspect: "The blocking report (pair completeness before and after the per-record cap), the per-method evaluation artifacts, the tier semantics, the committed test-fold mapping table, the five decision records, and the number checker that verifies every cited figure.",
     tech: ["Python", "scikit-learn", "dbt", "DuckDB", "Record linkage", "Calibration"],
@@ -205,10 +210,10 @@ export const projects: Project[] = [
   },
   {
     id: "fantasy-football", title: "Fantasy Football Data Platform & Decision Lab",
-    summary: "A Python and dbt/DuckDB workflow connecting time-aware predictions with tested facts, reconciled evaluation marts, and inspectable decision support.",
-    detail: `Python produces predictions and evaluation artifacts; dbt builds tested facts and marts from statistics and artifacts; the API and product expose those distinct provenance paths. The frozen-model evaluation measured ${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than its baseline across ${footballEvaluation.population}.`,
+    summary: "Built a dbt warehouse with SCD2 player history, incremental restatement, data contracts, and evaluation marts reconciled to versioned Python artifacts before publishing.",
+    detail: `Python produces predictions and evaluation artifacts; dbt builds tested facts and marts from statistics and artifacts; the warehouse implementation at b03b618 includes 26 models and 97 data tests, with local DuckDB development and MotherDuck transformation; the API and product expose those distinct provenance paths. The frozen-model evaluation measured ${relativeReduction(footballEvaluation).toFixed(1)}% lower MAE than its baseline across ${footballEvaluation.population}.`,
     inspect: "Inspect the data-platform lineage, metric definition, dbt documentation, model card, and pinned evaluation artifact.",
-    tech: ["Python", "dbt", "DuckDB", "Time-aware evaluation", "FastAPI", "Next.js"],
+    tech: ["SQL", "dbt", "MotherDuck", "DuckDB", "Python", "SCD2"],
     githubUrl: "https://github.com/cbratkovics/fantasy-football-ai", liveUrl: "https://fantasy-football-ai.vercel.app/data-platform", liveLabel: "Explore the data platform", metric: footballEvaluation,
     primaryAction: { label: "Explore the data platform", url: "https://fantasy-football-ai.vercel.app/data-platform" },
     secondaryAction: { label: "Trace a metric", url: "https://fantasy-football-ai.vercel.app/data-platform#trace" },
@@ -228,8 +233,8 @@ export const projects: Project[] = [
   },
   {
     id: "nba-ml", title: "NBA Stat Predictor",
-    summary: "A LightGBM batch pipeline with point-in-time features, GitHub Actions, Hugging Face artifacts, Next.js artifact-reading pages, season replay reconciliation, and a read-only tool-grounded brief.",
-    detail: "The holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 minutes with baseline available). The distinct all-replay population does not beat its baseline, and post-game minutes eligibility is not pregame knowledge.",
+    summary: "Built and validated dbt/DuckDB evaluation marts, reconciling row counts and aggregate error metrics from player-game residuals against versioned season-replay artifacts.",
+    detail: "The warehouse is locally validated on DuckDB; a completed MotherDuck build, pushed gold exports, and routine nightly warehouse operation are not established by committed run evidence. The LightGBM holdout artifact reports 4.764 points MAE versus a 4.908 last-10 baseline for 22,244 eligible 2025–26 player-games (at least 10 observed minutes with both baselines available). MAE improves about 2–3% in that restricted cohort; the last-10 baseline wins across the broader replay population. Post-game minutes eligibility is not pregame knowledge.",
     inspect: "Inspect cohort-aware metrics, replay reconciliation, and the read-only tool-grounded brief. Published replay differences are +0.0021 points, +0.0008 rebounds, and +0.0010 assists against a 0.05 tolerance; the restricted replay and holdout cohorts have different eligibility rules.",
     narrative: {
       decisionContext: "Does a favorable restricted-cohort score justify the model for the full pregame population?", findingBasis: "Measured evaluation",
@@ -237,7 +242,7 @@ export const projects: Project[] = [
       recommendation: "Compare like-for-like populations using decision-time information, and prefer the supported baseline where the comparison does not justify the model.", recommendationStatus: "Evidence-based interpretation",
       limitations: "This is a conclusion about the scoped evaluations, not every target or possible model."
     },
-    tech: ["Python", "LightGBM", "GitHub Actions", "Hugging Face", "Next.js"],
+    tech: ["SQL", "dbt", "DuckDB", "Python", "LightGBM", "GitHub Actions"],
     githubUrl: "https://github.com/cbratkovics/nba-ai-ml", liveUrl: "https://nba-ai-ml.vercel.app", liveLabel: "Project overview",
     evidence: [
       { label: "Replay", url: "https://nba-ai-ml.vercel.app/replay" },
@@ -297,11 +302,11 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  "Core analytics engineering": ["Python", "SQL", "Snowflake", "dbt", "Sigma"],
-  "Data products and quality": ["Dimensional modeling", "ETL / ELT", "Source integration", "Reconciliation", "Data testing", "Controlled backfills", "Git"],
-  "Modeling and validation": ["Random forests", "LightGBM", "Regression", "K-means", "Entity resolution", "Feature engineering", "Time-aware evaluation", "Baseline comparison"],
-  "Applied AI and applications": ["FastAPI", "Next.js", "LLM APIs", "Retrieval", "SSE streaming", "Caching", "Telemetry"],
-  "Cloud and delivery": ["AWS", "S3", "Docker", "GitHub Actions", "PostgreSQL"]
+  "Core analytics engineering": [...identity.coreStack],
+  "Data modeling & reliability": ["Dimensional modeling", "ETL / ELT", "Source integration", "Data contracts", "dbt testing", "Reconciliation", "Controlled backfills", "Incremental processing", "SCD2"],
+  "Platforms & development": ["DuckDB", "MotherDuck", "PostgreSQL", "Airflow", "Git", "GitHub Actions", "Docker", "AWS", "S3", "Snowflake Notebooks"],
+  "Applied data science": ["pandas", "NumPy", "scikit-learn", "Random forests", "LightGBM", "Regression", "K-means", "Entity resolution", "Feature engineering", "Model evaluation", "Time-aware evaluation", "Baseline comparison", "A/B testing analysis"],
+  "Applied AI & applications": ["FastAPI", "Next.js", "LLM APIs", "Retrieval", "SSE streaming", "Caching", "Telemetry"]
 };
 
 export const workStories: Array<{ id: string; title: string; narrative: DecisionNarrative }> = [
@@ -338,7 +343,7 @@ export const workStories: Array<{ id: string; title: string; narrative: Decision
 ];
 
 export const deliveryHighlights = [
-  { icon: "calendar", value: "7+ years", label: "Enterprise analytics", description: "A continuous path from reporting foundations to modeling and maintainable data products" },
+  { icon: "calendar", value: "7+ years", label: "Enterprise analytics", description: "Reliable reporting foundations, reusable models, and maintainable business-facing data products" },
   { icon: "sources", value: "5 platforms", label: "Revenue reporting", description: "Source-specific data modeled in Snowflake/dbt for Sigma-facing production marts" },
   { icon: "target", value: "Decision support", label: "Retention and inventory", description: "Models, segments, mappings, and peer comparisons built for distinct analytical questions" },
   { icon: "recovery", value: "Validated delivery", label: "Applied AI", description: "Editable executive communications delivered, with source and output validation during recovery" }

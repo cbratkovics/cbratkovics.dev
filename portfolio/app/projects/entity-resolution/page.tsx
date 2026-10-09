@@ -7,7 +7,7 @@ import Section from "@/components/case-study/Section";
 import FindingBlock from "@/components/case-study/FindingBlock";
 
 const title = "Entity Resolution: Rules vs. Calibrated Classifier | Christopher J. Bratkovics";
-const description = "A record-linkage case study matching MusicBrainz album release groups to Discogs masters against labelled ground truth: blocking completeness, a weighted rules baseline versus an isotonic-calibrated classifier, tiered decisions, review-queue cost, and coverage reported separately from accuracy.";
+const description = "Python record linkage with dbt/DuckDB reporting marts reconciling MusicBrainz-to-Discogs mappings, match quality, coverage, and review queues to committed artifacts, with labelled-fold classifier evaluation.";
 const path = "/projects/entity-resolution";
 const artifactsUrl = "https://github.com/cbratkovics/entity-resolution/tree/f50d764359895ab3a4d9945ed2a8b37d77bd681c/artifacts"; // tag v0.1.0, the commit pinned in projects.ts citations
 
@@ -28,9 +28,9 @@ export default function EntityResolutionCaseStudy() {
     <main id="case-study-content" tabIndex={-1} className="case-study relative z-10 px-4 py-12 md:py-20">
       <article className="max-w-5xl mx-auto">
         <header className="max-w-4xl mb-14">
-          <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">Independent project · Data science / Record linkage</p>
+          <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">Independent project | Data integration & record linkage</p>
           <h1 className="text-4xl md:text-6xl font-bold text-white">Entity Resolution: Rules vs. Calibrated Classifier</h1>
-          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mt-6"><strong>Three methods, one labelled truth set, and an honest answer to whether the learned model was worth it.</strong></p>
+          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mt-6"><strong>Reviewable Python integration and dbt/DuckDB reporting. Three methods, one labelled truth set, and evidence for the precision, recall, and review tradeoff.</strong></p>
           <p className="text-cyan-300 font-semibold mt-5">As of v0.1.0</p>
           <p className="text-gray-300 mt-2">Every figure on this page resolves to a <a href={artifactsUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline decoration-cyan-300/40 underline-offset-4 hover:text-white">committed artifact at v0.1.0<span className="sr-only"> (opens in a new tab)</span></a>.</p>
           <div className="mt-6"><EvidenceLinks links={links} /></div>

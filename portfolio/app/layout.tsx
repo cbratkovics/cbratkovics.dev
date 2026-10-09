@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
   keywords: [
-    'Christopher Bratkovics', 'Data Scientist', 'Analytics Engineer', 'Applied AI',
+    'Christopher Bratkovics', 'Analytics Engineer', 'Data Modeling', 'Data Quality', 'Applied Data Science', 'Applied AI',
     'Python', 'SQL', 'Snowflake', 'dbt', 'AWS', 'Sigma',
     'Predictive Modeling', 'Customer Segmentation', 'dimensional modeling'
   ],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: SITE.shortTitle,
     title: SITE.title,
     description: SITE.description,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${SITE.author.name} — ${SITE.author.jobTitle}` }]
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${SITE.author.name} | ${SITE.author.jobTitle}` }]
   },
   twitter: {
     card: 'summary_large_image',

@@ -8,7 +8,7 @@ export default function WorkStories() {
         <div className="mb-12 max-w-3xl">
           <p className="text-cyan-400 font-semibold tracking-wide uppercase text-sm mb-3">Selected professional work</p>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Decisions behind the delivery</h2>
-          <p className="text-gray-300 text-lg leading-relaxed">Production reporting, applied modeling, and operational AI work, with contribution and validation in context.</p>
+          <p className="text-gray-300 text-lg leading-relaxed">Data modeling, source integration, metric design, and validation behind reliable reporting and decision support.</p>
         </div>
         <div className="space-y-5">
           {stories.map((story) => (

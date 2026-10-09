@@ -3,18 +3,18 @@ import { Brain, Database, Cloud, Cpu, Sparkles } from "lucide-react";
 
 const categoryIcons: Record<string, React.ReactNode> = {
   "Core analytics engineering": <Cpu className="w-6 h-6" />,
-  "Data products and quality": <Database className="w-6 h-6" />,
-  "Modeling and validation": <Brain className="w-6 h-6" />,
-  "Cloud and delivery": <Cloud className="w-6 h-6" />,
-  "Applied AI and applications": <Sparkles className="w-6 h-6" />
+  "Data modeling & reliability": <Database className="w-6 h-6" />,
+  "Applied data science": <Brain className="w-6 h-6" />,
+  "Platforms & development": <Cloud className="w-6 h-6" />,
+  "Applied AI & applications": <Sparkles className="w-6 h-6" />
 };
 
 const categoryColors: Record<string, string> = {
   "Core analytics engineering": "from-blue-400 to-cyan-400",
-  "Data products and quality": "from-green-400 to-emerald-500",
-  "Modeling and validation": "from-purple-400 to-pink-500",
-  "Cloud and delivery": "from-orange-400 to-red-500",
-  "Applied AI and applications": "from-cyan-400 to-blue-500"
+  "Data modeling & reliability": "from-green-400 to-emerald-500",
+  "Applied data science": "from-purple-400 to-pink-500",
+  "Platforms & development": "from-orange-400 to-red-500",
+  "Applied AI & applications": "from-cyan-400 to-blue-500"
 };
 
 export default function Skills() {
@@ -30,7 +30,7 @@ export default function Skills() {
             Technical Skills
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Tools and methods I use across analytics engineering, modeling, and applied AI
+            Analytics engineering first, with applied data science and AI depth. Tools span professional work and independent projects; SCD2, incremental processing, data contracts, and MotherDuck are demonstrated in independent projects.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function Skills() {
           {Object.entries(skills).map(([category, items]) => (
             <div
               key={category}
-              className="glassmorphism p-6 rounded-xl"
+              className={`glassmorphism p-6 rounded-xl ${category === "Core analytics engineering" ? "md:col-span-2 lg:col-span-3 border border-cyan-400/20" : ""}`}
             >
               <div className="flex items-center mb-4">
                 <div className={`p-2 rounded-lg bg-gradient-to-r ${categoryColors[category]} mr-3`}>

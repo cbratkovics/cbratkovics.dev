@@ -27,7 +27,7 @@ export default function Contact() {
             Let’s connect
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Questions about my work or interested in exchanging ideas about data science, analytics engineering, or applied AI? Get in touch.
+            Connect through my professional profiles to discuss analytics engineering, reliable data products, and applied analytics.
           </p>
         </div>
 

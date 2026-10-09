@@ -11,8 +11,11 @@ export default function MinimalHero() {
           {identity.eyebrow}
         </p>
         <p className="text-xl text-white font-semibold mb-5">{identity.name}</p>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 max-w-5xl leading-tight gradient-text">{identity.valueProposition}</h1>
-        <p className="text-xl md:text-2xl text-white mb-7 font-semibold">{identity.headline}</p>
+        <h1 className="text-5xl md:text-7xl font-bold mb-3 max-w-5xl leading-tight gradient-text">{identity.role}</h1>
+        <p className="text-xl md:text-2xl text-white mb-4 font-semibold">{identity.specialty}</p>
+        <p className="text-lg md:text-xl text-cyan-300 mb-5">{identity.tagline}</p>
+        <p className="text-sm text-gray-400 mb-2" aria-label="Core stack">{identity.coreStack.join(" · ")}</p>
+        <p className="text-sm text-gray-400 mb-6">{identity.supportingExpertise}</p>
 
         <p className="text-lg md:text-xl text-gray-300 max-w-4xl leading-relaxed mb-10">
           {identity.summary}

@@ -56,7 +56,7 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Independent Technical Projects</h2>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">Public implementations and scoped evidence—kept distinct from proprietary professional work.</p>
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto">Data integration, modeling, and reconciliation in public implementations, with applied data science and AI as supporting depth.</p>
         </div>
         <div className="space-y-8">
           <ProjectCard project={featured[0]} flagship />
